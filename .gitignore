@@ -2,6 +2,7 @@
 .project
 composer.lock
 composer.phar
+vendor/
 data.txt
 cache/volt/*.php
 cache/metaData/*.php

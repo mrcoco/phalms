@@ -1,1 +1,1 @@
-<?php return ['frontend','user','cms','banner','gallery','service','program','donation'];
+<?php return ['frontend','session','user','cms','banner','gallery','service','program','donation'];

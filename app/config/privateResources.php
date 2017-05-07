@@ -48,27 +48,6 @@ return new Config([
             'imageedit',
             'imagedelete'
         ],
-        'program' => [
-            'index',
-            'list',
-            'search',
-            'location',
-            'edit',
-            'create',
-            'get',
-            'delete',
-            'download'
-        ],
-        'service' => [
-            'index',
-            'list',
-            'search',
-            'edit',
-            'create',
-            'get',
-            'page',
-            'delete'
-        ],
         'blog' => [
             'index',
             'list',

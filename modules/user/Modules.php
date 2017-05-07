@@ -47,6 +47,6 @@ class Module implements ModuleDefinitionInterface
         $view->setViewsDir(__DIR__. '/views/');
         $view->setMainView('main');
         $view->setLayoutsDir($config->application->layoutsDir);
-        $view->setPartialsDir($config->application->partialDir );
+        $view->setPartialsDir($config->application->adminPartialDir );
     }
 }

@@ -17,6 +17,7 @@ return new Config([
         'formsDir'       => APP_PATH . '/forms/',
         'viewsDir'       => BASE_PATH . '/public/themes/',
         'partialDir'     => BASE_PATH . '/public/themes/frontend/partials/',
+        'adminPartialDir'=> BASE_PATH . '/public/themes/admin/partials/',
         'layoutsDir'     => BASE_PATH . '/public/themes/layouts/',
         'libraryDir'     => APP_PATH . '/library/',
         'pluginsDir'     => APP_PATH . '/plugins/',

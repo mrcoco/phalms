@@ -6,34 +6,6 @@
  * Time: 1616:0404:2222
  */
 
-$router->add('/session/login', array(
-    'namespace'  => 'Modules\User\Controllers',
-    'module'     => 'user',
-    'controller' => 'session',
-    'action'     => 'login'
-));
-
-$router->add('/session/logout', array(
-    'namespace'  => 'Modules\User\Controllers',
-    'module'     => 'user',
-    'controller' => 'session',
-    'action'     => 'logout'
-));
-
-$router->add('/session/signup', array(
-    'namespace'  => 'Modules\User\Controllers',
-    'module'     => 'user',
-    'controller' => 'session',
-    'action'     => 'signup'
-));
-
-$router->add('/session/forgotPassword', array(
-    'namespace'  => 'Modules\User\Controllers',
-    'module'     => 'user',
-    'controller' => 'session',
-    'action'     => 'forgotPassword'
-));
-
 $router->add('/users', array(
     'namespace'  => 'Modules\User\Controllers',
     'module'     => 'user',

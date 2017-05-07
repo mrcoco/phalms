@@ -1,12 +1,13 @@
 <?php
 /**
- * Created by PhpStorm.
+ * Created by Vokuro-Cli
  * User: dwiagus
- * Date: 10/6/2016
- * Time: 9:06 PM
+ * Date: 13/04/2017
+ * Time: 1616:0404:2121
  */
 
-namespace Modules\Banner;
+namespace Modules\Session;
+
 use Phalcon\Loader;
 use Phalcon\DiInterface;
 use Phalcon\Mvc\ModuleDefinitionInterface;
@@ -22,10 +23,13 @@ class Module implements ModuleDefinitionInterface
 
         $loader->registerNamespaces(
             [
-                "Modules\\Banner\\Controllers" => __DIR__."/controllers/",
-                "Modules\\Banner\\Models"      => __DIR__."/models/",
-                "Modules\\Frontend\\Controllers" => realpath(dirname(__FILE__))."/../frontend/controllers/",
-                "Modules\\User\\Models" => realpath(dirname(__FILE__))."/../user/models/",
+                "Modules\\Session\\Controllers" => __DIR__."/controllers/",
+                "Modules\\Session\\Models"      => __DIR__."/models/",
+                "Modules\\Session\\Forms"      => __DIR__."/forms/",
+                "Modules\\Frontend\\Controllers"      => realpath(dirname(__FILE__))."/../frontend/controllers/",
+                "Modules\\Banner\\Models"      => realpath(dirname(__FILE__))."/../banner/models/",
+                "Modules\\Service\\Models"      => realpath(dirname(__FILE__))."/../service/models/",
+                "Modules\\Cms\\Models"      => realpath(dirname(__FILE__))."/../cms/models/",
             ]
         );
 
@@ -43,8 +47,6 @@ class Module implements ModuleDefinitionInterface
         $view->setViewsDir(__DIR__. '/views/');
         $view->setMainView('main');
         $view->setLayoutsDir($config->application->layoutsDir);
-        $view->setPartialsDir($config->application->adminPartialDir );
-        $view->setLayout('private');
+        $view->setPartialsDir($config->application->partialDir);
     }
 }
-

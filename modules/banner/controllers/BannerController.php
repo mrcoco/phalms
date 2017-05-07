@@ -10,6 +10,8 @@ namespace Modules\Banner\Controllers;
 
 use Modules\Banner\Models\Banner;
 use Modules\Frontend\Controllers\ControllerBase;
+use Phalcon\Assets\Resource\Js;
+
 class BannerController extends ControllerBase
 {
     public function initialize() {
@@ -24,6 +26,7 @@ class BannerController extends ControllerBase
     public function indexAction()
     {
         $this->view->js = 'banner/bannerjs';
+        
         $this->view->pick("banner/index");
     }
 

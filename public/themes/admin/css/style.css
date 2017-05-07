@@ -272,7 +272,8 @@ body a:hover{
 			-webkit-transition: width .05s linear;
 			transition: width .05s linear;
 			-webkit-transform: translateZ(0) scale(1,1);
-			background: #00bcd4;
+			/*background: #00bcd4;*/
+			background: #1E252F;
 			z-index: 11;
 		}
 		nav.main-menu>ul{margin:7px 0}
@@ -291,7 +292,8 @@ body a:hover{
 		nav.main-menu li ul{
 		    position: absolute;
 			display: inline-block;
-			background: #00bcd4;
+			/*background: #00bcd4;*/
+			background: #1E252F;
 			top: 0;
 			right: -210px;
 			width: 0;
@@ -314,9 +316,15 @@ body a:hover{
 			display:table-cell;vertical-align:middle;padding-left:20px;padding-right:40px
 		}
 		.no-touch nav.main-menu li li:hover a{
-			color:#fff;background-color:#00acc1;
+			color:#fff;
+			/*background-color:#00acc1;*/
+			background-color: #2A3342;
 		}
-		.no-touch nav.main-menu li:hover>a,nav.main-menu li.active>a{color:#fff;background-color:#00acc1;}
+		.no-touch nav.main-menu li:hover>a,nav.main-menu li.active>a{
+			color:#fff;
+			/*background-color:#00acc1;*/
+			background-color: #2A3342;
+		}
 		.no-touch nav.main-menu li:hover ul,nav.main-menu li.active ul{width:210px}
 		nav.main-menu .nav-icon,i.fa.fa-home.nav_icon,i.fa.fa-cogs,i.fa.fa-check-square-o.nav_icon,i.fa.fa-file-text-o.nav_icon,i.fa.fa-bar-chart.nav_icon,i.fa.fa-map-marker,i.fa.fa-exclamation-triangle,i.fa.fa-list-ul{
 			position:relative;display:table-cell;

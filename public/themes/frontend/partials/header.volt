@@ -1,4 +1,3 @@
-
 <header id="header">
     <nav id="main-menu" class="navbar navbar-default navbar-fixed-top" role="banner">
         <div class="container">

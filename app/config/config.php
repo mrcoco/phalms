@@ -8,14 +8,16 @@ return new Config([
         'adapter' => 'MySql',
         'host' => 'localhost',
         'username' => 'root',
-        'password' => 'root',
-        'dbname' => 'phalms'
+        'password' => '',
+        'dbname' => 'zakat'
     ],
     'application' => [
         'controllersDir' => APP_PATH . '/controllers/',
         'modelsDir'      => APP_PATH . '/models/',
         'formsDir'       => APP_PATH . '/forms/',
-        'viewsDir'       => APP_PATH . '/views/',
+        'viewsDir'       => BASE_PATH . '/public/themes/',
+        'partialDir'     => BASE_PATH . '/public/themes/frontend/partials/',
+        'layoutsDir'     => BASE_PATH . '/public/themes/layouts/',
         'libraryDir'     => APP_PATH . '/library/',
         'pluginsDir'     => APP_PATH . '/plugins/',
         'modulesDir'     => APP_PATH . '/modules/',
@@ -25,6 +27,7 @@ return new Config([
         'uploadDir'      => BASE_PATH . '/public/upload/',
         'baseUri'        => '/',
         'publicUrl'      => 'phalms.dev',
+        'siteName'       => 'Phalms - Phalcon LMS',
         'cryptSalt'      => 'eEAfR|_&G&f,+vU]:jFr!!A&+71w1Ms9~8_4L!<@[N@DyaIP_2My|:+.u>/6m,$D'
     ],
     'mail' => [

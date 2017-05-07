@@ -8,8 +8,8 @@ return new Config([
         'adapter' => 'MySql',
         'host' => 'localhost',
         'username' => 'root',
-        'password' => 'root',
-        'dbname' => 'phalms'
+        'password' => '',
+        'dbname' => 'zakat'
     ],
     'application' => [
         'controllersDir' => APP_PATH . '/controllers/',

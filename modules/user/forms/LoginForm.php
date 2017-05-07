@@ -19,7 +19,7 @@ class LoginForm extends Form
         // Email
         $email = new Text('email', [
             'placeholder' => 'Email',
-            'class' => 'email',
+            'class' => 'form-control',
             'required' =>  'data-error="Please enter your email"',
 
         ]);
@@ -38,7 +38,7 @@ class LoginForm extends Form
         // Password
         $password = new Password('password', [
             'placeholder' => 'Password',
-            'class' => 'email',
+            'class' => 'form-control',
             'required' =>  'data-error="Please enter your password"',
         ]);
 

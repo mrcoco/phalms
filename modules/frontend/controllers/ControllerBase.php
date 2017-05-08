@@ -3,8 +3,8 @@ namespace Modules\Frontend\Controllers;
 
 use Phalcon\Mvc\Controller;
 use Phalcon\Mvc\Dispatcher;
-use Vokuro\Sosial\Sosial;
-use Vokuro\Widget\Widget;
+use Phalms\Sosial\Sosial;
+use Phalms\Widget\Widget;
 
 /**
  * ControllerBase

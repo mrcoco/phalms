@@ -6,7 +6,7 @@ use Modules\Frontend\Controllers\ControllerBase;
 use Modules\User\Forms\LoginForm;
 use Modules\User\Forms\SignUpForm;
 use Modules\User\Forms\ForgotPasswordForm;
-use Vokuro\Auth\Exception as AuthException;
+use Phalms\Auth\Exception as AuthException;
 use Modules\User\Models\Users;
 use Modules\User\Models\ResetPasswords;
 

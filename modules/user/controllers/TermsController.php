@@ -1,5 +1,5 @@
 <?php
-namespace Vokuro\Controllers;
+namespace Phalms\Controllers;
 
 /**
  * Display the terms and conditions page.

@@ -8,7 +8,7 @@ use Modules\User\Forms\ProfilesForm;
 use Modules\User\Models\Profiles;
 
 /**
- * Vokuro\Controllers\ProfilesController
+ * Phalms\Controllers\ProfilesController
  * CRUD to manage profiles
  */
 class ProfilesController extends ControllerBase

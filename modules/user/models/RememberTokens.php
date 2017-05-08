@@ -1,5 +1,5 @@
 <?php
-namespace Vokuro\Models;
+namespace Phalms\Models;
 
 use Phalcon\Mvc\Model;
 

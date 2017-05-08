@@ -15,8 +15,8 @@ use Modules\Donation\Models\Donation;
 use Modules\Frontend\Models\Subscribe;
 use Modules\Program\Models\Program;
 use Phalcon\Tag;
-use Vokuro\Mail\Mail;
-use Vokuro\Widget\Widget;
+use Phalms\Mail\Mail;
+use Phalms\Widget\Widget;
 
 class IndexController extends ControllerBase
 {

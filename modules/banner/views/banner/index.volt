@@ -66,7 +66,7 @@
                     <div class="form-group" >
                         <div class="row">
                             <div class="col-xs-4 col-xs-offset-8">
-                                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i>  close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-close"></i>  close</button>
                                 <button type="submit" name="save" class="btn btn-primary" id="save"><i class="fa fa-save"></i>  Save </button>
                             </div>
                         </div>

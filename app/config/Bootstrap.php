@@ -18,10 +18,10 @@ use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Flash\Direct as Flash;
 use Phalcon\Logger\Adapter\File as FileLogger;
 use Phalcon\Logger\Formatter\Line as FormatterLine;
-use Vokuro\Auth\Auth;
-use Vokuro\Acl\Acl;
-use Vokuro\Mail\Mail;
-use Vokuro\Widget\Widget;
+use Phalms\Auth\Auth;
+use Phalms\Acl\Acl;
+use Phalms\Mail\Mail;
+use Phalms\Widget\Widget;
 class Bootstrap
 {
     public function run()
@@ -59,7 +59,7 @@ class Bootstrap
          * We're a registering a set of directories taken from the configuration file
          */
         $loader->registerNamespaces([
-            'Vokuro'             => $config->application->libraryDir,
+            'Phalms'             => $config->application->libraryDir,
             'Modules'            => $config->application->modulesDir,
             'Extend'             => $config->application->extendDir,
             'Plugins'            => $config->application->pluginDir,

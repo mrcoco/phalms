@@ -7,7 +7,7 @@ use Modules\User\Models\Users;
 use Modules\User\Models\PasswordChanges;
 
 /**
- * Vokuro\Controllers\UsersController
+ * Phalms\Controllers\UsersController
  * CRUD to manage users
  */
 class UsersController extends ControllerBase

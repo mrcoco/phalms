@@ -1,5 +1,5 @@
 <?php
-namespace Vokuro\Acl;
+namespace Phalms\Acl;
 
 use Phalcon\Mvc\User\Component;
 use Phalcon\Acl\Adapter\Memory as AclMemory;
@@ -8,7 +8,7 @@ use Phalcon\Acl\Resource as AclResource;
 use Modules\User\Models\Profiles;
 
 /**
- * Vokuro\Acl\Acl
+ * Phalms\Acl\Acl
  */
 class Acl extends Component
 {
@@ -87,7 +87,7 @@ class Acl extends Component
 
         // Check if the ACL is in APC
         if (function_exists('apc_fetch')) {
-            $acl = apc_fetch('vokuro-acl');
+            $acl = apc_fetch('Phalms-acl');
             if (is_object($acl)) {
                 $this->acl = $acl;
                 return $acl;
@@ -108,7 +108,7 @@ class Acl extends Component
 
         // Store the ACL in APC
         if (function_exists('apc_store')) {
-            apc_store('vokuro-acl', $this->acl);
+            apc_store('Phalms-acl', $this->acl);
         }
 
         return $this->acl;
@@ -201,7 +201,7 @@ class Acl extends Component
 
             // Store the ACL in APC
             if (function_exists('apc_store')) {
-                apc_store('vokuro-acl', $acl);
+                apc_store('Phalms-acl', $acl);
             }
         } else {
             $this->flash->error(

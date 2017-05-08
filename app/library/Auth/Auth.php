@@ -1,5 +1,5 @@
 <?php
-namespace Vokuro\Auth;
+namespace Phalms\Auth;
 
 use Phalcon\Mvc\User\Component;
 use Modules\User\Models\Users;
@@ -8,8 +8,8 @@ use Modules\User\Models\SuccessLogins;
 use Modules\User\Models\FailedLogins;
 
 /**
- * Vokuro\Auth\Auth
- * Manages Authentication/Identity Management in Vokuro
+ * Phalms\Auth\Auth
+ * Manages Authentication/Identity Management in Phalms
  */
 class Auth extends Component
 {
@@ -57,7 +57,7 @@ class Auth extends Component
     /**
      * Creates the remember me environment settings the related cookies and generating tokens
      *
-     * @param \Vokuro\Models\Users $user
+     * @param \Phalms\Models\Users $user
      * @throws Exception
      */
     public function saveSuccessLogin($user)
@@ -112,7 +112,7 @@ class Auth extends Component
     /**
      * Creates the remember me environment settings the related cookies and generating tokens
      *
-     * @param \Vokuro\Models\Users $user
+     * @param \Phalms\Models\Users $user
      */
     public function createRememberEnvironment(Users $user)
     {
@@ -199,7 +199,7 @@ class Auth extends Component
     /**
      * Checks if the user is banned/inactive/suspended
      *
-     * @param \Vokuro\Models\Users $user
+     * @param \Phalms\Models\Users $user
      * @throws Exception
      */
     public function checkUserFlags(Users $user)
@@ -278,7 +278,7 @@ class Auth extends Component
     /**
      * Get the entity related to user in the active identity
      *
-     * @return \Vokuro\Models\Users
+     * @return \Phalms\Models\Users
      * @throws Exception
      */
     public function getUser()

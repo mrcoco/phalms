@@ -1,5 +1,5 @@
 <?php
-namespace Vokuro\Auth;
+namespace Phalms\Auth;
 
 class Exception extends \Exception
 {

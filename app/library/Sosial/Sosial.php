@@ -6,7 +6,7 @@
  * Time: 3:28 PM
  */
 
-namespace Vokuro\Sosial;
+namespace Phalms\Sosial;
 use Phalcon\Mvc\User\Component;
 use InstagramScraper\Instagram;
 

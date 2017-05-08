@@ -1,5 +1,5 @@
 <?php
-namespace Vokuro\Controllers;
+namespace Phalms\Controllers;
 
 use Modules\User\Models\EmailConfirmations;
 use Modules\User\Models\ResetPasswords;

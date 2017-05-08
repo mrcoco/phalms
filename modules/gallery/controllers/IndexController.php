@@ -12,10 +12,10 @@ namespace modules\gallery\controllers;
 use Modules\Gallery\Models\Gallery;
 use Modules\Gallery\Models\Image;
 use Phalcon\Paginator\Adapter\Model as Paginator;
-use Vokuro\Models\Views;
-use Vokuro\Models\Pages;
+use Phalms\Models\Views;
+use Phalms\Models\Pages;
 
-class IndexController extends \Vokuro\Controllers\BaseController
+class IndexController extends \Phalms\Controllers\BaseController
 {
     public function initialize() {
         $this->tag->setTitle('Manage your Companies');

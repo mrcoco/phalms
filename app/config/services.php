@@ -11,9 +11,9 @@ use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Flash\Direct as Flash;
 use Phalcon\Logger\Adapter\File as FileLogger;
 use Phalcon\Logger\Formatter\Line as FormatterLine;
-use Vokuro\Auth\Auth;
-use Vokuro\Acl\Acl;
-use Vokuro\Mail\Mail;
+use Phalms\Auth\Auth;
+use Phalms\Acl\Acl;
+use Phalms\Mail\Mail;
 
 /**
  * Register the global configuration as config
@@ -126,7 +126,7 @@ $di->set('crypt', function () {
  */
 $di->set('dispatcher', function () {
     $dispatcher = new Dispatcher();
-    $dispatcher->setDefaultNamespace('Vokuro\Controllers');
+    $dispatcher->setDefaultNamespace('Phalms\Controllers');
     return $dispatcher;
 });
 

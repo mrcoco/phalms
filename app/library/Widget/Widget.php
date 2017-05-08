@@ -6,7 +6,7 @@
  * Time: 11:52 PM
  */
 
-namespace Vokuro\Widget;
+namespace Phalms\Widget;
 use Modules\Banner\Models\Banner;
 use Modules\Cms\Models\Blog;
 use Modules\Cms\Models\PageCategory;
@@ -14,7 +14,7 @@ use Modules\Donation\Models\Donation;
 use Modules\Gallery\Models\Image;
 use Modules\Service\Models\Service;
 use Modules\Program\Models\Program;
-use Vokuro\Sosial\Sosial;
+use Phalms\Sosial\Sosial;
 use \Phalcon\Tag;
 
 class Widget extends \Phalcon\Mvc\User\Component

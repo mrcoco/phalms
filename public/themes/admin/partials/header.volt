@@ -1,174 +1,217 @@
-<nav class="user-menu">
-    <a href="javascript:;" class="main-menu-access">
-        <i class="icon-proton-logo"></i>
-        <i class="icon-reorder"></i>
-    </a>
-</nav>
-<section class="title-bar">
-    <div class="logo">
-        <h1><a href="{{ url() }}"><img src="images/logo.png" alt="" />Phalms</a></h1>
-    </div>
-    <div class="full-screen">
-        <section class="full-top">
-            <button id="toggle"><i class="fa fa-arrows-alt" aria-hidden="true"></i></button>
-        </section>
-    </div>
-    <div class="header-right">
-        <div class="profile_details_left">
-            <div class="header-right-left">
-                <!--notifications of menu start -->
-                <ul class="nofitications-dropdown">
-                    <li class="dropdown head-dpdn">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="badge">3</span></a>
-                        <ul class="dropdown-menu anti-dropdown-menu w3l-msg">
-                            <li>
-                                <div class="notification_header">
-                                    <h3>You have 3 new messages</h3>
-                                </div>
-                            </li>
-                            <li><a href="#">
-                                    <div class="user_img"><img src="images/1.png" alt=""></div>
-                                    <div class="notification_desc">
-                                        <p>Lorem ipsum dolor amet</p>
-                                        <p><span>1 hour ago</span></p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </a></li>
-                            <li class="odd"><a href="#">
-                                    <div class="user_img"><img src="images/2.png" alt=""></div>
-                                    <div class="notification_desc">
-                                        <p>Lorem ipsum dolor amet </p>
-                                        <p><span>1 hour ago</span></p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </a></li>
-                            <li><a href="#">
-                                    <div class="user_img"><img src="images/3.png" alt=""></div>
-                                    <div class="notification_desc">
-                                        <p>Lorem ipsum dolor amet </p>
-                                        <p><span>1 hour ago</span></p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </a></li>
-                            <li>
-                                <div class="notification_bottom">
-                                    <a href="#">See all messages</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown head-dpdn">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue">3</span></a>
-                        <ul class="dropdown-menu anti-dropdown-menu agile-notification">
-                            <li>
-                                <div class="notification_header">
-                                    <h3>You have 3 new notifications</h3>
-                                </div>
-                            </li>
-                            <li><a href="#">
-                                    <div class="user_img"><img src="images/2.png" alt=""></div>
-                                    <div class="notification_desc">
-                                        <p>Lorem ipsum dolor amet</p>
-                                        <p><span>1 hour ago</span></p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </a></li>
-                            <li class="odd"><a href="#">
-                                    <div class="user_img"><img src="images/1.png" alt=""></div>
-                                    <div class="notification_desc">
-                                        <p>Lorem ipsum dolor amet </p>
-                                        <p><span>1 hour ago</span></p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </a></li>
-                            <li><a href="#">
-                                    <div class="user_img"><img src="images/3.png" alt=""></div>
-                                    <div class="notification_desc">
-                                        <p>Lorem ipsum dolor amet </p>
-                                        <p><span>1 hour ago</span></p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </a></li>
-                            <li>
-                                <div class="notification_bottom">
-                                    <a href="#">See all notifications</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown head-dpdn">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue1">15</span></a>
-                        <ul class="dropdown-menu anti-dropdown-menu agile-task">
-                            <li>
-                                <div class="notification_header">
-                                    <h3>You have 8 pending tasks</h3>
-                                </div>
-                            </li>
-                            <li><a href="#">
-                                    <div class="task-info">
-                                        <span class="task-desc">Database update</span><span class="percentage">40%</span>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="progress progress-striped active">
-                                        <div class="bar yellow" style="width:40%;"></div>
-                                    </div>
-                                </a></li>
-                            <li><a href="#">
-                                    <div class="task-info">
-                                        <span class="task-desc">Dashboard done</span><span class="percentage">90%</span>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="progress progress-striped active">
-                                        <div class="bar green" style="width:90%;"></div>
-                                    </div>
-                                </a></li>
-                            <li><a href="#">
-                                    <div class="task-info">
-                                        <span class="task-desc">Mobile App</span><span class="percentage">33%</span>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="progress progress-striped active">
-                                        <div class="bar red" style="width: 33%;"></div>
-                                    </div>
-                                </a></li>
-                            <li><a href="#">
-                                    <div class="task-info">
-                                        <span class="task-desc">Issues fixed</span><span class="percentage">80%</span>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="progress progress-striped active">
-                                        <div class="bar  blue" style="width: 80%;"></div>
-                                    </div>
-                                </a></li>
-                            <li>
-                                <div class="notification_bottom">
-                                    <a href="#">See all pending tasks</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <div class="clearfix"> </div>
-                </ul>
+<!-- begin .app-heading -->
+<header class="app-heading">
+    <header class="canvas is-fixed is-top bg-white p-v-15 shadow-4dp" id="top-search">
+
+        <div class="container-fluid">
+            <div class="input-group input-group-lg icon-before-input">
+                <input type="text" class="form-control input-lg b-0" placeholder="Search for...">
+                <div class="icon z-3">
+                    <i class="fa fa-fw fa-lg fa-search"></i>
+                </div>
+                <span class="input-group-btn">
+                <button data-target="#top-search" data-toggle="canvas" class="btn btn-danger btn-line b-0">
+                  <i class="fa fa-fw fa-lg fa-times"></i>
+                </button>
+              </span>
             </div>
-            <div class="profile_details">
-                <ul>
-                    <li class="dropdown profile_details_drop">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            <div class="profile_img">
-                                <span class="prfil-img"><i class="fa fa-user" aria-hidden="true"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                        <ul class="dropdown-menu drp-mnu">
-                            <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
-                            <li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li>
-                            <li> <a href="#"><i class="fa fa-sign-out"></i> Logout</a> </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="clearfix"> </div>
+            <!-- /input-group -->
         </div>
-    </div>
-    <div class="clearfix"> </div>
-</section>
+
+    </header>
+    <!-- begin .navbar -->
+    <nav class="navbar navbar-default navbar-static-top shadow-2dp">
+        <!-- begin .navbar-header -->
+        <div class="navbar-header">
+            <!-- begin .navbar-header-left with image -->
+            <div class="navbar-header-left b-r">
+                <!--begin logo-->
+                <a class="logo" href="../index.html">
+                <span class="logo-xs visible-xs">
+                  <img src="{{ url("themes/admin/") }}assets/img/logo_xs.svg" alt="logo-xs">
+                </span>
+                    <span class="logo-lg hidden-xs">
+                  <img src="{{ url("themes/admin/") }}assets/img/logo_lg.svg" alt="logo-lg">
+                </span>
+                </a>
+                <!--end logo-->
+            </div>
+            <!-- END: .navbar-header-left with image -->
+            <nav class="nav navbar-header-nav">
+
+                <a class="visible-xs b-r" href="#" data-side=collapse>
+                    <i class="fa fa-fw fa-bars"></i>
+                </a>
+
+                <a class="hidden-xs b-r" href="#" data-side=mini>
+                    <i class="fa fa-fw fa-bars"></i>
+                </a>
+
+                <form class="navbar-form hidden-xs b-r">
+                    <div class="icon-after-input">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <div class="icon">
+                            <a href="#">
+                                <i class="fa fa-fw fa-search"></i>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+
+            </nav>
+
+            <ul class="nav navbar-header-nav m-l-a">
+                <li class="visible-xs b-l">
+                    <a href="#top-search" data-toggle="canvas">
+                        <i class="fa fa-fw fa-search"></i>
+                    </a>
+                </li>
+                <li class="dropdown b-l">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+
+                        <span class="b-wisteria fa fa-fw fa-envelope-o u-posRelative"></span>
+
+                        <span class="label label-primary b-orange">8
+                    <span class="waves"></span>
+                  </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInDown w-sm pull-right">
+                        <li class="b-b">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a class="profile-pic" href="#">
+                                        <img class="media-object" src="{{ url("themes/admin/") }}assets/img/w2.svg" alt="...">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="media-heading">
+                                        <small class="pull-right">12 hours ago</small>
+                                        <b>Leanne Graham</b>
+                                    </h5>
+                                    started following
+                                    <strong>Ervin Howell </strong>
+                                    <p class="text-muted">3 days ago at 7:12 pm - 10.12.2016</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="b-b">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a class="profile-pic" href="#">
+                                        <img class="media-object" src="{{ url("themes/admin/") }}assets/img/m2.svg" alt="...">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="media-heading">
+                                        <small class="pull-right">12 hours ago</small>
+                                        <b>Leanne Graham</b>
+                                    </h5>
+                                    started following
+                                    <strong>Ervin Howell </strong>
+                                    <p class="text-muted">3 days ago at 7:12 pm - 10.12.2016</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="text-center u-block text-asbestos" href="app-mail-inbox.html">
+                                <i class="fa fa-envelope"></i> Read All Messages
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown b-l">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-fw fa-bell"></i>
+                        <span class="point bg-carrot b-peter-river">
+                    <span class="waves"></span>
+                  </span>
+                    </a>
+                    <ul class="dropdown-menu pull-right w-sm animated fadeInUp">
+
+                        <li class="p-a-15">
+                            <a href="app-mail-inbox.html">
+                                <div class="clearfix">
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-envelope fa-fw"></i>
+                                    <small>12 messages</small>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="p-a-15">
+                            <a href="app-mail-inbox.html">
+                                <div class="clearfix">
+                                    <span class="pull-right text-muted small">3 minutes ago</span>
+                                    <i class="fa fa-twitter fa-fw"></i>
+                                    <small>4 follower</small>
+                                </div>
+                            </a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li class="text-right">
+                            <a class="text-wisteria" href="#">
+                                See all notification
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown b-l">
+                    <a class="dropdown-toggle profile-pic" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img class="img-circle" src="{{ url("themes/admin/") }}assets/img/w1.svg" alt="Jane Doe">
+                        <b class="hidden-xs hidden-sm">Jane Doe</b>
+                    </a>
+                    <ul class="dropdown-menu animated flipInY pull-right">
+                        <li>
+                            {{ link_to('users/changePassword', 'Change Password') }}
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a href="{{ url("session/logout") }}">
+                                <i class="fa fa-fw fa-sign-out"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- begin mega-menu -->
+                <li class="dropdown u-posStatic hidden-xs b-l">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mega
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu nav-full-item">
+                        <li>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <h1 class="text-muted">Heading 1</h1>
+                                        <h2 class="text-primary">Heading 2</h2>
+                                        <h3 class="text-warning">Heading 3</h3>
+                                        <h4 class="text-danger">Heading 4</h4>
+                                        <h5 class="text-success">Heading 5</h5>
+                                        <h6 class="text-info">Heading 6</h6>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <p>Default paragraph</p>
+                                        <p class="lead">lead paragraph</p>
+                                        <p class="text-muted">Muted paragraph</p>
+                                        <p class="text-warning">warning paragraph</p>
+                                        <p class="text-primary">primary paragraph</p>
+                                        <p class="text-info">info paragraph</p>
+                                        <p class="text-success">success paragraph</p>
+                                        <p class="text-danger">danger paragraph</p>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <img class="img-responsive" src="{{ url("themes/admin/") }}assets/img/p1.svg" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <!-- END: mega-menu -->
+            </ul>
+        </div>
+        <!-- END: .navbar-header -->
+    </nav>
+    <!-- END: .navbar -->
+</header>
+<!-- END:  .app-heading -->

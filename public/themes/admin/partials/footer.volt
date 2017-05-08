@@ -1,3 +1,9 @@
-<div class="footer">
-    <p>© {{ date('Y') }} {{ config.application.siteName }} . All Rights Reserved . Design by <a href="http://w3layouts.com/">W3layouts</a></p>
-</div>
+<!-- begin .app-footer -->
+<footer class="app-footer p-t-10 text-white">
+    <div class="container-fluid">
+        <p class="text-center small">
+            Copyright {{ config.application.siteName }} &copy; 2017
+        </p>
+    </div>
+</footer>
+<!-- END: .app-footer -->

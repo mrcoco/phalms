@@ -24,7 +24,13 @@ class UsersController extends ControllerBase
      */
     public function indexAction()
     {
-        $this->view->js = 'users/userjs';
+        $this->assets
+            ->collection('footer')
+            ->setTargetPath("js/combined-user.js")
+            ->setTargetUri("js/combined-user.js")
+            ->join(true)
+            ->addJs($this->config->application->modulesDir."user/views/js/js.js")
+            ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 
     public function listAction()

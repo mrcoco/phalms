@@ -1,20 +1,37 @@
 {{ content() }}
-<div class="grid_3 grid_5">
-<table id="grid-selection" class="table table-condensed table-hover table-striped">
-    <thead>
-    <tr>
-        <th data-column-id="no" data-type="numeric" data-width="5%" data-sortable="false">no</th>
-        <th data-column-id="name" data-sortable="false">Name</th>
-        {#<th data-column-id="slug" data-sortable="false">Slug</th>#}
-        <th data-column-id="email" data-width="35%" data-sortable="false">Email</th>
-        <th data-column-id="profile" data-sortable="false">Profile</th>
-        <th data-column-id="banned" data-formatter="banned" data-sortable="false">Banned</th>
-        <th data-column-id="suspended" data-formatter="suspended" data-sortable="false">Suspended</th>
-        <th data-column-id="active" data-formatter="active" data-sortable="false">Active</th>        
-        <th data-column-id="commands" data-formatter="commands" data-sortable="false">Action</th>
-    </tr>
-    </thead>
-</table>
+<div class="col-md-12 col-sm-12">
+    <div class="box">
+        <header class="bg-alizarin text-white">
+            <h4>User Manager</h4>
+            <!-- begin box-tools -->
+            <div class="box-tools">
+                <a class="fa fa-fw fa-minus" href="#" data-box="collapse"></a>
+                <a class="fa fa-fw fa-square-o" href="#" data-fullscreen="box"></a>
+                <a class="fa fa-fw fa-refresh" href="#" data-box="refresh"></a>
+                <a class="fa fa-fw fa-times" href="#" data-box="close"></a>
+            </div>
+            <!-- END: box-tools -->
+        </header>
+        <div class="box-body collapse in">
+            <table id="grid-selection" class="">
+                <thead>
+                <tr>
+                    <th data-column-id="no" data-type="numeric" data-sortable="false">no</th>
+                    <th data-column-id="name" data-sortable="false">Name</th>
+                    {#<th data-column-id="slug" data-sortable="false">Slug</th>#}
+                    <th data-column-id="email" data-sortable="false">Email</th>
+                    <th data-column-id="profile" data-sortable="false">Profile</th>
+                    <th data-column-id="banned" data-formatter="banned" data-sortable="false">Banned</th>
+                    <th data-column-id="suspended" data-formatter="suspended" data-sortable="false">Suspended</th>
+                    <th data-column-id="active" data-formatter="active" data-sortable="false">Active</th>
+                    <th data-column-id="commands"  data-formatter="commands" data-sortable="false">Action</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+
 </div>
 <div id="myModal" class="modal fade modal-wide" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -86,7 +103,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>    
                 </form>
             </div>
             <div class="modal-footer">

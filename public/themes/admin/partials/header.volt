@@ -45,17 +45,7 @@
                 <a class="hidden-xs b-r" href="#" data-side=mini>
                     <i class="fa fa-fw fa-bars"></i>
                 </a>
-
-                <form class="navbar-form hidden-xs b-r">
-                    <div class="icon-after-input">
-                        <input type="text" class="form-control" placeholder="Search">
-                        <div class="icon">
-                            <a href="#">
-                                <i class="fa fa-fw fa-search"></i>
-                            </a>
-                        </div>
-                    </div>
-                </form>
+                
 
             </nav>
 
@@ -157,7 +147,7 @@
                 <li class="dropdown b-l">
                     <a class="dropdown-toggle profile-pic" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <img class="img-circle" src="{{ url("themes/admin/") }}assets/img/w1.svg" alt="Jane Doe">
-                        <b class="hidden-xs hidden-sm">Jane Doe</b>
+                        <b class="hidden-xs hidden-sm">{{ auth.getName() }}</b>
                     </a>
                     <ul class="dropdown-menu animated flipInY pull-right">
                         <li>
@@ -172,42 +162,6 @@
                         </li>
                     </ul>
                 </li>
-                <!-- begin mega-menu -->
-                <li class="dropdown u-posStatic hidden-xs b-l">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mega
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu nav-full-item">
-                        <li>
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <h1 class="text-muted">Heading 1</h1>
-                                        <h2 class="text-primary">Heading 2</h2>
-                                        <h3 class="text-warning">Heading 3</h3>
-                                        <h4 class="text-danger">Heading 4</h4>
-                                        <h5 class="text-success">Heading 5</h5>
-                                        <h6 class="text-info">Heading 6</h6>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <p>Default paragraph</p>
-                                        <p class="lead">lead paragraph</p>
-                                        <p class="text-muted">Muted paragraph</p>
-                                        <p class="text-warning">warning paragraph</p>
-                                        <p class="text-primary">primary paragraph</p>
-                                        <p class="text-info">info paragraph</p>
-                                        <p class="text-success">success paragraph</p>
-                                        <p class="text-danger">danger paragraph</p>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <img class="img-responsive" src="{{ url("themes/admin/") }}assets/img/p1.svg" alt="" />
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-                <!-- END: mega-menu -->
             </ul>
         </div>
         <!-- END: .navbar-header -->

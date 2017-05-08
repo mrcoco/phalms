@@ -2,15 +2,14 @@ $(document).ready(function(){
     $('textarea').trumbowyg();
     var elm = $(".actionBar").closest(".container");
 
-    $("#grid-selection-header .actionBar").append(" <div class='btn btn-primary' id='create' class='command-add'><span class=\"fa fa-user\"></span> New Image</div> <div class='btn btn-primary' id='list_gallery' class='command-list'><span class=\"fa fa-database\"></span> List Gallery</div>");
-
-    $("#grid-gallery-header .actionBar").append(" <div class='btn btn-primary' id='create_gallery' class='command-add'><span class=\"fa fa-user\"></span> New Gallery</div>");
-
     var gallery = $("#grid-gallery").bootgrid({
         ajax: true,
         url: "gallery/list",
         selection: true,
         multiSelect: true,
+        templates: {
+            header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"><div class=\"col-sm-6 actionBar\"><div class=\"{{css.search}}\"></div></div><div class=\"col-sm-6\"><div class=\"{{css.actions}}\"></div> <div class='btn btn-primary' id='create_gallery' class='command-add'><span class=\"fa fa-user\"></span> New Gallery</div></div></div></div>",
+        },
         formatters: {
             "file_name": function(column, row)
             {
@@ -58,6 +57,9 @@ $(document).ready(function(){
         url: "image/list",
         selection: true,
         multiSelect: true,
+        templates: {
+            header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"><div class=\"col-sm-6 actionBar\"><div class=\"{{css.search}}\"></div></div><div class=\"col-sm-6\"><div class=\"{{css.actions}}\"></div> <div class='btn btn-primary' id='create' class='command-add'><span class=\"fa fa-user\"></span> New Image</div> <div class='btn btn-primary' id='list_gallery' class='command-list'><span class=\"fa fa-database\"></span> List Gallery</div></div></div></div>",
+        },
         formatters: {
             "file_name": function(column, row)
             {
@@ -101,9 +103,9 @@ $(document).ready(function(){
         });
     });
 
-    $("#grid-selection-header .actionBar").append(" <div class='btn btn-primary' id='create' class='command-add'><span class=\"fa fa-user\"></span> New Image</div> <div class='btn btn-primary' id='list_gallery' class='command-list'><span class=\"fa fa-database\"></span> List Gallery</div>");
+    $("#grid-selection-header .actionBar").append("");
 
-    $("#grid-gallery-header .actionBar").append(" <div class='btn btn-primary' id='create_gallery' class='command-add'><span class=\"fa fa-user\"></span> New Gallery</div>");
+    $("#grid-gallery-header .actionBar").append(" ");
 
 
     $("#create").on('click',function (e) {

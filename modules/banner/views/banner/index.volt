@@ -1,30 +1,35 @@
-<style>
-    .trumbowyg-box,
-    .trumbowyg-editor {
-        min-height: 100px;
-        }
-    .trumbowyg-editor,
-    .trumbowyg-textarea {
-
-        min-height: 100px;
-    }
-</style>
-{{ content() }}
-<div class="grid_3 grid_5">
-    <table id="grid-banner" class="table table-condensed table-hover table-striped">
-        <thead>
-        <tr>
-            <th data-column-id="no" data-type="numeric" data-width="5%" data-sortable="false">no</th>
-            <th data-column-id="file" data-formatter="file" data-sortable="false">Image thumb</th>
-            <th data-column-id="description" data-width="35%" data-sortable="false">Description</th>
-            <th data-column-id="link" data-sortable="false">Link</th>
-            <th data-column-id="created" data-order="desc">Created</th>
-            <th data-column-id="publish" data-formatter="published" data-order="desc">Publish</th>
-            <th data-column-id="commands" data-formatter="commands" data-sortable="false">Action</th>
-        </tr>
-        </thead>
-    </table>
+<div class="col-md-12 col-sm-12">
+    <div class="box">
+        <header class="bg-alizarin text-white">
+            <h4>Manage Banner</h4>
+            <!-- begin box-tools -->
+            <div class="box-tools">
+                <a class="fa fa-fw fa-minus" href="#" data-box="collapse"></a>
+                <a class="fa fa-fw fa-square-o" href="#" data-fullscreen="box"></a>
+                <a class="fa fa-fw fa-refresh" href="#" data-box="refresh"></a>
+                <a class="fa fa-fw fa-times" href="#" data-box="close"></a>
+            </div>
+            <!-- END: box-tools -->
+        </header>
+        <div class="box-body collapse in">
+            {{ content() }}
+        <table id="grid-banner" class="table table-condensed table-hover table-striped">
+            <thead>
+            <tr>
+                <th data-column-id="no" data-type="numeric" data-width="5%" data-sortable="false">no</th>
+                <th data-column-id="file" data-formatter="file" data-sortable="false">Image thumb</th>
+                <th data-column-id="description" data-width="35%" data-sortable="false">Description</th>
+                <th data-column-id="link" data-sortable="false">Link</th>
+                <th data-column-id="created" data-order="desc">Created</th>
+                <th data-column-id="publish" data-formatter="published" data-order="desc">Publish</th>
+                <th data-column-id="commands" data-formatter="commands" data-sortable="false">Action</th>
+            </tr>
+            </thead>
+        </table>
+        </div>
+    </div>
 </div>
+
 <div id="myBanner" class="modal fade modal-wide" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

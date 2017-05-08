@@ -4,6 +4,9 @@ $(document).ready(function(){
         url: "banner/list",
         selection: true,
         multiSelect: true,
+        templates: {
+            header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"><div class=\"col-sm-6 actionBar\"><div class=\"{{css.search}}\"></div></div><div class=\"col-sm-6\"><div class=\"{{css.actions}}\"></div> <div class='btn btn-primary' id='create' class='command-add'> <span class=\"fa fa-plus-square-o\"></span> New Banner</div></div></div></div>",
+        },
         formatters: {
             "file" : function (column, row) {
                 return "<img src='"+row.file+"' height='75px'>";
@@ -69,7 +72,6 @@ $(document).ready(function(){
         });
     });
 
-    $(".actionBar").append(" <div class='btn btn-primary' id='create' class='command-add'><span class=\"fa fa-plus-square-o\"></span> New Banner</div>");
 
     function myForm(status,e) {
         $('#myForm')[0].reset();

@@ -1,31 +1,34 @@
-<style>
-    .modal-wide .modal-dialog {
-        width: 80%; /* or whatever you wish */
-    }
-    .trumbowyg-box.trumbowyg-editor-visible {
-    min-height: 150px;
-    }
-
-    .trumbowyg-editor {
-    min-height: 150px;
-    }
-</style>
-{{ content() }}
-<div class="grid_3 grid_5">
-    <table id="grid-selection" class="table table-condensed table-hover table-striped">
-        <thead>
-        <tr>
-            <th data-column-id="no" data-type="numeric" data-width="6%" data-sortable="false">no</th>
-            <th data-column-id="title" data-sortable="false">Title</th>
-            <th data-column-id="gallery" data-sortable="false">Gallery</th>
-            <th data-column-id="description" data-width="35%" data-sortable="false">Description</th>
-            <th data-column-id="file_name" data-formatter="file_name" data-sortable="false">Image thumb</th>
-            <th data-column-id="created" data-order="desc">Created</th>
-            <th data-column-id="updated" data-order="desc">Updated</th>
-            <th data-column-id="commands" data-formatter="commands" data-sortable="false">Action</th>
-        </tr>
-        </thead>
-    </table>
+<div class="col-md-12 col-sm-12">
+    <div class="box">
+        <header class="bg-alizarin text-white">
+            <h4>Manage Banner</h4>
+            <!-- begin box-tools -->
+            <div class="box-tools">
+                <a class="fa fa-fw fa-minus" href="#" data-box="collapse"></a>
+                <a class="fa fa-fw fa-square-o" href="#" data-fullscreen="box"></a>
+                <a class="fa fa-fw fa-refresh" href="#" data-box="refresh"></a>
+                <a class="fa fa-fw fa-times" href="#" data-box="close"></a>
+            </div>
+            <!-- END: box-tools -->
+        </header>
+        <div class="box-body collapse in">
+            {{ content() }}
+            <table id="grid-selection" class="table table-condensed table-hover table-striped">
+                <thead>
+                <tr>
+                    <th data-column-id="no" data-type="numeric" data-width="6%" data-sortable="false">no</th>
+                    <th data-column-id="title" data-sortable="false">Title</th>
+                    <th data-column-id="gallery" data-sortable="false">Gallery</th>
+                    <th data-column-id="description" data-width="35%" data-sortable="false">Description</th>
+                    <th data-column-id="file_name" data-formatter="file_name" data-sortable="false">Image thumb</th>
+                    <th data-column-id="created" data-order="desc">Created</th>
+                    <th data-column-id="updated" data-order="desc">Updated</th>
+                    <th data-column-id="commands" data-formatter="commands" data-sortable="false">Action</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
 </div>
 <div id="myGallery" class="modal fade modal-wide" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -56,6 +59,7 @@
         </div>
     </div>
 </div>
+
 <div id="myModal" class="modal fade modal-wide" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

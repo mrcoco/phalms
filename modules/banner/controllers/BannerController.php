@@ -25,16 +25,20 @@ class BannerController extends ControllerBase
      */
     public function indexAction()
     {
-    
-        $moduleName = $this->dispatcher->getModuleName();
         $this->assets
             ->collection('footer')
-            ->setTargetPath("js/combined-$moduleName.js") 
-            ->setTargetUri("js/combined-$moduleName.js")
+            ->setTargetPath("themes/admin/assets/js/combined-banner.js")
+            ->setTargetUri("themes/admin/assets/js/combined-banner.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."$moduleName/views/js/js.js")
+            ->addJs($this->config->application->modulesDir."banner/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
-        //$this->view->pick("banner/index");
+        $this->assets
+            ->collection('header')
+            ->setTargetPath("themes/admin/assets/css/combined-banner.css")
+            ->setTargetUri("themes/admin/assets/css/combined-banner.css")
+            ->join(true)
+            ->addCss($this->config->application->modulesDir."banner/views/css/css.css")
+            ->addFilter(new \Phalcon\Assets\Filters\Cssmin());
     }
 
     public function listAction()

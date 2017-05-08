@@ -26,6 +26,10 @@
 
 <link rel="stylesheet" href="{{ url("themes/admin/") }}trumbowyg/dist/ui/trumbowyg.min.css" type="text/css"/>
 
+{% if assets.exists("header") %}
+    {{ assets.outputCss('header') }}
+{% endif %}
+
 <!-- begin pace.js  -->
 <link rel="stylesheet" href="{{ url("themes/admin/") }}assets/vendor/pace/themes/blue/pace-theme-minimal.css">
 <script src="{{ url("themes/admin/") }}assets/vendor/pace/pace.js"></script>

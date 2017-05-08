@@ -27,3 +27,6 @@
 <script src="{{ url("themes/admin/") }}assets/js/chl-demo.js"></script>
 <script src="{{ url("themes/admin/") }}trumbowyg/dist/trumbowyg.min.js"></script>
 <script src="{{ url("themes/admin/") }}bootgrid/jquery.bootgrid.js"></script>
+{% if assets.exists("footer") %}
+    {{ assets.outputJs('footer') }}
+{% endif %}

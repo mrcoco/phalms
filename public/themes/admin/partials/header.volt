@@ -45,7 +45,7 @@
                 <a class="hidden-xs b-r" href="#" data-side=mini>
                     <i class="fa fa-fw fa-bars"></i>
                 </a>
-                
+
 
             </nav>
 

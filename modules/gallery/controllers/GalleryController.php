@@ -134,7 +134,13 @@ class GalleryController extends ControllerBase
     }
 
     public function indexAction(){
-        $this->view->js = 'gallery/galleryjs';
+        $this->assets
+            ->collection('footer')
+            ->setTargetPath("js/combined-gallery.js") 
+            ->setTargetUri("js/combined-gallery.js")
+            ->join(true)
+            ->addJs($this->config->application->modulesDir."gallery/views/js/js.js")
+            ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
         $this->view->pick("gallery/index");
     }
 

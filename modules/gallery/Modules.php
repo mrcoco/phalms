@@ -39,10 +39,12 @@ class Module implements ModuleDefinitionInterface
     public function registerServices(DiInterface $di)
     {
         // registering view
+        $config = $di->get('config');
         $view = $di->get('view');
         $view->setViewsDir(__DIR__. '/views/');
         $view->setMainView('main');
-        $view->setLayoutsDir(APP_PATH.'/views/layouts/');
+        $view->setLayoutsDir($config->application->layoutsDir);
+        $view->setPartialsDir($config->application->adminPartialDir );
         $view->setLayout('private');
     }
 }

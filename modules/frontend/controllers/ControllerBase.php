@@ -14,17 +14,7 @@ class ControllerBase extends Controller
 {
     public function initialize()
     {
-//        $sosial = new Sosial();
-//        $widget = new Widget();
-//        $show   = $widget->show();
-//        $this->view->banner     = $show['banner'];
-//        $this->view->service    = $show['service'];
-//        $this->view->news       = $show['news'];
-//        $this->view->story      = $show['story'];
-//        $this->view->program    = $show['program'];
-//        $this->view->image      = $show['image'];
-//        $this->view->instagram  = $sosial->insta();
-//        $this->view->pagecat    = $show['pagecat'];
+        
     }
     /**
      * Execute before the router so we can determine if this is a private controller, and must be authenticated, or a

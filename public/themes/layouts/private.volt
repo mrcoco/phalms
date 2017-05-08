@@ -31,6 +31,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //footer -->
 </section>
 <script src="{{ url("themes/admin/") }}js/bootstrap.js"></script>
-{{ assets.outputJs() }}
+<script src="{{ url("themes/admin/") }}trumbowyg/dist/trumbowyg.min.js"></script>
+{% for key, collection in assets.getCollections() %}
+    {% if key == 'footer' %}
+        {{ assets.outputJs('footer') }}
+    {% endif %}
+{% endfor %}
+
 </body>
 </html>

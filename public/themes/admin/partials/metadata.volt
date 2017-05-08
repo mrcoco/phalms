@@ -11,6 +11,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="{{ url("themes/admin/") }}css/style.css" rel='stylesheet' type='text/css' />
 <!-- font CSS -->
 <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url("themes/admin/") }}trumbowyg/dist/ui/trumbowyg.min.css" type="text/css"/>
 <!-- font-awesome icons -->
 <link rel="stylesheet" href="{{ url("themes/admin/") }}css/font.css" type="text/css"/>
 <link href="{{ url("themes/admin/") }}css/font-awesome.css" rel="stylesheet">
@@ -21,7 +22,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ url("themes/admin/") }}js/jquery.cookie.js"></script>
 <script src="{{ url("themes/admin/") }}js/screenfull.js"></script>
 <script src="{{ url("themes/admin/") }}bootgrid/jquery.bootgrid.js"></script>
-<script src="{{ url("themes/admin/") }}bootgrid/jquery.bootgrid.fa.js"></script>
+
 <script>
     $(function () {
         $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);

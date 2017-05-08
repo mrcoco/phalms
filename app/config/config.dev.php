@@ -8,7 +8,7 @@ return new Config([
         'adapter' => 'MySql',
         'host' => 'localhost',
         'username' => 'root',
-        'password' => '',
+        'password' => 'root',
         'dbname' => 'zakat'
     ],
     'application' => [
@@ -18,7 +18,7 @@ return new Config([
         'viewsDir'       => APP_PATH . '/views/',
         'libraryDir'     => APP_PATH . '/library/',
         'pluginsDir'     => APP_PATH . '/plugins/',
-        'modulesDir'     => APP_PATH . '/modules/',
+        'modulesDir'     => BASE_PATH . '/modules/',
         'extendDir'      => APP_PATH . '/extend',
         'pluginDir'      => APP_PATH . '/plugins',
         'cacheDir'       => BASE_PATH . '/cache/',

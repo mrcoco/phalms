@@ -25,9 +25,16 @@ class BannerController extends ControllerBase
      */
     public function indexAction()
     {
-        $this->view->js = 'banner/bannerjs';
-        
-        $this->view->pick("banner/index");
+    
+        $moduleName = $this->dispatcher->getModuleName();
+        $this->assets
+            ->collection('footer')
+            ->setTargetPath("js/combined-$moduleName.js") 
+            ->setTargetUri("js/combined-$moduleName.js")
+            ->join(true)
+            ->addJs($this->config->application->modulesDir."$moduleName/views/js/js.js")
+            ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
+        //$this->view->pick("banner/index");
     }
 
     public function listAction()

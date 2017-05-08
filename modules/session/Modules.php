@@ -28,7 +28,7 @@ class Module implements ModuleDefinitionInterface
                 "Modules\\Session\\Forms"      => __DIR__."/forms/",
                 "Modules\\Frontend\\Controllers"      => realpath(dirname(__FILE__))."/../frontend/controllers/",
                 "Modules\\Banner\\Models"      => realpath(dirname(__FILE__))."/../banner/models/",
-                "Modules\\Service\\Models"      => realpath(dirname(__FILE__))."/../service/models/",
+                "Modules\\User\\Models"      => realpath(dirname(__FILE__))."/../user/models/",
                 "Modules\\Cms\\Models"      => realpath(dirname(__FILE__))."/../cms/models/",
             ]
         );

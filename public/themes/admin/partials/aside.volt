@@ -65,19 +65,13 @@
                     </a>
                     <ul class="nav nav-sub nav-stacked">
                         <li>
-                            <a href="form-basic.html">Basic</a>
+                            <a href="{{ url("course") }}">Courses</a>
                         </li>
                         <li>
-                            <a href="form-advanced.html">Advanced</a>
+                            <a href="{{ url("exams") }}">Exams</a>
                         </li>
                         <li>
-                            <a href="form-wizard.html">Wizard</a>
-                        </li>
-                        <li>
-                            <a href="form-upload.html">File Upload</a>
-                        </li>
-                        <li>
-                            <a href="form-editor.html">Text Editor</a>
+                            <a href="{{ url("quiz") }}">Quiz</a>
                         </li>
                     </ul>
                 </li>
@@ -182,7 +176,7 @@
                             <a href="{{ url("profiles") }}">Profile</a>
                         </li>
                         <li>
-                            <a href="{{ url("permission") }}">Permissions</a>
+                            <a href="{{ url("permissions") }}">Permissions</a>
                         </li>
                     </ul>
                 </li>
@@ -205,7 +199,7 @@
                         </li>
                         <li>
                             <a href="javascript:;">
-                                <span class="nav-title">Menu</span>
+                                <span class="nav-title">Menu Manager</span>
                             </a>
                         </li>
                     </ul>

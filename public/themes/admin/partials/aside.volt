@@ -193,12 +193,17 @@
                     </a>
                     <ul class="nav nav-sub">
                         <li>
-                            <a href="javascript:;">
+                            <a href="j{{ url("modules")}}">
+                                <span class="nav-title">Module Manager</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url("generator")}}">
                                 <span class="nav-title">Module Generator</span>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:;">
+                            <a href="{{ url("menu") }}">
                                 <span class="nav-title">Menu Manager</span>
                             </a>
                         </li>

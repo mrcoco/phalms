@@ -18,13 +18,6 @@ class BannerController extends ControllerBase
         $this->tag->setTitle('Manage your Banner');
         $this->view->wysiwyg = 'summernote';
         $this->path = $this->config->application->uploadDir."banner/";
-    }
-
-    /**
-     * Index action
-     */
-    public function indexAction()
-    {
         $this->assets
             ->collection('footer')
             ->setTargetPath("themes/admin/assets/js/combined-banner.js")
@@ -39,6 +32,14 @@ class BannerController extends ControllerBase
             ->join(true)
             ->addCss($this->config->application->modulesDir."banner/views/css/css.css")
             ->addFilter(new \Phalcon\Assets\Filters\Cssmin());
+    }
+
+    /**
+     * Index action
+     */
+    public function indexAction()
+    {
+        
     }
 
     public function listAction()

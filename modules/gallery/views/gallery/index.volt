@@ -1,7 +1,7 @@
 <div class="col-md-12 col-sm-12">
     <div class="box">
         <header class="bg-alizarin text-white">
-            <h4>Manage Banner</h4>
+            <h4>Manage Gallery</h4>
             <!-- begin box-tools -->
             <div class="box-tools">
                 <a class="fa fa-fw fa-minus" href="#" data-box="collapse"></a>

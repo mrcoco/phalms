@@ -203,7 +203,7 @@ $(document).ready(function(){
             if ($('#gallery option[value="'+$(this).val()+'"]').length) $(this).remove();
         });
 
-        $.get( "{{ url('gallery/gallery') }}", function( data ) {
+        $.get( "gallery/gallery", function( data ) {
             $("#gallery").append( "<option value='0'>-- Gallery --</option>");
             $.each(data, function (index, element) {
                 $("#gallery").append( "<option value='"+element.id+"'>"+element.title+"</option>");

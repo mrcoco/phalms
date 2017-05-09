@@ -49,7 +49,10 @@ $(document).ready(function(){
         }).end().find(".command-delete").on("click", function(e)
         {
             $.get( "banner/delete/"+ $(this).data("row-id"), function( data ) {
-                myAlert(data);
+                //myAlert(data);
+                toastr.success(data.msg, data.title);
+                toastr.options.timeOut = 15;
+                toastr.options.extendedTimeOut = 30;
                 $("#grid-banner").bootgrid("reload");
             });
 

@@ -1,0 +1,44 @@
+<?php
+/**
+ * Created by Vokuro-Cli
+ * User: dwiagus
+ * Date: !date
+ * Time: !time
+ */
+
+$router->add('/?module', array(
+    'namespace'  => 'Modules\!module\Controllers',
+    'module'     => '?module',
+    'controller' => '?module',
+    'action'     => 'index'
+));
+
+$router->add('/?module/list', array(
+    'namespace'  => 'Modules\!module\Controllers',
+    'module'     => '?module',
+    'controller' => '?module',
+    'action'     => 'list'
+));
+
+$router->add('/?module/create', array(
+    'namespace'  => 'Modules\!module\Controllers',
+    'module'     => '?module',
+    'controller' => '?module',
+    'action'     => 'create'
+));
+
+$router->add('/?module/edit', array(
+    'namespace'  => 'Modules\!module\Controllers',
+    'module'     => '?module',
+    'controller' => '?module',
+    'action'     => 'edit'
+));
+
+$router->add('/?module/delete/{id:[0-9]+}', array(
+    'namespace'  => 'Modules\!module\Controllers',
+    'module'     => '?module',
+    'controller' => '?module',
+    'action'     => 'delete',
+    'id'         => 1
+));
+

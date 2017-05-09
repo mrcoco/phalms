@@ -42,3 +42,10 @@ $router->add('/generator/delete/{id:[0-9]+}', array(
     'id'         => 1
 ));
 
+$router->add('/generator/submit', array(
+    'namespace'  => 'Modules\Generator\Controllers',
+    'module'     => 'generator',
+    'controller' => 'generator',
+    'action'     => 'submit'
+));
+

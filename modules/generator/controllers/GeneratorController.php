@@ -30,6 +30,8 @@ class GeneratorController extends ControllerBase
     {
 
         if ($this->request->isPost()) {
+            $template = new Template($this->request->getPost());
+            $theme  = $template->run();
             $info = array(
                 '{generator_name}'  => $this->request->getPost('generator_name'),
                 '{module_name}'     => \Phalcon\Text::camelize($this->request->getPost('generator_name'), "_-"),
@@ -43,12 +45,12 @@ class GeneratorController extends ControllerBase
                 '{copyright}'       => $this->request->getPost('copyright'),
                 '{date}'            => date("Y-m-d"),
                 '{time}'            => date("H:m:s"),
-                '{model_fields}'    => $this->makeModel($this->request->getPost('fields')),
-                '{contrl_fields}'   => $this->makeColumn($this->request->getPost('fields')),
-                '{column_fields}'   => $this->makeField($this->request->getPost('fields')),
-                '{table_fields}'    => $this->makeTable($this->request->getPost('fields')),
-                '{form_fields}'     => $this->makeForm($this->request->getPost('fields')),
-                '{js_fields}'       => $this->makeJs($this->request->getPost('fields')),
+                '{model_fields}'    => $theme->model,
+                '{contrl_fields}'   => $theme->column,
+                '{column_fields}'   => $theme->cfield,
+                '{table_fields}'    => $theme->table,
+                '{form_fields}'     => $theme->form,
+                '{js_fields}'       => $theme->js,
             );
             $filearray = array(
                 'router.php',
@@ -58,7 +60,8 @@ class GeneratorController extends ControllerBase
                 'views/js/js.js',
                 'views/index.volt'
             );
-            
+
+
             $url = $this->config->application->modulesDir;
             $this->cpdir($url."generator/src/",$url.$info['{module_name_l}']);
             $moduleurl = $url.$info['{module_name_l}'];
@@ -75,7 +78,6 @@ class GeneratorController extends ControllerBase
             rename($moduleurl.'/controllers/controller.php', $moduleurl.'/controllers/'.$info['{module_name}'].'Controller.php');
             rename($moduleurl.'/models/model.php', $moduleurl.'/models/'.$info['{module_name}'].'.php');
             $this->createTabel($info['{module_name_l}'],$this->request->getPost('fields'));
-            
         }
         $this->view->pick("index");
     }
@@ -90,135 +92,6 @@ class GeneratorController extends ControllerBase
         return str_replace(array_keys($replace), array_values($replace), $subject);
     }
 
-    private function makeModel($fields)
-    {
-        $model_fields = '';
-        foreach ($fields as $field) {
-            $text = $this->clean($field['name']);
-            $dbtype = $this->columnType($field['dbtype']);
-            $model_fields .= "/**\n\t";
-            $model_fields .= "*\n\t";
-            $model_fields .= sprintf("* @var %s\n\t", $dbtype, $dbtype);
-            $model_fields .= sprintf("* @Column(type='%s',", $dbtype, $dbtype);
-            $model_fields .= sprintf("nullable=%s)\n\t", $field['isnull'], $field['isnull']); 
-            $model_fields .= sprintf("public $%s;\n\t", $text, $text);
-            $model_fields .= "*\n\t";
-            $model_fields .= "*/\n\t";
-        }
-        return $model_fields;
-    }
-
-    private function makeColumn($fields)
-    {
-        $column_fields = '';
-        foreach ($fields as $field) {
-            $text = $this->clean($field['name']);
-            $column_fields .= sprintf("'%s' => \$item->%s,\n\t", $text, $text);
-        }
-        return $column_fields;
-    }
-
-    private function makeField($fields)
-    {
-        $column_fields = '';
-        foreach ($fields as $field) {
-            $text = $this->clean($field['name']);
-            $column_fields .= sprintf(" \$item->%s;\n\t", $text, $text);
-        }
-        return $column_fields;
-    }
-
-    private function makeTable($fields)
-    {
-        $table_fields = '';
-        foreach ($fields as $field) {
-            $text = $this->clean($field['name']);
-            $table_fields .= sprintf('<th data-column-id="%s" data-sortable="false">', $text, $text);
-            $table_fields .= sprintf("%s</th>\n\t", ucfirst($text), ucfirst($text));
-        }
-        return $table_fields;
-    }
-
-    private function makeForm($fields)
-    {
-        $form_fields = '';
-        foreach ($fields as $field) {
-            $text = $this->clean($field['name']);
-            $form_fields .= $this->typeForm($field['inputtype'],$text);
-        }
-        return $form_fields;
-    }
-
-    private function makeJs($fields)
-    {
-        $column_fields = '';
-        foreach ($fields as $field) {
-            $text = $this->clean($field['name']);
-            $column_fields .= sprintf(" $('#%s').val(data.%s);\n\t", $text, $text);
-        }
-        return $column_fields;
-    }
-
-    private function typeForm($type,$name)
-    {
-        switch (strtolower($type)) {
-            case 'input':
-                $result = '';
-                $result .= '<div class="form-group" >\n\t';
-                $result .= sprintf('<label>%s</label>\n\t',ucfirst($name),ucfirst($name));
-                $result .= sprintf('<input type="text" class="form-control" name="%s" id="%s" >\n\t',$name,$name);
-                $result .= '</div>\n\t';
-                break;
-            case 'textarea':
-                $result = '';
-                $result .= '<div class="form-group" >\n\t';
-                $result .= sprintf('<label>%s</label>\n\t',ucfirst($name),ucfirst($name));
-                $result .= sprintf('<textarea class="form-control" name="%s" id="%s" >\n\t',$name,$name);
-                $result .= '</textarea>\n\t';
-                $result .= '</div>\n\t';
-                break;
-            case 'dropdown':
-                $result = '';
-                $result .= '<div class="form-group" >\n\t';
-                $result .= sprintf('<label>%s</label>\n\t',ucfirst($name),ucfirst($name));
-                $result .= sprintf('<select class="form-control" name="%s" id="%s" >\n\t',$name,$name);
-                $result .= '<option value="">--</option>\n\t';
-                $result .= '</select>\n\t';
-                $result .= '</div>\n\t';
-                break;
-            case 'multiselect':
-                $result = '';
-                $result .= '<div class="form-group" >\n\t';
-                $result .= sprintf('<label>%s</label>\n\t',ucfirst($name),ucfirst($name));
-                $result .= sprintf('<select class="form-control" name="%s" id="%s" multiple>\n\t',$name,$name);
-                $result .= '<option value="">--</option>\n\t';
-                $result .= '</select>\n\t';
-                $result .= '</div>\n\t';
-                break;
-            case 'checkbox':
-                $result = '';
-                $result .= '<div class="form-group" >\n\t';
-                $result .= sprintf('<label>%s</label>\n\t',ucfirst($name),ucfirst($name));
-                $result .= sprintf('<input type="checkbox" class="form-control" name="%s" id="%s" >\n\t',$name,$name);
-                $result .= '</div>\n\t';
-                break;
-            case 'radio':
-                $result = '';
-                $result .= '<div class="form-group" >\n\t';
-                $result .= sprintf('<label>%s</label>\n\t',ucfirst($name),ucfirst($name));
-                $result .= sprintf('<input type="radio" class="form-control" name="%s" id="%s" >\n\t',$name,$name);
-                $result .= '</div>\n\t';
-                break;    
-            default:
-                $result = '';
-                $result .= '<div class="form-group" >\n\t';
-                $result .= sprintf('<label>%s</label>\n\t',ucfirst($name),ucfirst($name));
-                $result .= sprintf('<input type="text" class="form-control" name="%s" id="%s" >\n\t',$name,$name);
-                $result .= '</div>\n\t';
-                break;
-        }
-        return $result;
-    }
 
     public function dbColumn($type)
     {
@@ -287,42 +160,31 @@ class GeneratorController extends ControllerBase
         return $result;
     }
 
-    public function columnType($type)
-    {
-        switch (strtolower($type)) {
-            case 'int':
-            case 'bigint':
-                return 'integer';
-                break;
-            case 'decimal':
-            case 'float':
-                return 'double';
-                break;
-            case 'date':
-            case 'varchar':
-            case 'datetime':
-            case 'char':
-            case 'text':
-                return 'string';
-                break;
-            default:
-                return 'string';
-                break;
-        }
-    }
-
     private function cpdir($source, $dest)
     {
-        mkdir($dest, 0755);
+        try{
+            mkdir($dest, 0755);
+        }catch(\Exception $e){
+            $this->flash->error($e->getMessage());
+        }
+
         foreach (
             $iterator = new \RecursiveIteratorIterator(
                 new \RecursiveDirectoryIterator($source, \RecursiveDirectoryIterator::SKIP_DOTS),
                 \RecursiveIteratorIterator::SELF_FIRST) as $item
             ) {
             if ($item->isDir()) {
-                mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+                try{
+                    mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+                }catch (\Exception $e){
+                    $this->flash->error($e->getMessage());
+                }
             } else {
-                copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+                try{
+                    copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+                }catch (\Exception $e){
+                    $this->flash->error($e->getMessage());
+                }
             }
         }
     }
@@ -359,12 +221,11 @@ class GeneratorController extends ControllerBase
                     new Index("PRIMARY", array("id"))
                 )
             ));
-
-            $result = "Created Table $table in Database";
-        }catch (Exception $e){
-            $result = $e->getMessage("Failed Table $table in Database");
+            $this->flash->success("Created Tablse $table in Database");
+        }catch (\Exception $e){
+            $this->flash->error($e->getMessage());
         }
-        return $result;
+
     }
 
 }

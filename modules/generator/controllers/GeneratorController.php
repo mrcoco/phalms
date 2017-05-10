@@ -67,13 +67,20 @@ class GeneratorController extends ControllerBase
 
             $template->replace($info,$moduleurl,$filearray);
             $template->rename($moduleurl,$info['{module_name}']);
-
+            $this->setConfig($info['{module_name_l}']);
             $table = new Table($info['{module_name_l}'],$this->request->getPost('fields'));
             $table->regModule();
             $res = $table->createTabel();
             $this->flash->success($res);
         }
         $this->view->pick("index");
+    }
+
+    private function setConfig($names)
+    {
+        $config = include $this->config->application->configDir."modules.php";
+        array_push($config,$names);
+        file_put_contents($this->config->application->configDir."modules.php", '<?php return [' ."'".implode("','",$config)."'".'];');
     }
 
     private function clean($nametoclean)

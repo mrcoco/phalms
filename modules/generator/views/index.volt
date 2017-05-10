@@ -52,11 +52,11 @@
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <label>Field Name</label>
-                                <input required class="form-control" type="text" name="fields[][name]" value="" placeholder="Field Name">
+                                <input required class="form-control" type="text" name="fields[0][name]" value="" placeholder="Field Name">
                             </div>
                             <div class="col-md-6 form-group">
                             <label>Field Input Type</label>
-                            <select class="form-control" name="fields[][inputtype]">
+                            <select class="form-control" name="fields[0][inputtype]">
                                 <option value="input">Input</option>
                                 <option value="textarea">Textarea</option>
                                 <option value="dropdown">Dropdown</option>
@@ -67,12 +67,12 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Default <small>Empty is no default</small></label>
-                                <input class="form-control" type="text" name="fields[][dbdefault]" value="">
+                                <input class="form-control" type="text" name="fields[0][dbdefault]" value="">
                             </div>
                         
                             <div class="col-md-6 form-group">
                             <label>Field Data Type</label>
-                            <select class="form-control" name="fields[][dbtype]">
+                            <select class="form-control" name="fields[0][dbtype]">
                                 <option value="VARCHAR">VARCHAR</option>
                                 <option value="TEXT">TEXT</option>
                                 <option value="CHAR">CHAR</option>
@@ -86,18 +86,18 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Constraint <small>Empty or 0 is no constraint</small></label>
-                                <input class="form-control" type="number" name="fields[][constraint]" value="0">
+                                <input class="form-control" type="number" name="fields[0][constraint]" value="0">
                             </div>
                             <div class="col-md-6 form-group">
                                 <p><label>Is Null</label></p>
                               <div class="radio-inline">
                                 <label>
-                                  <input type="radio" name="fields[][isnull]" value="false"checked="checked">False
+                                  <input type="radio" name="fields[0][isnull]" value="false"checked="checked">False
                                 </label>
                               </div>
                               <div class="radio-inline">
                                 <label>
-                                  <input type="radio" name="fields[][isnull]" value="true">True
+                                  <input type="radio" name="fields[0][isnull]" value="true">True
                                 </label>
                               </div>
                               <div class="radio-inline">

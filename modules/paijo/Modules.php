@@ -1,12 +1,18 @@
 <?php
 /**
- * Created by Vokuro-Cli
- * User: dwiagus
- * Date: !date
- * Time: !time
+ * Created by Phalms Module Generator.
+ *
+ * oyess
+ *
+ * @package phalms-module
+ * @author  paijo
+ * @link    http://cempakaweb.com
+ * @date:   2017-05-10
+ * @time:   16:05:12
+ * @license MIT
  */
 
-namespace Modules\!module;
+namespace Modules\Paijo;
 
 use Phalcon\Loader;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
@@ -24,8 +30,8 @@ class Module implements ModuleDefinitionInterface
 
         $loader->registerNamespaces(
             [
-                "Modules\\!module\\Controllers" => __DIR__."/controllers/",
-                "Modules\\!module\\Models"      => __DIR__."/models/",
+                "Modules\\Paijo\\Controllers" => __DIR__."/controllers/",
+                "Modules\\Paijo\\Models"      => __DIR__."/models/",
             ]
         );
 
@@ -38,10 +44,12 @@ class Module implements ModuleDefinitionInterface
     public function registerServices(DiInterface $di)
     {
         // registering view
+        $config = $di->get('config');
         $view = $di->get('view');
         $view->setViewsDir(__DIR__. '/views/');
         $view->setMainView('main');
-        $view->setLayoutsDir(APP_PATH.'/views/layouts/');
+        $view->setLayoutsDir($config->application->layoutsDir);
+        $view->setPartialsDir($config->application->adminPartialDir );
         $view->setLayout('private');
     }
 }

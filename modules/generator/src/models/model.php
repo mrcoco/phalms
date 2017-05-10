@@ -1,7 +1,7 @@
 <?php
-namespace Modules\!module\Models;
+namespace Modules\{module_name}\Models;
 use \Phalcon\Mvc\Model\Behavior\Timestampable;
-class !name extends \Phalcon\Mvc\Model
+class {model_name} extends \Phalcon\Mvc\Model
 {
 
     /**
@@ -13,7 +13,7 @@ class !name extends \Phalcon\Mvc\Model
      */
     public $id;
 
-    !column
+    {model_fields}
 
     /**
      *

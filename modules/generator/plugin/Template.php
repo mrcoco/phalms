@@ -1,86 +1,19 @@
 <?php
-/**
- * Created by Vokuro-Cli.
- * User: dwiagus
- * Date: !data
- * Time: 20:05:54
- */
-
-namespace Modules\Generator\Controllers;
-use Modules\Generator\Models\Module;
-use Modules\Generator\Plugin\Template;
-use Modules\Frontend\Controllers\ControllerBase;
-use Phalcon\Db\Column;
-use Phalcon\Db\Index;
-
-class GeneratorController extends ControllerBase
+namespace Modules\Generator\Plugin;
+class Template 
 {
-    public function initialize()
-    {
-        $this->assets
-            ->collection('footer')
-            ->setTargetPath("themes/admin/assets/js/combined-gen.js")
-            ->setTargetUri("themes/admin/assets/js/combined-gen.js")
-            ->join(true)
-            ->addJs($this->config->application->modulesDir."generator/views/js/main.js")
-            ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
-    }
+	public function run($input)
+	{
+		$model = "";
+		$fields= $input['fields']
+		foreach ($fields as $field) {
+			$model .= $this->makeModel($field);
+		}
+		$result['model'] = $model;
+		return $result;
+	}
 
-    public function indexAction()
-    {
-
-        if ($this->request->isPost()) {
-            $info = array(
-                '{generator_name}'  => $this->request->getPost('generator_name'),
-                '{module_name}'     => \Phalcon\Text::camelize($this->request->getPost('generator_name'), "_-"),
-                '{module_url}'      => "http://".$this->config->application->publicUrl."/".$this->clean($this->request->getPost('generator_name'))."/",
-                '{module_name_l}'   => $this->clean($this->request->getPost('generator_name')),
-                '{model_name}'      => \Phalcon\Text::camelize($this->request->getPost('generator_name'), "_-"),
-                '{description}'     => $this->request->getPost('description'),
-                '{author}'          => $this->request->getPost('author'),
-                '{website}'         => $this->request->getPost('website'),
-                '{package}'         => $this->request->getPost('package'),
-                '{copyright}'       => $this->request->getPost('copyright'),
-                '{date}'            => date("Y-m-d"),
-                '{time}'            => date("H:m:s"),
-                '{model_fields}'    => $this->makeModel($this->request->getPost('fields')),
-                '{contrl_fields}'   => $this->makeColumn($this->request->getPost('fields')),
-                '{column_fields}'   => $this->makeField($this->request->getPost('fields')),
-                '{table_fields}'    => $this->makeTable($this->request->getPost('fields')),
-                '{form_fields}'     => $this->makeForm($this->request->getPost('fields')),
-                '{js_fields}'       => $this->makeJs($this->request->getPost('fields')),
-            );
-            $filearray = array(
-                'router.php',
-                'controllers/controller.php',
-                'models/model.php',
-                'Modules.php',
-                'views/js/js.js',
-                'views/index.volt'
-            );
-            
-            $url = $this->config->application->modulesDir;
-            $this->cpdir($url."generator/src/",$url.$info['{module_name_l}']);
-            $moduleurl = $url.$info['{module_name_l}'];
-            for ($i = 0; $i < count($filearray); $i++) {
-                $filedestination = $moduleurl.'/'.$filearray[$i];
-                
-                $current = file_get_contents($filedestination);
-                
-                $current = $this->str_replace_assoc($info, $current);
-                
-                file_put_contents($filedestination, $current);
-            }
-            
-            rename($moduleurl.'/controllers/controller.php', $moduleurl.'/controllers/'.$info['{module_name}'].'Controller.php');
-            rename($moduleurl.'/models/model.php', $moduleurl.'/models/'.$info['{module_name}'].'.php');
-            $this->createTabel($info['{module_name_l}'],$this->request->getPost('fields'));
-            
-        }
-        $this->view->pick("index");
-    }
-
-    private function clean($nametoclean)
+	private function clean($nametoclean)
     {
         $fixes = array(' ','-');
         return strtolower(str_replace($fixes, '_',$nametoclean));
@@ -93,7 +26,7 @@ class GeneratorController extends ControllerBase
     private function makeModel($fields)
     {
         $model_fields = '';
-        foreach ($fields as $field) {
+        //foreach ($fields as $field) {
             $text = $this->clean($field['name']);
             $dbtype = $this->columnType($field['dbtype']);
             $model_fields .= "/**\n\t";
@@ -104,7 +37,7 @@ class GeneratorController extends ControllerBase
             $model_fields .= sprintf("public $%s;\n\t", $text, $text);
             $model_fields .= "*\n\t";
             $model_fields .= "*/\n\t";
-        }
+        //}
         return $model_fields;
     }
 
@@ -326,45 +259,4 @@ class GeneratorController extends ControllerBase
             }
         }
     }
-
-    private function createTabel($table,$column)
-    {
-        $arr_column = array(
-            new Column("id", array(
-                "type"  => Column::TYPE_INTEGER,
-                "size"  => 11,
-                "notNull"       => true,
-                "autoIncrement" => true,
-            ))
-        );
-
-        foreach ($column as $c) {
-            $arr_column[] = new Column($c['name'], array(
-                "type" => $this->dbColumn($c['dbtype']),
-                "size" => $c['constraint'],
-                "notNull" => $c['isnull'],
-            ));
-        }
-
-        $arr_column[] = new Column("created", array(
-            "type"    => Column::TYPE_TIMESTAMP,
-            "size"    => 17,
-            "notNull" => true,
-        ));
-
-        try{
-            $this->db->createTable(strtolower($table), null, array(
-                "columns" => $arr_column,
-                "indexes" => array(
-                    new Index("PRIMARY", array("id"))
-                )
-            ));
-
-            $result = "Created Table $table in Database";
-        }catch (Exception $e){
-            $result = $e->getMessage("Failed Table $table in Database");
-        }
-        return $result;
-    }
-
 }

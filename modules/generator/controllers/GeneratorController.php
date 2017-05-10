@@ -8,6 +8,7 @@
 
 namespace Modules\Generator\Controllers;
 use Modules\Generator\Models\Module;
+use Modules\Generator\Plugin\Table;
 use Modules\Generator\Plugin\Template;
 use Modules\Frontend\Controllers\ControllerBase;
 use Phalcon\Db\Column;
@@ -77,7 +78,8 @@ class GeneratorController extends ControllerBase
             
             rename($moduleurl.'/controllers/controller.php', $moduleurl.'/controllers/'.$info['{module_name}'].'Controller.php');
             rename($moduleurl.'/models/model.php', $moduleurl.'/models/'.$info['{module_name}'].'.php');
-            $this->createTabel($info['{module_name_l}'],$this->request->getPost('fields'));
+            $table = new Table($info['{module_name_l}'],$this->request->getPost('fields'));
+            $table->createTabel();
         }
         $this->view->pick("index");
     }
@@ -90,74 +92,6 @@ class GeneratorController extends ControllerBase
 
     private function str_replace_assoc(array $replace, $subject) {
         return str_replace(array_keys($replace), array_values($replace), $subject);
-    }
-
-
-    public function dbColumn($type)
-    {
-        switch (strtolower($type)){
-            case "int"      :
-                $result = Column::TYPE_INTEGER;
-                break;
-            case "integer"      :
-                $result = Column::TYPE_INTEGER;
-                break;
-            case  "date"    :
-                $result = Column::TYPE_DATE;
-                break;
-            case "varchar"  :
-                $result = Column::TYPE_VARCHAR;
-                break;
-            case "decimal"  :
-                $result = Column::TYPE_DECIMAL;
-                break;
-            case "datetime" :
-                $result = Column::TYPE_DATETIME;
-                break;
-            case "char"     :
-                $result = Column::TYPE_CHAR;
-                break;
-            case "text"     :
-                $result = Column::TYPE_TEXT;
-                break;
-            case "float"    :
-                $result = Column::TYPE_FLOAT;
-                break;
-            case "boolean"  :
-                $result = Column::TYPE_BOOLEAN;
-                break;
-            case "double"   :
-                $result = Column::TYPE_DOUBLE;
-                break;
-            case "tinyblob" :
-                $result = Column::TYPE_TINYBLOB;
-                break;
-            case "blob"     :
-                $result = Column::TYPE_BLOB;
-                break;
-            case "mediumblob" :
-                $result = Column::TYPE_MEDIUMBLOB;
-                break;
-            case "longblob" :
-                $result = Column::TYPE_LONGBLOB;
-                break;
-            case "bigint"   :
-                $result = Column::TYPE_BIGINTEGER;
-                break;
-            case "json"     :
-                $result = Column::TYPE_JSON;
-                break;
-            case "jsonb"    :
-                $result = Column::TYPE_JSONB;
-                break;
-            case "timestamp":
-                $result = Column::TYPE_TIMESTAMP;
-                break;
-            default     :
-                $result = Column::TYPE_VARCHAR;
-                break;
-        }
-        return $result;
     }
 
     private function cpdir($source, $dest)
@@ -189,43 +123,6 @@ class GeneratorController extends ControllerBase
         }
     }
 
-    private function createTabel($table,$column)
-    {
-        $arr_column = array(
-            new Column("id", array(
-                "type"  => Column::TYPE_INTEGER,
-                "size"  => 11,
-                "notNull"       => true,
-                "autoIncrement" => true,
-            ))
-        );
 
-        foreach ($column as $c) {
-            $arr_column[] = new Column($c['name'], array(
-                "type" => $this->dbColumn($c['dbtype']),
-                "size" => $c['constraint'],
-                "notNull" => $c['isnull'],
-            ));
-        }
-
-        $arr_column[] = new Column("created", array(
-            "type"    => Column::TYPE_TIMESTAMP,
-            "size"    => 17,
-            "notNull" => true,
-        ));
-
-        try{
-            $this->db->createTable(strtolower($table), null, array(
-                "columns" => $arr_column,
-                "indexes" => array(
-                    new Index("PRIMARY", array("id"))
-                )
-            ));
-            $this->flash->success("Created Tablse $table in Database");
-        }catch (\Exception $e){
-            $this->flash->error($e->getMessage());
-        }
-
-    }
 
 }

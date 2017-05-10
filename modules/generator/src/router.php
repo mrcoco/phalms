@@ -40,6 +40,13 @@ $router->add('/{module_name_l}/edit', array(
     'action'     => 'edit'
 ));
 
+$router->add('/{module_name_l}/get', array(
+    'namespace'  => 'Modules\{module_name}\Controllers',
+    'module'     => '{module_name_l}',
+    'controller' => '{module_name_l}',
+    'action'     => 'get'
+));
+
 $router->add('/{module_name_l}/delete/{id:[0-9]+}', array(
     'namespace'  => 'Modules\{module_name}\Controllers',
     'module'     => '{module_name_l}',

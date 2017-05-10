@@ -68,8 +68,7 @@ class Template
     {
         $column_fields = '';
         $text = $this->clean($field['name']);
-        $column_fields .= sprintf(" \$item->%s;\n\t", $text);
-
+        $column_fields .= sprintf(" \$data->%s = \$this->request->getPost('%s');\n\t", $text,$text);
         return $column_fields;
     }
 

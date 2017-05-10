@@ -182,19 +182,26 @@ class Template
         }
     }
 
-    private function cpdir($source, $dest)
+    public function replace($info,$moduleurl,$filearray)
     {
-        mkdir($dest, 0755);
-        foreach (
-            $iterator = new \RecursiveIteratorIterator(
-                new \RecursiveDirectoryIterator($source, \RecursiveDirectoryIterator::SKIP_DOTS),
-                \RecursiveIteratorIterator::SELF_FIRST) as $item
-            ) {
-            if ($item->isDir()) {
-                mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
-            } else {
-                copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
-            }
+        for ($i = 0; $i < count($filearray); $i++) {
+            $filedestination = $moduleurl.'/'.$filearray[$i];
+
+            $current = file_get_contents($filedestination);
+
+            $current = $this->str_replace_assoc($info, $current);
+
+            file_put_contents($filedestination, $current);
         }
+    }
+
+    public function rename($moduleurl,$module)
+    {
+        rename($moduleurl.'/controllers/controller.php', $moduleurl.'/controllers/'.$module.'Controller.php');
+        rename($moduleurl.'/models/model.php', $moduleurl.'/models/'.$module.'.php');
+    }
+
+    private function str_replace_assoc(array $replace, $subject) {
+        return str_replace(array_keys($replace), array_values($replace), $subject);
     }
 }

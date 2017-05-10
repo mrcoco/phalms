@@ -29,7 +29,6 @@ class GeneratorController extends ControllerBase
 
     public function indexAction()
     {
-
         if ($this->request->isPost()) {
             $template = new Template($this->request->getPost());
             $theme  = $template->run();
@@ -62,24 +61,16 @@ class GeneratorController extends ControllerBase
                 'views/index.volt'
             );
 
-
             $url = $this->config->application->modulesDir;
             $this->cpdir($url."generator/src/",$url.$info['{module_name_l}']);
             $moduleurl = $url.$info['{module_name_l}'];
-            for ($i = 0; $i < count($filearray); $i++) {
-                $filedestination = $moduleurl.'/'.$filearray[$i];
-                
-                $current = file_get_contents($filedestination);
-                
-                $current = $this->str_replace_assoc($info, $current);
-                
-                file_put_contents($filedestination, $current);
-            }
-            
-            rename($moduleurl.'/controllers/controller.php', $moduleurl.'/controllers/'.$info['{module_name}'].'Controller.php');
-            rename($moduleurl.'/models/model.php', $moduleurl.'/models/'.$info['{module_name}'].'.php');
+
+            $template->replace($info,$moduleurl,$filearray);
+            $template->rename($moduleurl,$info['{module_name}']);
+
             $table = new Table($info['{module_name_l}'],$this->request->getPost('fields'));
-            $table->createTabel();
+            $res = $table->createTabel();
+            $this->flash->success($res);
         }
         $this->view->pick("index");
     }
@@ -88,10 +79,6 @@ class GeneratorController extends ControllerBase
     {
         $fixes = array(' ','-');
         return strtolower(str_replace($fixes, '_',$nametoclean));
-    }
-
-    private function str_replace_assoc(array $replace, $subject) {
-        return str_replace(array_keys($replace), array_values($replace), $subject);
     }
 
     private function cpdir($source, $dest)
@@ -122,7 +109,5 @@ class GeneratorController extends ControllerBase
             }
         }
     }
-
-
 
 }

@@ -69,6 +69,7 @@ class GeneratorController extends ControllerBase
             $template->rename($moduleurl,$info['{module_name}']);
 
             $table = new Table($info['{module_name_l}'],$this->request->getPost('fields'));
+            $table->regModule();
             $res = $table->createTabel();
             $this->flash->success($res);
         }

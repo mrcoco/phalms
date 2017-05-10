@@ -44,6 +44,12 @@ class Table extends Component
             "notNull" => true,
         ));
 
+        $arr_column[] = new Column("updated", array(
+            "type"    => Column::TYPE_TIMESTAMP,
+            "size"    => 17,
+            "notNull" => false,
+        ));
+
         try{
             $this->db->createTable(strtolower($this->table), null, array(
                 "columns" => $arr_column,
@@ -51,11 +57,27 @@ class Table extends Component
                     new Index("PRIMARY", array("id"))
                 )
             ));
-            $result = "Created Tablse $this->table in Database";
+            $result = "Created Table $this->table in Database";
         }catch (\Exception $e){
             $result = $e->getMessage();
         }
         return $result;
+    }
+
+    public function regModule()
+    {
+        return $this->db->insert("modules",
+            [
+                $this->table,
+                "",
+                1,
+            ],
+            [
+                "name",
+                "desc",
+                "publish",
+            ]
+        );
     }
 
     public function dbColumn($type)

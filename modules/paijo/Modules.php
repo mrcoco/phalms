@@ -2,17 +2,17 @@
 /**
  * Created by Phalms Module Generator.
  *
- * {description}
+ * paijo
  *
- * @package {package}
- * @author  {author}
- * @link    {website}
- * @date:   {date}
- * @time:   {time}
- * @license {copyright}
+ * @package paijo
+ * @author  paijojo
+ * @link    paijoweb
+ * @date:   2017-05-10
+ * @time:   18:05:43
+ * @license MIT
  */
 
-namespace Modules\{module_name};
+namespace Modules\Paijo;
 
 use Phalcon\Loader;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
@@ -30,9 +30,8 @@ class Module implements ModuleDefinitionInterface
 
         $loader->registerNamespaces(
             [
-                "Modules\\{module_name}\\Controllers" => __DIR__."/controllers/",
-                "Modules\\{module_name}\\Models"      => __DIR__."/models/",
-                "Modules\\{module_name}\\Plugin"      => __DIR__."/plugin/",
+                "Modules\\Paijo\\Controllers" => __DIR__."/controllers/",
+                "Modules\\Paijo\\Models"      => __DIR__."/models/",
             ]
         );
 

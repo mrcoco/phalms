@@ -72,6 +72,18 @@ class Template
         return $column_fields;
     }
 
+    private function makeMigrate($field)
+    {
+        $migrate_field = "";
+        $migrate_field .= sprintf("\$arr_column[] = new Column(%s, array(\n\t",$field['name']);
+        $migrate_field .= sprintf('"type" => \$this->dbColumn(%s),'."\n\t",$field['dbtype']);
+        $migrate_field .= sprintf('"size" => %s,'."\n\t",$field['constraint']);
+        $migrate_field .= sprintf('"notNull" => %s,'."\n\t",$field['isnull']);
+        $migrate_field .= "));\n\t";
+        return $migrate_field;
+    }
+
+
     private function makeTable($field)
     {
         $table_fields = '';
@@ -203,5 +215,72 @@ class Template
 
     private function str_replace_assoc(array $replace, $subject) {
         return str_replace(array_keys($replace), array_values($replace), $subject);
+    }
+
+    public function dbColumn($type)
+    {
+        switch (strtolower($type)){
+            case "int"      :
+                $result = Column::TYPE_INTEGER;
+                break;
+            case "integer"      :
+                $result = Column::TYPE_INTEGER;
+                break;
+            case  "date"    :
+                $result = Column::TYPE_DATE;
+                break;
+            case "varchar"  :
+                $result = Column::TYPE_VARCHAR;
+                break;
+            case "decimal"  :
+                $result = Column::TYPE_DECIMAL;
+                break;
+            case "datetime" :
+                $result = Column::TYPE_DATETIME;
+                break;
+            case "char"     :
+                $result = Column::TYPE_CHAR;
+                break;
+            case "text"     :
+                $result = Column::TYPE_TEXT;
+                break;
+            case "float"    :
+                $result = Column::TYPE_FLOAT;
+                break;
+            case "boolean"  :
+                $result = Column::TYPE_BOOLEAN;
+                break;
+            case "double"   :
+                $result = Column::TYPE_DOUBLE;
+                break;
+            case "tinyblob" :
+                $result = Column::TYPE_TINYBLOB;
+                break;
+            case "blob"     :
+                $result = Column::TYPE_BLOB;
+                break;
+            case "mediumblob" :
+                $result = Column::TYPE_MEDIUMBLOB;
+                break;
+            case "longblob" :
+                $result = Column::TYPE_LONGBLOB;
+                break;
+            case "bigint"   :
+                $result = Column::TYPE_BIGINTEGER;
+                break;
+            case "json"     :
+                $result = Column::TYPE_JSON;
+                break;
+            case "jsonb"    :
+                $result = Column::TYPE_JSONB;
+                break;
+            case "timestamp":
+                $result = Column::TYPE_TIMESTAMP;
+                break;
+            default     :
+                $result = Column::TYPE_VARCHAR;
+                break;
+        }
+        return $result;
     }
 }

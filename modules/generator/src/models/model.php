@@ -18,7 +18,32 @@ class {model_name} extends \Phalcon\Mvc\Model
     /**
      *
      * @var string
+     * @Column(type="string", nullable=false)
+     */
+    public $created;
+
+    /**
+     *
+     * @var string
      * @Column(type="string", nullable=true)
      */
     public $updated;
+
+    public function initialize()
+    {
+        $this->addBehavior(
+            new Timestampable(
+                [
+                    "beforeCreate" => [
+                        "field"  => "created",
+                        "format" => "Y-m-d H:i:s",
+                    ],
+                    "beforeUpdate" => [
+                        "field"  => "updated",
+                        "format" => "Y-m-d H:i:s",
+                    ],
+                ]
+            )
+        );
+    }
 }

@@ -85,7 +85,7 @@
                             </select>
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Constraint <small>Empty or 0 is no constraint</small></label>
+                                <label>Constraint <small>Empty or 0</small></label>
                                 <input class="form-control" type="number" name="fields[0][constraint]" value="0">
                             </div>
                             <div class="col-md-6 form-group">

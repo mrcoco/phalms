@@ -15,6 +15,7 @@ class Template
 		$table  = "";
 		$form   = "";
 		$js     = "";
+		$migrate= "";
 		$fields= $this->input['fields'];
 		foreach ($fields as $field) {
 			$model  .= $this->makeModel($field);
@@ -23,6 +24,7 @@ class Template
 			$table  .= $this->makeTable($field);
 			$form   .= $this->makeForm($field);
 			$js     .= $this->makeJs($field);
+			$migrate .= $this->makeMigrate($field);
 		}
 		$result = new \stdClass();
 		$result->model  = $model;
@@ -31,6 +33,7 @@ class Template
         $result->table  = $table;
         $result->form   = $form;
         $result->js     = $js;
+        $result->migrate = $migrate;
 		return $result;
 	}
 

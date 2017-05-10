@@ -51,11 +51,13 @@ class GeneratorController extends ControllerBase
                 '{table_fields}'    => $theme->table,
                 '{form_fields}'     => $theme->form,
                 '{js_fields}'       => $theme->js,
+                '{migrate_field}'   => $theme->migrate,
             );
             $filearray = array(
                 'router.php',
                 'controllers/controller.php',
                 'models/model.php',
+                'plugin/Publish.php',
                 'Modules.php',
                 'views/js/js.js',
                 'views/index.volt'

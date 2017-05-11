@@ -1,10 +1,16 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: kepegawaian
- * Date: 5/11/2017
- * Time: 1:12 AM
+ * Created by Phalms Module Generator.
+ *
+ * {description}
+ *
+ * @package {package}
+ * @author  {author}
+ * @link    {website}
+ * @date:   {date}
+ * @time:   {time}
+ * @license {copyright}
  */
 namespace Modules\{module_name}\Plugin;
 use Phalcon\Db\Column;

@@ -1,4 +1,16 @@
 <?php
+/**
+ * Created by Phalms Module Generator.
+ *
+ * {description}
+ *
+ * @package {package}
+ * @author  {author}
+ * @link    {website}
+ * @date:   {date}
+ * @time:   {time}
+ * @license {copyright}
+ */
 namespace Modules\{module_name}\Models;
 use \Phalcon\Mvc\Model\Behavior\Timestampable;
 class {model_name} extends \Phalcon\Mvc\Model

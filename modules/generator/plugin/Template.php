@@ -54,9 +54,9 @@ class Template
         $model_fields .= sprintf("* @var %s\n\t", $dbtype);
         $model_fields .= sprintf("* @Column(type='%s',", $dbtype);
         $model_fields .= sprintf("nullable=%s)\n\t", $field['isnull']);
-        $model_fields .= sprintf("public $%s;\n\t", $text);
         $model_fields .= "*\n\t";
         $model_fields .= "*/\n\t";
+        $model_fields .= sprintf("public $%s;\n\t", $text);
         return $model_fields;
     }
 

@@ -18,9 +18,8 @@
             <tr>
                 <th data-column-id="no" data-type="numeric" data-width="5%" data-sortable="false">no</th>
                 <th data-column-id="name" data-sortable="false">Name</th>
-	<th data-column-id="desc" data-sortable="false">Desc</th>
-	<th data-column-id="publish" data-sortable="false">Publish</th>
-	
+	            <th data-column-id="desc" data-sortable="false">Desc</th>
+	            <th data-column-id="publish" data-sortable="false">Publish</th>
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Action</th>
             </tr>
             </thead>
@@ -39,20 +38,22 @@
             <div class="modal-body">
                 <form id="myForm" method="post" enctype="multipart/form-data">
                     <div class="form-group" >
-	<label>Name</label>
-	<input type="text" class="form-control" name="name" id="name" >
-	</div>
-	<div class="form-group" >
-	<label>Desc</label>
-	<textarea class="form-control" name="desc" id="desc" >
-	</textarea>
-	</div>
-	<div class="form-group" >
-	<label>Publish</label>
-	<select class="form-control" name="publish" id="publish" multiple>
-	<option value="">--</option>
-	</select>
-	</div>\n\t
+                    <label>Name</label>
+                        <input type="text" class="form-control" name="hidden_id" id="hidden_id" >
+                    <input type="text" class="form-control" name="name" id="name" >
+                    </div>
+                    <div class="form-group" >
+                    <label>Desc</label>
+                    <textarea class="form-control" name="desc" id="desc" >
+                    </textarea>
+                    </div>
+                    <div class="form-group" >
+                    <label>Publish</label>
+                    <select class="form-control" name="publish" id="publish">
+                        <option value="1">Yes</option>
+                        <option value="2">No</option>
+                    </select>
+                    </div>
                     <div class="form-group" >
                         <div class="row">
                             <div class="col-xs-4 col-xs-offset-8">

@@ -1,12 +1,12 @@
 $(document).ready(function(){
-    var url_path = "http://phalms.dev/paijo/";
-    var paijo_grid = $("#grid-paijo").bootgrid({
+    var url_path = "http://phalms.dev/sekolah/";
+    var sekolah_grid = $("#grid-sekolah").bootgrid({
         ajax: true,
         url: url_path+"list",
         selection: true,
         multiSelect: true,
         templates: {
-            header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"><div class=\"col-sm-6 actionBar\"><div class=\"{{css.search}}\"></div></div><div class=\"col-sm-6\"><div class=\"{{css.actions}}\"></div> <div class='btn btn-primary' id='create' class='command-add'> <span class=\"fa fa-plus-square-o\"></span> New Paijo</div></div></div></div>",
+            header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"><div class=\"col-sm-6 actionBar\"><div class=\"{{css.search}}\"></div></div><div class=\"col-sm-6\"><div class=\"{{css.actions}}\"></div> <div class='btn btn-primary' id='create' class='command-add'> <span class=\"fa fa-plus-square-o\"></span> New Sekolah</div></div></div></div>",
         },
         formatters: {
             "file" : function (column, row) {
@@ -40,7 +40,7 @@ $(document).ready(function(){
                 type: 'post',
                 success: function(data) {
                     myAlert(data);
-                    $("#grid-paijo").bootgrid("reload");
+                    $("#grid-sekolah").bootgrid("reload");
                     setTimeout(function(){
                         $('#myModal').modal('hide')
                     }, 10000);
@@ -54,7 +54,7 @@ $(document).ready(function(){
                 toastr.success(data.msg, data.title);
                 toastr.options.timeOut = 15;
                 toastr.options.extendedTimeOut = 30;
-                $("#grid-paijo").bootgrid("reload");
+                $("#grid-sekolah").bootgrid("reload");
             });
 
         });
@@ -67,9 +67,9 @@ $(document).ready(function(){
                 type: 'post',
                 success: function(data) {
                     myAlert(data);
-                    paijo_grid.bootgrid("reload");
+                    sekolah_grid.bootgrid("reload");
                     setTimeout(function(){
-                        $('#mypaijo').modal('hide');
+                        $('#mysekolah').modal('hide');
                     }, 10000);
                 }
             });
@@ -81,19 +81,19 @@ $(document).ready(function(){
         $('#myForm')[0].reset();
         if(status == 'edit') {
 
-            $('#mypaijo .modal-title').html('Edit paijo '+e.data("row-id"));
+            $('#mysekolah .modal-title').html('Edit sekolah '+e.data("row-id"));
             $.getJSON(url_path+"get/?id=" + e.data("row-id"), function (data) {
                 $('#hidden_id').val(data.id);
-                 $('#paijo').val(data.paijo);
-	 $('#paijet').val(data.paijet);
+                 $('#name').val(data.name);
+	 $('#alamat').val(data.alamat);
 	
             });
         }else{
-            $('#mypaijo .modal-title').html('Create New paijo ');
+            $('#mysekolah .modal-title').html('Create New sekolah ');
             
         }
 
-        $('#mypaijo').modal('show');
+        $('#mysekolah').modal('show');
 
     }
 
@@ -102,7 +102,7 @@ $(document).ready(function(){
         var mesg= [];
         mesg["alert"] = e.alert;
         mesg["title"] = e.msg;
-        mesg["msg"] = "#paijo "+e._id+" "+e.msg;
+        mesg["msg"] = "#sekolah "+e._id+" "+e.msg;
         notif_show(mesg);
     }
 

@@ -1,5 +1,6 @@
 $(document).ready(function(){
-    var url_path = "http://phalms.dev/modules/";
+    var url_path    = "http://phalms.dev/modules/";
+    var url_gen     = "http://phalms.dev/generator";
     var modules_grid = $("#grid-modules").bootgrid({
         ajax: true,
         url: url_path+"list",
@@ -61,18 +62,8 @@ $(document).ready(function(){
 
         $("#create").on("click",function(e)
         {
-            myForm('create',e);
-            $("#myForm").ajaxForm({
-                url: url_path+'create',
-                type: 'post',
-                success: function(data) {
-                    myAlert(data);
-                    modules_grid.bootgrid("reload");
-                    setTimeout(function(){
-                        $('#mymodules').modal('hide');
-                    }, 10000);
-                }
-            });
+            window.location.href = url_gen;
+            return false;
         });
     });
 

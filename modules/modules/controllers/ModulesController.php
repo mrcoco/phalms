@@ -88,35 +88,13 @@ class ModulesController extends ControllerBase
         return $response->send();
     }
 
-    public function createAction()
-    {
-        $this->view->disable();
-        $data = new Modules();
-         $data->name = $this->request->getPost('name');
-	 $data->desc = $this->request->getPost('desc');
-	 $data->publish = $this->request->getPost('publish');
-	
-        if($data->save()){
-            $alert = "sukses";
-            $msg .= "Edited Success ";
-        }else{
-            $alert = "error";
-            $msg .= "Edited failed";
-        }
-        $response = new \Phalcon\Http\Response();
-        $response->setContentType('application/json', 'UTF-8');
-        $response->setJsonContent(array('_id' => $this->request->getPost("title"),'alert' => $alert, 'msg' => $msg ));
-        return $response->send();
-    }
-
     public function editAction()
     {
         $this->view->disable();
         $data = Modules::findFirst($this->request->getPost('hidden_id'));
-         $data->name = $this->request->getPost('name');
-	 $data->desc = $this->request->getPost('desc');
-	 $data->publish = $this->request->getPost('publish');
-	
+        $data->name = $this->request->getPost('name');
+	    $data->desc = $this->request->getPost('desc');
+	    $data->publish = $this->request->getPost('publish');
 
         if (!$data->save()) {
             foreach ($data->getMessages() as $message) {
@@ -126,6 +104,18 @@ class ModulesController extends ControllerBase
         }else{
             $alert = "sukses";
             $msg .= "page was created successfully";
+        }
+        //include $this->config->application->modulesDir.$data->name."/plugin/Publish.php";
+        $modules = ucfirst($data->name);
+        $class = '\\Modules\\'.$modules.'\Plugin\\Publish';
+        $reflect = new \ReflectionClass($class);
+        $publish = $reflect->newInstanceArgs([$data->name]);
+        if($this->request->getPost('publish') == 1){
+            $publish->up();
+            $this->addConfig($data->name);
+        }else{
+            $publish->down();
+            $this->dellConfig($data->name);
         }
         $response = new \Phalcon\Http\Response();
         $response->setContentType('application/json', 'UTF-8');
@@ -155,9 +145,30 @@ class ModulesController extends ControllerBase
             $alert  = "sukses";
             $msg    = "Modules was deleted ";
         }
+        $this->delModules($data->name);
         $response = new \Phalcon\Http\Response();
         $response->setContentType('application/json', 'UTF-8');
         $response->setJsonContent(array('_id' => $id,'alert' => $alert, 'msg' => $msg ));
         return $response->send();
+    }
+
+    private function delModules($modules)
+    {
+        $this->dellConfig($modules);
+        $this->db->dropTable($modules);
+    }
+
+    private function dellConfig($names)
+    {
+        $config = include $this->config->application->configDir."modules.php";
+        $arr = array_merge(array_diff($config, array($names)));
+        file_put_contents($this->config->application->configDir."modules.php", '<?php return [' ."'".implode("','",$arr)."'".'];');
+    }
+
+    private function addConfig($names)
+    {
+        $config = include $this->config->application->configDir."modules.php";
+        array_push($config,$names);
+        file_put_contents($this->config->application->configDir."modules.php", '<?php return [' ."'".implode("','",$config)."'".'];');
     }
 }

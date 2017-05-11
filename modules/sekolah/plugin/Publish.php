@@ -6,15 +6,14 @@
  * Date: 5/11/2017
  * Time: 1:12 AM
  */
-namespace Modules\{module_name}\Plugin;
+namespace Modules\Sekolah\Plugin;
 use Phalcon\Db\Column;
 use Phalcon\Db\Index;
 class Publish extends \Phalcon\Mvc\User\Component
 {
-    function __construct($table,$column)
+    function __construct($table)
     {
         $this->table    = $table;
-        $this->column   = $column;
     }
 
     public function up()
@@ -28,7 +27,17 @@ class Publish extends \Phalcon\Mvc\User\Component
             ))
         );
 
-        {migrate_field}
+        $arr_column[] = new Column('name', array(
+	"type" => Column::TYPE_VARCHAR,
+	"size" => 225,
+	"notNull" => false,
+	));
+	$arr_column[] = new Column('alamat', array(
+	"type" => Column::TYPE_TEXT,
+	"size" => 0,
+	"notNull" => false,
+	));
+	
 
         $arr_column[] = new Column("created", array(
             "type"    => Column::TYPE_TIMESTAMP,
@@ -58,6 +67,6 @@ class Publish extends \Phalcon\Mvc\User\Component
 
     public function down()
     {
-        return $this->db->dropTable('{module_name_l}');
+        return $this->db->dropTable($this->table);
     }
 }

@@ -2,17 +2,17 @@
 /**
  * Created by Phalms Module Generator.
  *
- * paijo
+ * phalms module sekolahan
  *
- * @package paijo
- * @author  paijojo
- * @link    paijoweb
- * @date:   2017-05-10
- * @time:   18:05:43
+ * @package Phalms-module
+ * @author  Dwi Agus
+ * @link    http://cempakaweb.com
+ * @date:   2017-05-11
+ * @time:   17:05:38
  * @license MIT
  */
 
-namespace Modules\Paijo;
+namespace Modules\Sekolah;
 
 use Phalcon\Loader;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
@@ -30,8 +30,9 @@ class Module implements ModuleDefinitionInterface
 
         $loader->registerNamespaces(
             [
-                "Modules\\Paijo\\Controllers" => __DIR__."/controllers/",
-                "Modules\\Paijo\\Models"      => __DIR__."/models/",
+                "Modules\\Sekolah\\Controllers" => __DIR__."/controllers/",
+                "Modules\\Sekolah\\Models"      => __DIR__."/models/",
+                "Modules\\Sekolah\\Plugin"      => __DIR__."/plugin/",
             ]
         );
 

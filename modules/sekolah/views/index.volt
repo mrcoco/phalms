@@ -1,7 +1,7 @@
 <div class="col-md-12 col-sm-12">
     <div class="box">
         <header class="bg-alizarin text-white">
-            <h4>Manage Paijo</h4>
+            <h4>Manage Sekolah</h4>
             <!-- begin box-tools -->
             <div class="box-tools">
                 <a class="fa fa-fw fa-minus" href="#" data-box="collapse"></a>
@@ -13,12 +13,12 @@
         </header>
         <div class="box-body collapse in">
             {{ content() }}
-        <table id="grid-paijo" class="table table-condensed table-hover table-striped">
+        <table id="grid-sekolah" class="table table-condensed table-hover table-striped">
             <thead>
             <tr>
                 <th data-column-id="no" data-type="numeric" data-width="5%" data-sortable="false">no</th>
-                <th data-column-id="paijo" data-sortable="false">Paijo</th>
-	<th data-column-id="paijet" data-sortable="false">Paijet</th>
+                <th data-column-id="name" data-sortable="false">Name</th>
+	<th data-column-id="alamat" data-sortable="false">Alamat</th>
 	
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Action</th>
             </tr>
@@ -28,22 +28,23 @@
     </div>
 </div>
 
-<div id="mypaijo" class="modal fade modal-wide" tabindex="-1" role="dialog">
+<div id="mysekolah" class="modal fade modal-wide" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Paijo</h4>
+                <h4 class="modal-title">Sekolah</h4>
             </div>
             <div class="modal-body">
                 <form id="myForm" method="post" enctype="multipart/form-data">
                     <div class="form-group" >
-	<label>Paijo</label>
-	<input type="text" class="form-control" name="paijo" id="paijo" >
+	<label>Name</label>
+	<input type="text" class="form-control" name="name" id="name" >
 	</div>
 	<div class="form-group" >
-	<label>Paijet</label>
-	<input type="text" class="form-control" name="paijet" id="paijet" >
+	<label>Alamat</label>
+	<textarea class="form-control" name="alamat" id="alamat" >
+	</textarea>
 	</div>
 	
                     <div class="form-group" >

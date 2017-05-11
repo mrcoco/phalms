@@ -11,10 +11,9 @@ use Phalcon\Db\Column;
 use Phalcon\Db\Index;
 class Publish extends \Phalcon\Mvc\User\Component
 {
-    function __construct($table,$column)
+    function __construct($table)
     {
         $this->table    = $table;
-        $this->column   = $column;
     }
 
     public function up()

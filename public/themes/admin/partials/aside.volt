@@ -198,15 +198,30 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url("generator")}}">
-                                <span class="nav-title">Module Generator</span>
-                            </a>
-                        </li>
-                        <li>
                             <a href="{{ url("menu") }}">
                                 <span class="nav-title">Menu Manager</span>
                             </a>
                         </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                    <span class="nav-icon">
+                      <i class="fa fa-cogs"></i>
+                    </span>
+                        <span class="nav-title">Addon Modules</span>
+                        <span class="nav-tools">
+                      <i class="fa fa-fw arrow"></i>
+                    </span>
+                    </a>
+                    <ul class="nav nav-sub">
+                        {% for item in widget.addonmenu() %}
+                        <li>
+                            <a href="{{ url(item.slug)}}">
+                                <span class="nav-title">{{item.name}}</span>
+                            </a>
+                        </li>
+                        {% endfor %}
                     </ul>
                 </li>
             </ul>

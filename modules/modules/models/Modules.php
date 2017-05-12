@@ -17,24 +17,32 @@ class Modules extends \Phalcon\Mvc\Model
 	*
 	* @var string
 	* @Column(type='string',nullable=false)
-	public $name;
 	*
 	*/
+	public $name;
+	
 	/**
 	*
 	* @var string
 	* @Column(type='string',nullable=false)
-	public $desc;
 	*
 	*/
+	public $desc;
+	
 	/**
 	*
 	* @var integer
 	* @Column(type='integer',nullable=false)
-	public $publish;
 	*
 	*/
+	public $publish;
 	
+	/**
+     *
+     * @var string
+     * @Column(type="string", nullable=true)
+     */
+    public $created;
 
     /**
      *

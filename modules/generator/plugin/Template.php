@@ -53,6 +53,7 @@ class Template
         $model_fields .= "*\n\t";
         $model_fields .= sprintf("* @var %s\n\t", $dbtype);
         $model_fields .= sprintf("* @Column(type='%s',", $dbtype);
+        $model_fields .= sprintf("* length=='%s',", $field['constraint']);
         $model_fields .= sprintf("nullable=%s)\n\t", $field['isnull']);
         $model_fields .= "*\n\t";
         $model_fields .= "*/\n\t";

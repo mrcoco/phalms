@@ -64,12 +64,12 @@ class Table extends Component
         return $result;
     }
 
-    public function regModule()
+    public function regModule($desc)
     {
         return $this->db->insert("modules",
             [
                 $this->table,
-                "",
+                $desc,
                 1,
             ],
             [

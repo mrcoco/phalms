@@ -19,6 +19,7 @@
                         <li class="scroll"><a href="{{ url(item.url) }}">{{ item.name }}</a></li>
                         {% endfor %}
                     {% endif %}
+                    <li class="scroll active"><a href="{{ url("session/login") }}">login</a></li>
                 </ul>
             </div>
         </div><!--/.container-->

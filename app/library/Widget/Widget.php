@@ -9,9 +9,10 @@
 namespace Phalms\Widget;
 use Modules\Banner\Models\Banner;
 use Modules\Cms\Models\Blog;
-use Modules\Modules\Models\Modules;
 use Modules\Cms\Models\PageCategory;
 use Modules\Gallery\Models\Image;
+use Modules\Modules\Models\Modules;
+use Modules\Menu\Models\Menu;
 use Phalms\Sosial\Sosial;
 use \Phalcon\Tag;
 
@@ -22,6 +23,11 @@ class Widget extends \Phalcon\Mvc\User\Component
         return Image::find([
             "limit" => 10,
         ]);
+    }
+
+    public function frontMenu()
+    {
+        return Menu::find();
     }
 
     public function pagecat()

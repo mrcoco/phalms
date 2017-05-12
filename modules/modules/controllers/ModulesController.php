@@ -2,31 +2,31 @@
 /**
  * Created by Phalms Module Generator.
  *
- * oyess
+ * Phalms Module manager
  *
- * @package phalms-module
- * @author  paijo
+ * @package Phalms-module
+ * @author  Dwi Agus
  * @link    http://cempakaweb.com
  * @date:   2017-05-10
- * @time:   16:05:12
+ * @time:   20:05:48
  * @license MIT
  */
 
-namespace Modules\Paijo\Controllers;
-use Modules\Paijo\Models\Paijo;
+namespace Modules\Modules\Controllers;
+use Modules\Modules\Models\Modules;
 use \Phalcon\Mvc\Model\Manager;
 use \Phalcon\Tag;
 use Modules\Frontend\Controllers\ControllerBase;
-class PaijoController extends ControllerBase
+class ModulesController extends ControllerBase
 {
     public function initialize()
     {
         $this->assets
             ->collection('footer')
-            ->setTargetPath("themes/admin/assets/js/combined-paijo.js")
-            ->setTargetUri("themes/admin/assets/js/combined-paijo.js")
+            ->setTargetPath("themes/admin/assets/js/combined-modules.js")
+            ->setTargetUri("themes/admin/assets/js/combined-modules.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."paijo/views/js/js.js")
+            ->addJs($this->config->application->modulesDir."modules/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 
@@ -49,7 +49,7 @@ class PaijoController extends ControllerBase
                 1 => "%".$searchPhrase."%"
             );
         }
-        $qryTotal = Paijo::find($arProp);
+        $qryTotal = Modules::find($arProp);
         $rowCount = $rowCount < 0 ? $qryTotal->count() : $rowCount;
         $arProp['order'] = "created DESC";
         $arProp['limit'] = $rowCount;
@@ -59,16 +59,16 @@ class PaijoController extends ControllerBase
                 $arProp['order'] = $k.' '.$v;
             }
         }
-        $qry = Paijo::find($arProp);
+        $qry = Modules::find($arProp);
         $arQry = array();
         $no =1;
         foreach ($qry as $item){
             $arQry[] = array(
                 'no'    => $no,
                 'id'    => $item->id,
-                'nama' => $item->nama,
-	'kelas' => $item->kelas,
-	'jabaya' => $item->jabaya,
+                'name' => $item->name,
+	'desc' => $item->desc,
+	'publish' => $item->publish,
 	
                 'created' => $item->created
             );
@@ -88,35 +88,13 @@ class PaijoController extends ControllerBase
         return $response->send();
     }
 
-    public function createAction()
-    {
-        $this->view->disable();
-        $data = new Paijo();
-         $item->nama;
-	 $item->kelas;
-	 $item->jabaya;
-	
-        if($data->save()){
-            $alert = "sukses";
-            $msg .= "Edited Success ";
-        }else{
-            $alert = "error";
-            $msg .= "Edited failed";
-        }
-        $response = new \Phalcon\Http\Response();
-        $response->setContentType('application/json', 'UTF-8');
-        $response->setJsonContent(array('_id' => $this->request->getPost("title"),'alert' => $alert, 'msg' => $msg ));
-        return $response->send();
-    }
-
     public function editAction()
     {
         $this->view->disable();
-        $data = Paijo::findFirst($this->request->getPost('hidden_id'));
-         $item->nama;
-	 $item->kelas;
-	 $item->jabaya;
-	
+        $data = Modules::findFirst($this->request->getPost('hidden_id'));
+        $data->name = $this->request->getPost('name');
+	    $data->desc = $this->request->getPost('desc');
+	    $data->publish = $this->request->getPost('publish');
 
         if (!$data->save()) {
             foreach ($data->getMessages() as $message) {
@@ -127,6 +105,18 @@ class PaijoController extends ControllerBase
             $alert = "sukses";
             $msg .= "page was created successfully";
         }
+        //include $this->config->application->modulesDir.$data->name."/plugin/Publish.php";
+        $modules = ucfirst($data->name);
+        $class = '\\Modules\\'.$modules.'\Plugin\\Publish';
+        $reflect = new \ReflectionClass($class);
+        $publish = $reflect->newInstanceArgs([$data->name]);
+        if($this->request->getPost('publish') == 1){
+            $publish->up();
+            $this->addConfig($data->name);
+        }else{
+            $publish->down();
+            $this->dellConfig($data->name);
+        }
         $response = new \Phalcon\Http\Response();
         $response->setContentType('application/json', 'UTF-8');
         $response->setJsonContent(array('_id' => $this->request->getPost("title"),'alert' => $alert, 'msg' => $msg ));
@@ -136,7 +126,7 @@ class PaijoController extends ControllerBase
 
     public function getAction()
     {
-        $data = Paijo::findFirst($this->request->getQuery('id'));
+        $data = Modules::findFirst($this->request->getQuery('id'));
         $response = new \Phalcon\Http\Response();
         $response->setContentType('application/json', 'UTF-8');
         $response->setJsonContent($data->toArray());
@@ -146,18 +136,39 @@ class PaijoController extends ControllerBase
     public function deleteAction($id)
     {
         $this->view->disable();
-        $data   = Paijo::findFirstById($id);
+        $data   = Modules::findFirstById($id);
 
         if (!$data->delete()) {
             $alert  = "error";
             $msg    = $data->getMessages();
         } else {
             $alert  = "sukses";
-            $msg    = "Paijo was deleted ";
+            $msg    = "Modules was deleted ";
         }
+        $this->delModules($data->name);
         $response = new \Phalcon\Http\Response();
         $response->setContentType('application/json', 'UTF-8');
         $response->setJsonContent(array('_id' => $id,'alert' => $alert, 'msg' => $msg ));
         return $response->send();
+    }
+
+    private function delModules($modules)
+    {
+        $this->dellConfig($modules);
+        $this->db->dropTable($modules);
+    }
+
+    private function dellConfig($names)
+    {
+        $config = include $this->config->application->configDir."modules.php";
+        $arr = array_merge(array_diff($config, array($names)));
+        file_put_contents($this->config->application->configDir."modules.php", '<?php return [' ."'".implode("','",$arr)."'".'];');
+    }
+
+    private function addConfig($names)
+    {
+        $config = include $this->config->application->configDir."modules.php";
+        array_push($config,$names);
+        file_put_contents($this->config->application->configDir."modules.php", '<?php return [' ."'".implode("','",$config)."'".'];');
     }
 }

@@ -41,7 +41,7 @@
                 <li class="nav-header">MAIN</li>
 
                 <li>
-                    <a class="active" href="index.html">
+                    <a class="active" href="{{ url("dashboard") }}">
                     <span class="nav-icon">
                       <i class="fa fa-fw fa-cogs"></i>
                     </span>
@@ -193,7 +193,7 @@
                     </a>
                     <ul class="nav nav-sub">
                         <li>
-                            <a href="j{{ url("modules")}}">
+                            <a href="{{ url("modules")}}">
                                 <span class="nav-title">Module Manager</span>
                             </a>
                         </li>

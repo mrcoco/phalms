@@ -1,26 +1,22 @@
 {
-    "name": "mrcoco/vokuro-modular",
-    "description": "This is a sample application for the Phalcon PHP Framework fork from phalcon repository",
-    "version": "1.2.0",
+    "name": "mrcoco/phalms",
+    "description": "This is a LMS (Learning Management System) sample application for the Phalcon PHP Framework based on Vokuro-modular",
+    "version": "0.2.0",
     "keywords": [
         "phalcon",
         "framework",
         "sample app",
-        "vokuro",
+        "phalms",
+        "elearning",
+        "lms",
+        "CRUD Generator",
+        "module generator",
         "modular"
     ],
     "type": "library",
     "license": "BSD-3",
-    "homepage": "http://www.phalconphp.com",
+    "homepage": "http://www.cempakaweb.com",
     "authors" : [
-        {
-            "name" : "Andres Gutierrez",
-            "email" : "andres@phalconphp.com"
-        },
-        {
-            "name" : "Mark Garrett",
-            "email" : "mark@moderndeveloperllc.com"
-        },
         {
             "name"  : "Dwi Agus Purwanto",
             "email" : "dwiagus@cempakaweb.com"

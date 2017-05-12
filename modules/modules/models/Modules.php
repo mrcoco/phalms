@@ -1,7 +1,7 @@
 <?php
-namespace Modules\Paijo\Models;
+namespace Modules\Modules\Models;
 use \Phalcon\Mvc\Model\Behavior\Timestampable;
-class Paijo extends \Phalcon\Mvc\Model
+class Modules extends \Phalcon\Mvc\Model
 {
 
     /**
@@ -17,21 +17,21 @@ class Paijo extends \Phalcon\Mvc\Model
 	*
 	* @var string
 	* @Column(type='string',nullable=false)
-	public $nama;
+	public $name;
 	*
 	*/
 	/**
 	*
 	* @var string
 	* @Column(type='string',nullable=false)
-	public $kelas;
+	public $desc;
 	*
 	*/
 	/**
 	*
-	* @var string
-	* @Column(type='string',nullable=false)
-	public $jabaya;
+	* @var integer
+	* @Column(type='integer',nullable=false)
+	public $publish;
 	*
 	*/
 	

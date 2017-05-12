@@ -32,6 +32,7 @@ class Module implements ModuleDefinitionInterface
             [
                 "Modules\\{module_name}\\Controllers" => __DIR__."/controllers/",
                 "Modules\\{module_name}\\Models"      => __DIR__."/models/",
+                "Modules\\{module_name}\\Plugin"      => __DIR__."/plugin/",
             ]
         );
 

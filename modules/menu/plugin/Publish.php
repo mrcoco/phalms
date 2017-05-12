@@ -34,25 +34,28 @@ class Publish extends \Phalcon\Mvc\User\Component
         );
 
         $arr_column[] = new Column('name', array(
-	"type" => Column::TYPE_VARCHAR,
-	"size" => 255,
-	"notNull" => false,
-	));
-	$arr_column[] = new Column('url', array(
-	"type" => Column::TYPE_VARCHAR,
-	"size" => 255,
-	"notNull" => false,
-	));
-	$arr_column[] = new Column('parrent', array(
-	"type" => Column::TYPE_INTEGER,
-	"size" => 11,
-	"notNull" => false,
-	));
-	$arr_column[] = new Column('sort', array(
-	"type" => Column::TYPE_INTEGER,
-	"size" => 11,
-	"notNull" => false,
-	));
+        	"type" => Column::TYPE_VARCHAR,
+        	"size" => 255,
+        	"notNull" => false,
+    	));
+        
+    	$arr_column[] = new Column('url', array(
+        	"type" => Column::TYPE_VARCHAR,
+        	"size" => 255,
+        	"notNull" => false,
+    	));
+
+    	$arr_column[] = new Column('parrent', array(
+        	"type" => Column::TYPE_INTEGER,
+        	"size" => 11,
+        	"notNull" => false,
+    	));
+
+    	$arr_column[] = new Column('sort', array(
+        	"type" => Column::TYPE_INTEGER,
+        	"size" => 11,
+        	"notNull" => false,
+    	));
 	
 
         $arr_column[] = new Column("created", array(

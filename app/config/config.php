@@ -9,7 +9,7 @@ return new Config([
         'host' => 'localhost',
         'username' => 'root',
         'password' => 'root',
-        'dbname' => 'zakat'
+        'dbname' => 'phalms'
     ],
     'application' => [
         'controllersDir' => APP_PATH . '/controllers/',
@@ -21,6 +21,7 @@ return new Config([
         'layoutsDir'     => BASE_PATH . '/public/themes/layouts/',
         'libraryDir'     => APP_PATH . '/library/',
         'pluginsDir'     => APP_PATH . '/plugins/',
+        'configDir'     => APP_PATH . '/config/',
         'modulesDir'     => BASE_PATH . '/modules/',
         'extendDir'      => APP_PATH . '/extend',
         'pluginDir'      => APP_PATH . '/plugins',
@@ -33,13 +34,13 @@ return new Config([
     ],
     'mail' => [
         'fromName' => 'Phalms',
-        'fromEmail' => 'app.zakatforlife@gmail.com',
+        'fromEmail' => '',
         'smtp' => [
             'server' => 'smtp.gmail.com',
             'port' => 587,
             'security' => 'tls',
-            'username' => 'app.zakatforlife',
-            'password' => 'swiftmailer'
+            'username' => '',
+            'password' => ''
         ]
     ],
     'amazon' => [

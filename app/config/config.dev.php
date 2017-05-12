@@ -9,7 +9,7 @@ return new Config([
         'host' => 'localhost',
         'username' => 'root',
         'password' => 'root',
-        'dbname' => 'zakat'
+        'dbname' => 'phalms'
     ],
     'application' => [
         'controllersDir' => APP_PATH . '/controllers/',
@@ -20,6 +20,7 @@ return new Config([
         'pluginsDir'     => APP_PATH . '/plugins/',
         'modulesDir'     => BASE_PATH . '/modules/',
         'extendDir'      => APP_PATH . '/extend',
+        'configDir'     => APP_PATH . '/config/',
         'pluginDir'      => APP_PATH . '/plugins',
         'cacheDir'       => BASE_PATH . '/cache/',
         'uploadDir'      => BASE_PATH . '/public/upload/',

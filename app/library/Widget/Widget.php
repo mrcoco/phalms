@@ -31,10 +31,10 @@ class Widget extends \Phalcon\Mvc\User\Component
         ]);
     }
 
-    public function banner()
+    public function banner($limit = 3)
     {
         return Banner::find([
-            "limit" => 3,
+            "limit" => $limit,
         ]);
     }
 

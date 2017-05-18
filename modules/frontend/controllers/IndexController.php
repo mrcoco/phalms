@@ -326,4 +326,50 @@ class IndexController extends ControllerBase
         $this->view->category = $result;
         $this->view->pick("news-category");
     }
+
+    public function testingAction()
+    {
+        $path = $this->config->application->modulesDir;
+        $fqcns = array();
+
+        $allFiles = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path));
+        $phpFiles = new \RegexIterator($allFiles, '/\.php$/');
+        foreach ($phpFiles as $phpFile) {
+            $content = file_get_contents($phpFile->getRealPath());
+            $tokens = token_get_all($content);
+            $namespace = '';
+            for ($index = 0; isset($tokens[$index]); $index++) {
+                if (!isset($tokens[$index][0])) {
+                    continue;
+                }
+                if (T_NAMESPACE === $tokens[$index][0]) {
+                    $index += 2; 
+                    while (isset($tokens[$index]) && is_array($tokens[$index])) {
+                        $namespace .= $tokens[$index++][1];
+                    }
+                }
+                if (T_CLASS === $tokens[$index][0]) {
+                    $index += 2; 
+                    
+                    if(! preg_match('/(Index|Template|Table)/', $tokens[$index][1])){
+                        if(isset($tokens[$index][1])){
+                            $class = \Phalcon\Text::uncamelize(str_replace("Controller", "", $tokens[$index][1]));
+                        }
+                    }
+                    
+                }
+
+                if (T_FUNCTION === $tokens[$index][0]) {
+                    $index += 2; 
+                    if (preg_match('/Action/',$tokens[$index][1])){
+                        $fqcns[] = $class.'\\'.$tokens[$index][1];
+                    }
+                }
+            }
+        }
+        
+        echo "<pre>";
+        print_r($fqcns);
+        echo "</pre>";
+    }
 }

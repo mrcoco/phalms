@@ -362,7 +362,7 @@ class IndexController extends ControllerBase
                 if (T_FUNCTION === $tokens[$index][0]) {
                     $index += 2; 
                     if (preg_match('/Action/',$tokens[$index][1])){
-                        $fqcns[] = $class.'\\'.$tokens[$index][1];
+                        $fqcns[] = ["resource" => $class , "action" => str_replace("Action", "",$tokens[$index][1])];
                     }
                 }
             }

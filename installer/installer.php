@@ -1,6 +1,9 @@
 <?php
 use Phalcon\Mvc\Micro;
 use Phalcon\DI\FactoryDefault;
+use Phalms\Installer\Database;
+use Phalms\Installer\Config;
+use Phalcon\Db\Index;
 /**
 * 
 */
@@ -45,6 +48,31 @@ class Installer
 		$this->app->get('/installer', function() use ($app) {
 		    echo $app['view']->render('installer');
 		});
+		$this->app->post('/setup', function() use ($app) {
+			try { 
+				$db = Database::configDb($app->request->getPost());
+
+			} catch (\Exception $e){ 
+				echo json_encode($e->getMessage());
+				return; 
+			}
+			try {
+				Config::write($app->request->getPost());
+				echo Database::privateResource($db);
+				// $db->createTable('email_confirmations', null, array(
+	   //              "columns" => Database::emailConfirmations(),
+	   //              "indexes" => array(
+	   //                  new Index("PRIMARY", array("id"))
+	   //              )
+	   //          ));
+
+			} catch (\Exception $e) {
+				echo json_encode($e->getMessage());
+				return; 
+			}
+			
+		    
+		});
 	}
 
 	public function view()
@@ -60,18 +88,15 @@ class Installer
 	    return $view;
 	}
 
-	public function configDb($input)
+	public function writeConfig()
 	{
-		$adapter = '\Phalcon\Db\Adapter\Pdo\\' . $input["adapter"];
-        $connection = new $adapter(
-            [
-                "host" => $input["host"],
-                "port" => $input["port"],
-                "username" => $input["username"],
-                "password" => $input["password"],
-                "dbname" => $input["dbname"],
-            ]
-        );
-        return $connection;
+
 	}
+
+	public function createTable()
+	{
+
+	}
+
+
 }

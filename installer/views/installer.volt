@@ -53,6 +53,7 @@
     </style>
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="installer/assets/js/jquery.form.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -74,18 +75,18 @@
     </div>
   </div>
   
-  <form role="form" action="" method="post">
+  <form id="setup-form" role="form" action="" method="post">
     <div class="row setup-content" id="step-1">
       <div class="col-xs-6 col-md-offset-3">
         <div class="col-md-12">
           <h3> Step 1</h3>
           <div class="form-group">
             <label class="control-label">Site Url</label>
-            <input  maxlength="100" type="text" required="required" class="form-control" placeholder="Site Url"  />
+            <input name="siteurl" maxlength="100" type="text" required="required" class="form-control" placeholder="Site Url"  />
           </div>
           <div class="form-group">
             <label class="control-label">Site Name</label>
-            <input maxlength="100" type="text" required="required" class="form-control" placeholder="Site Name" />
+            <input name="sitename" maxlength="100" type="text" required="required" class="form-control" placeholder="Site Name" />
           </div>  
           <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
         </div>
@@ -98,25 +99,32 @@
           <p>Config Database Server</p>
           <div class="form-group">
             <label class="control-label">Database Adapter</label>
-            <input maxlength="100" type="text" required="required" class="form-control" placeholder="Database Adapter" />
+            <select name="dbadapter" required="required" class="form-control" >
+              <option value="Mysql">MySQL</option>
+              <option value="Postgresql">PostgreSql</option>
+            </select>
           </div>
           <div class="form-group">
             <label class="control-label">Database Server</label>
-            <input maxlength="100" type="text" required="required" class="form-control" placeholder="Database Server" />
+            <input name="dbserver" maxlength="100" type="text" required="required" class="form-control" placeholder="Database Server Host" />
+          </div>
+          <div class="form-group">
+            <label class="control-label">Database Name</label>
+            <input name="dbname" maxlength="100" type="text" required="required" class="form-control" placeholder="Database Name" />
           </div>
           <div class="form-group">
             <label class="control-label">Database Username</label>
-            <input maxlength="100" type="text" required="required" class="form-control" placeholder="Database Username" />
+            <input name="dbusername" maxlength="100" type="text" required="required" class="form-control" placeholder="Database Username" />
           </div>
           <div class="form-group">
             <label class="control-label">Database Password</label>
-            <input maxlength="100" type="text" required="required" class="form-control" placeholder="Database Password" />
+            <input name="dbpassword" maxlength="100" type="text" required="required" class="form-control" placeholder="Database Password" />
           </div>
           <div class="form-group">
             <label class="control-label">Database Port</label>
-            <input maxlength="100" type="text" required="required" class="form-control" placeholder="Database Port" />
+            <input name="dbport" maxlength="100" type="text" required="required" class="form-control" placeholder="Database Port" />
           </div>
-          <button class="btn btn-primary nextBtn pull-right" type="button" >Next</button>
+          <button id="dbconf" class="btn btn-primary nextBtn pull-right" type="button" >Next</button>
         </div>
       </div>
     </div>
@@ -124,6 +132,27 @@
       <div class="col-xs-6 col-md-offset-3">
         <div class="col-md-12">
           <h3> Step 3</h3>
+          <p>SMTP Email Config</p>
+          <div class="form-group">
+            <label class="control-label">SMTP Server</label>
+            <input name="emailserver" maxlength="100" type="text" class="form-control" placeholder="SMTP Server" />
+          </div>
+          <div class="form-group">
+            <label class="control-label">SMTP Port</label>
+            <input name="emailport" maxlength="100" type="text" class="form-control" placeholder="SMTP Port" />
+          </div>
+          <div class="form-group">
+            <label class="control-label">SMTP Username</label>
+            <input name="emailuser" maxlength="100" type="text" class="form-control" placeholder="SMTP Username" />
+          </div>
+          <div class="form-group">
+            <label class="control-label">SMTP Password</label>
+            <input name="emailpass" maxlength="100" type="text" class="form-control" placeholder="SMTP Password" />
+          </div>
+          <div class="form-group">
+            <label class="control-label">email Address</label>
+            <input name="emailaddress" maxlength="100" type="text" class="form-control" placeholder="SMTP Password" />
+          </div>
           <button class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
         </div>
       </div>
@@ -133,47 +162,54 @@
 </div>
   <script type="text/javascript">
   $(document).ready(function () {
-  var navListItems = $('div.setup-panel div a'),
-          allWells = $('.setup-content'),
-          allNextBtn = $('.nextBtn');
+    var navListItems = $('div.setup-panel div a'),
+            allWells = $('.setup-content'),
+            allNextBtn = $('.nextBtn');
 
-  allWells.hide();
+    allWells.hide();
 
-  navListItems.click(function (e) {
-      e.preventDefault();
-      var $target = $($(this).attr('href')),
-              $item = $(this);
+    navListItems.click(function (e) {
+        e.preventDefault();
+        var $target = $($(this).attr('href')),
+                $item = $(this);
 
-      if (!$item.hasClass('disabled')) {
-          navListItems.removeClass('btn-primary').addClass('btn-default');
-          $item.addClass('btn-primary');
-          allWells.hide();
-          $target.show();
-          $target.find('input:eq(0)').focus();
-      }
+        if (!$item.hasClass('disabled')) {
+            navListItems.removeClass('btn-primary').addClass('btn-default');
+            $item.addClass('btn-primary');
+            allWells.hide();
+            $target.show();
+            $target.find('input:eq(0)').focus();
+        }
+    });
+
+    allNextBtn.click(function(){
+        var curStep = $(this).closest(".setup-content"),
+            curStepBtn = curStep.attr("id"),
+            nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+            curInputs = curStep.find("input[type='text'],input[type='url']"),
+            isValid = true;
+
+        $(".form-group").removeClass("has-error");
+        for(var i=0; i<curInputs.length; i++){
+            if (!curInputs[i].validity.valid){
+                isValid = false;
+                $(curInputs[i]).closest(".form-group").addClass("has-error");
+            }
+        }
+
+        if (isValid)
+            nextStepWizard.removeAttr('disabled').trigger('click');
+    });
+
+    $('div.setup-panel div a.btn-primary').trigger('click');
+    $("#setup-form").ajaxForm({
+        url: 'setup',
+        type: 'post',
+        success: function(data) {
+            alert(data);
+        }
+    });
   });
-
-  allNextBtn.click(function(){
-      var curStep = $(this).closest(".setup-content"),
-          curStepBtn = curStep.attr("id"),
-          nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-          curInputs = curStep.find("input[type='text'],input[type='url']"),
-          isValid = true;
-
-      $(".form-group").removeClass("has-error");
-      for(var i=0; i<curInputs.length; i++){
-          if (!curInputs[i].validity.valid){
-              isValid = false;
-              $(curInputs[i]).closest(".form-group").addClass("has-error");
-          }
-      }
-
-      if (isValid)
-          nextStepWizard.removeAttr('disabled').trigger('click');
-  });
-
-  $('div.setup-panel div a.btn-primary').trigger('click');
-});
   </script>
 </body>
 </html>

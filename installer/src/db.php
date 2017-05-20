@@ -13,7 +13,7 @@ return new Config([
         'adapter' 	=> '_ADAPTER_',
         'host' 		=> '_HOST_',
         'username' 	=> '_USERNAME_',
-        'password' 	=> '_ROOT_',
+        'password' 	=> '_PASSWORD_',
         'dbname' 	=> '_DBNAME_'
     ],
     'mail' => [

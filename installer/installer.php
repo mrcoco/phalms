@@ -58,7 +58,9 @@ class Installer
 			}
 			try {
 				Config::write($app->request->getPost());
-				echo Database::privateResource($db);
+				$migrate = Database::createTable($db);
+				echo json_encode($migrate);
+				//echo Database::privateResource($db);
 				// $db->createTable('email_confirmations', null, array(
 	   //              "columns" => Database::emailConfirmations(),
 	   //              "indexes" => array(

@@ -368,8 +368,22 @@ class IndexController extends ControllerBase
             }
         }
         
-        echo "<pre>";
-        print_r($fqcns);
-        echo "</pre>";
+       
+            $query  = "INSERT INTO resource (resource, action) VALUES ";
+            $col    = array();
+            foreach ($fqcns as $item) {
+                $col[] = "('".$item['resource']."' , '".$item['action']."')";
+            }
+            $query .= implode(',', $col);
+
+            try {
+                $this->db->execute($query);
+            } catch (\Exception $e) {
+                echo $e->getMessage();
+            }
+            
+
+    
+        
     }
 }

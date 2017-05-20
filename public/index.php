@@ -14,6 +14,8 @@ if( ! file_exists(APP_PATH."/config/config.db.php"))
 	if(is_dir(BASE_PATH . "/installer/"))
 	{
 		include BASE_PATH . '/installer/installer.php';
+		include BASE_PATH . '/installer/lib/Database.php';
+		include BASE_PATH . '/installer/lib/Config.php';
 		$app = new Installer();
 		$app->run();
 	}else{

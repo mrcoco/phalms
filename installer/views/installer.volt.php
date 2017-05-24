@@ -132,6 +132,7 @@
       <div class="col-xs-6 col-md-offset-3">
         <div class="col-md-12">
           <h3> Step 3</h3>
+          <div id="result"></div>
           <p>SMTP Email Config</p>
           <div class="form-group">
             <label class="control-label">SMTP Server</label>
@@ -206,7 +207,9 @@
         url: 'setup',
         type: 'post',
         success: function(data) {
-            alert(data);
+            $.each($.parseJSON(data), function(k, v) {
+              $("#result").append("<div class='alert alert-success'> "+v+" </div>")
+          });
         }
     });
   });

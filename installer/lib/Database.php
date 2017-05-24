@@ -662,7 +662,7 @@ class Database
             "permissions"       => self::permissions($db),
             "banner"    => self::banner($db),
             "menu"      => self::menu($db),
-            "moudles"   => self::modules($db),
+            "modules"   => self::modules($db),
             "resources" => self::privateResource($db),
             "profiles"  => self::profiles($db),
             "users"     => self::users($db),

@@ -60,20 +60,10 @@ class Installer
 				Config::write($app->request->getPost());
 				$migrate = Database::createTable($db);
 				echo json_encode($migrate);
-				//echo Database::privateResource($db);
-				// $db->createTable('email_confirmations', null, array(
-	   //              "columns" => Database::emailConfirmations(),
-	   //              "indexes" => array(
-	   //                  new Index("PRIMARY", array("id"))
-	   //              )
-	   //          ));
-
 			} catch (\Exception $e) {
 				echo json_encode($e->getMessage());
 				return; 
 			}
-			
-		    
 		});
 	}
 
@@ -89,16 +79,5 @@ class Installer
 
 	    return $view;
 	}
-
-	public function writeConfig()
-	{
-
-	}
-
-	public function createTable()
-	{
-
-	}
-
 
 }

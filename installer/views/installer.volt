@@ -122,7 +122,7 @@
           </div>
           <div class="form-group">
             <label class="control-label">Database Port</label>
-            <input name="dbport" maxlength="100" type="text" required="required" class="form-control" placeholder="Database Port" />
+            <input name="dbport" type="text" required="required" class="form-control" placeholder="Database Port" value="3306" />
           </div>
           <button id="dbconf" class="btn btn-primary nextBtn pull-right" type="button" >Next</button>
         </div>

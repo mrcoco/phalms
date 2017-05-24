@@ -28,3 +28,9 @@ After some time, do not forget run composer update for update dependencies:
 ```
 composer update
 ```
+
+Default Username and password
+```
+username: admin@phalms.dev
+password: adminphalms
+```

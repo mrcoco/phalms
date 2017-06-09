@@ -104,10 +104,10 @@ $router->add('/news-cat/([a-z0-9\-]+)', array(
     'title'      => 1
 ));
 
-$router->add('/test', array(
+$router->add('/testing', array(
     'namespace'  => 'Modules\Frontend\Controllers',
     'module'     => 'frontend',
     'controller' => 'index',
-    'action'     => 'test',
+    'action'     => 'testing',
     'title'      => 1
 ));

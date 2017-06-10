@@ -110,3 +110,10 @@ $router->add('/permissions', array(
     'controller' => 'permissions',
     'action'     => 'index'
 ));
+
+$router->add('/dashboard', array(
+    'namespace'  => 'Modules\User\Controllers',
+    'module'     => 'user',
+    'controller' => 'dashboard',
+    'action'     => 'index'
+));

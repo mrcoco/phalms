@@ -35,6 +35,16 @@ class SubjectController extends ControllerBase
         $this->view->pick("index");
     }
 
+    public function dataAction()
+    {
+        $this->view->disable();
+        $data = Subject::find();
+        $response = new \Phalcon\Http\Response();
+        $response->setContentType('application/json', 'UTF-8');
+        $response->setJsonContent($data);
+        return $response->send();
+    }
+
     public function listAction()
     {
         $this->view->disable();
@@ -67,7 +77,7 @@ class SubjectController extends ControllerBase
                 'no'    => $no,
                 'id'    => $item->id,
                 'name' => $item->name,
-	'description' => $item->description,
+	            'description' => $item->description,
 	
                 'created' => $item->created
             );

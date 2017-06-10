@@ -75,9 +75,8 @@ class SchoolController extends ControllerBase
             $arQry[] = array(
                 'no'    => $no,
                 'id'    => $item->id,
-                'name' => $item->name,
-	'descriptions' => $item->descriptions,
-	
+                'name'  => $item->name,
+	            'descriptions' => $item->descriptions,
                 'created' => $item->created
             );
             $no++;
@@ -100,8 +99,8 @@ class SchoolController extends ControllerBase
     {
         $this->view->disable();
         $data = new School();
-         $data->name = $this->request->getPost('name');
-	 $data->descriptions = $this->request->getPost('descriptions');
+        $data->name = $this->request->getPost('name');
+	    $data->descriptions = $this->request->getPost('descriptions');
 	
         if($data->save()){
             $alert = "sukses";
@@ -120,8 +119,8 @@ class SchoolController extends ControllerBase
     {
         $this->view->disable();
         $data = School::findFirst($this->request->getPost('hidden_id'));
-         $data->name = $this->request->getPost('name');
-	 $data->descriptions = $this->request->getPost('descriptions');
+        $data->name = $this->request->getPost('name');
+	    $data->descriptions = $this->request->getPost('descriptions');
 	
 
         if (!$data->save()) {

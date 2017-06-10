@@ -55,3 +55,10 @@ $router->add('/school/delete/{id:[0-9]+}', array(
     'id'         => 1
 ));
 
+$router->add('/school/data', array(
+    'namespace'  => 'Modules\School\Controllers',
+    'module'     => 'school',
+    'controller' => 'school',
+    'action'     => 'data'
+));
+

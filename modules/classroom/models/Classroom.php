@@ -99,5 +99,11 @@ class Classroom extends \Phalcon\Mvc\Model
                 ]
             )
         );
+        $this->belongsTo('grade','Modules\Grade\Models\Grade', 'id', ['alias' => 'Grades']);
+        $this->belongsTo('teacher_id','Modules\User\Models\Users', 'id', ['alias' => 'Teachers']);
+        $this->belongsTo('major_id','Modules\Majors\Models\Majors', 'id', ['alias' => 'Majors']);
+        $this->belongsTo('subject_id','Modules\Subject\Models\Subject', 'id', ['alias' => 'Subjects']);
+        $this->belongsTo('school_id','Modules\School\Models\School', 'id', ['alias' => 'Schools']);
+        $this->belongsTo('school_id','Modules\Grade\Models\Grade', 'id', ['alias' => 'grades']);
     }
 }

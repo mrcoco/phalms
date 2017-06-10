@@ -55,3 +55,10 @@ $router->add('/subject/delete/{id:[0-9]+}', array(
     'id'         => 1
 ));
 
+$router->add('/subject/data', array(
+    'namespace'  => 'Modules\Subject\Controllers',
+    'module'     => 'subject',
+    'controller' => 'subject',
+    'action'     => 'data',
+));
+

@@ -136,7 +136,11 @@ $(document).ready(function(){
         });
 
         $.get( "profiles/list", function( data ) {
-            $("#profile").append( "<option value='0'>-- Profile --</option>");
+            //$("#profile").append( "<option value='0'>-- Profile --</option>");
+            $('option', $("#profile")).remove();
+            data.unshift(
+                {id: "0", name: " -Profile-"}
+            );
             $.each(data, function (index, element) {
                 $("#profile").append( "<option value='"+element.id+"'>"+element.name+"</option>");
             });

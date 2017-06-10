@@ -84,37 +84,80 @@ $(document).ready(function(){
             $('#myclassroom .modal-title').html('Edit classroom '+e.data("row-id"));
             $.getJSON(url_path+"get/?id=" + e.data("row-id"), function (data) {
                 $('#hidden_id').val(data.id);
-                $('#school_id').val(data.school_id);
-            	$('#subject_id').val(data.subject_id);
-            	$('#major_id').val(data.major_id);
-            	$('#teacher_id').val(data.teacher_id);
-            	$('#grade').val(data.grade);
+                //$('#school_id').val(data.school_id);
+            	//$('#subject_id').val(data.subject_id);
+            	//$('#major_id').val(data.major_id);
+            	//$('#teacher_id').val(data.teacher_id);
+            	//$('#grade').val();
             	$('#description').val(data.description);
-	
+                schoolBox(data.school_id);
+                subjectBox(data.subject_id);
+                majorBox(data.major_id);
+                teacherBox(data.teacher_id);
+	            gradeBox(data.grade);
             });
         }else{
             $('#myclassroom .modal-title').html('Create New classroom ');
-            
+            schoolBox();
+            subjectBox();
+            majorBox();
+            teacherBox();
+            gradeBox();
         }
 
         $('#myclassroom').modal('show');
 
     }
 
-    function subjectBox(status,e) {
-        $('#school_id option').each(function(){
-            if ($('#school_id option[value="'+$(this).val()+'"]').length) $(this).remove();
-        });
-
+    function schoolBox(e) {
         $.get( "school/data", function( data ) {
-            $("#school_id").append( "<option value='0'>-- School --</option>");
-            $.each(data, function (index, element) {
-                $("#school_id").append( "<option value='"+element.id+"'>"+element.name+"</option>");
-            });
-            if(status == 'edit'){
-                $("#school_id").val(e.data("row-category"));
-            }
+            selectBox("#school_id",data,e);
         }, "json" );
+    }
+
+    function subjectBox(e){
+        $.get( "subject/data", function( data ) {
+            selectBox("#subject_id",data,e);
+        }, "json" );
+    }
+
+    function majorBox(e){
+        $.get( "majors/data", function( data ) {
+            selectBox("#major_id",data,e);
+        }, "json" );
+    }
+
+    function teacherBox(e){
+        $.get( "classroom/teacher", function( data ) {
+            selectBox("#teacher_id",data,e);
+        }, "json" );
+    }
+
+    function gradeBox(e) {
+        $.get( "grade/data", function( data ) {
+            selectBox("#grade",data,e);
+        }, "json" );
+    }
+
+    function selectBox(selector,datasource,selectedOption)
+    {
+        var select = $(selector);
+        if(select.prop) {
+          var options = select.prop('options');
+        }
+        else {
+          var options = select.attr('options');
+        }
+        $('option', select).remove();
+        datasource.unshift(
+            {id: "0", name: " -Pilih-"}
+        );
+        $.each(datasource, function(val, text) {
+            options[options.length] = new Option(text.name, text.id);
+        });
+        if(selectedOption){
+            select.val(selectedOption);
+        }
     }
 
     function myAlert(e)

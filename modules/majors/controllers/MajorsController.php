@@ -35,6 +35,16 @@ class MajorsController extends ControllerBase
         $this->view->pick("index");
     }
 
+    public function dataAction()
+    {
+        $this->view->disable();
+        $data = Majors::find();
+        $response = new \Phalcon\Http\Response();
+        $response->setContentType('application/json', 'UTF-8');
+        $response->setJsonContent($data);
+        return $response->send();
+    }
+
     public function listAction()
     {
         $this->view->disable();

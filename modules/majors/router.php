@@ -55,3 +55,9 @@ $router->add('/majors/delete/{id:[0-9]+}', array(
     'id'         => 1
 ));
 
+$router->add('/majors/data', array(
+    'namespace'  => 'Modules\Majors\Controllers',
+    'module'     => 'majors',
+    'controller' => 'majors',
+    'action'     => 'data'
+));

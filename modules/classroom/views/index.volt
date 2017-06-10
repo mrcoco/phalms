@@ -17,11 +17,11 @@
             <thead>
             <tr>
                 <th data-column-id="no" data-type="numeric" data-width="5%" data-sortable="false">no</th>
-                <th data-column-id="school_id" data-sortable="false">School_id</th>
-            	<th data-column-id="subject_id" data-sortable="false">Subject_id</th>
-            	<th data-column-id="major_id" data-sortable="false">Major_id</th>
-            	<th data-column-id="teacher_id" data-sortable="false">Teacher_id</th>
-            	<th data-column-id="grade" data-sortable="false">Grade</th>
+                <th data-column-id="school_name" data-sortable="false">School</th>
+                <th data-column-id="major_name" data-sortable="false">Major</th>
+            	<th data-column-id="subject_name" data-sortable="false">Subject</th>
+            	<th data-column-id="teacher_name" data-sortable="false">Teacher_id</th>
+            	<th data-column-id="grade_name" data-sortable="false">Grade</th>
             	<th data-column-id="description" data-sortable="false">Description</th>
 	
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Action</th>
@@ -42,33 +42,32 @@
             <div class="modal-body">
                 <form id="myForm" method="post" enctype="multipart/form-data">
                     <div class="form-group" >
-                    <input type="hidden" class="form-control" name="hidden_id" id="hidden_id" >
+                        <input type="hidden" class="form-control" name="hidden_id" id="hidden_id" >
                     </div>
                     <div class="form-group" >
-	<label>School_id</label>
-	<input type="text" class="form-control" name="school_id" id="school_id" >
-	</div>
-	<div class="form-group" >
-	<label>Subject_id</label>
-	<input type="text" class="form-control" name="subject_id" id="subject_id" >
-	</div>
-	<div class="form-group" >
-	<label>Major_id</label>
-	<input type="text" class="form-control" name="major_id" id="major_id" >
-	</div>
-	<div class="form-group" >
-	<label>Teacher_id</label>
-	<input type="text" class="form-control" name="teacher_id" id="teacher_id" >
-	</div>
-	<div class="form-group" >
-	<label>Grade</label>
-	<input type="text" class="form-control" name="grade" id="grade" >
-	</div>
-	<div class="form-group" >
-	<label>Description</label>
-	<textarea class="form-control" name="description" id="description" >
-	</textarea>
-	</div>
+                	   <label>School</label>
+                	   <select class="form-control" name="school_id" id="school_id"></select>
+                	</div>
+                	<div class="form-group" >
+                	   <label>Major</label>
+                       <select class="form-control" name="major_id" id="major_id"></select>
+                	</div>
+                    <div class="form-group" >
+                       <label>Subject</label>
+                       <select class="form-control" name="subject_id" id="subject_id"></select>
+                    </div>
+                	<div class="form-group" >
+                	   <label>Teacher_id</label>
+                       <select class="form-control" name="teacher_id" id="teacher_id"></select>
+                	</div>
+                	<div class="form-group" >
+                	   <label>Grade</label>
+                       <select class="form-control" name="grade" id="grade"></select>
+                	</div>
+                	<div class="form-group" >
+                	   <label>Description</label>
+                	   <textarea class="form-control" name="description" id="description" ></textarea>
+                	</div>
 	
                     <div class="form-group" >
                         <div class="row">

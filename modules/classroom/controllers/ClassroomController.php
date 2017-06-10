@@ -14,6 +14,8 @@
 
 namespace Modules\Classroom\Controllers;
 use Modules\Classroom\Models\Classroom;
+use Modules\User\Models\Profiles;
+use Modules\User\Models\Users;
 use \Phalcon\Mvc\Model\Manager;
 use \Phalcon\Tag;
 use Modules\Frontend\Controllers\ControllerBase;
@@ -33,6 +35,17 @@ class ClassroomController extends ControllerBase
     public function indexAction()
     {
         $this->view->pick("index");
+    }
+
+    public function teacherAction()
+    {
+        $this->view->disable();
+        $profile    = Profiles::findFirst([ "name='Teacher'"]);
+        $data       = $profile->users;
+        $response = new \Phalcon\Http\Response();
+        $response->setContentType('application/json', 'UTF-8');
+        $response->setJsonContent($data);
+        return $response->send();
     }
 
     public function listAction()
@@ -66,14 +79,19 @@ class ClassroomController extends ControllerBase
             $arQry[] = array(
                 'no'    => $no,
                 'id'    => $item->id,
-                'school_id' => $item->school_id,
-	'subject_id' => $item->subject_id,
-	'major_id' => $item->major_id,
-	'teacher_id' => $item->teacher_id,
-	'grade' => $item->grade,
-	'description' => $item->description,
-	
-                'created' => $item->created
+                'school_id'     => $item->school_id,
+	            'subject_id'    => $item->subject_id,
+	            'major_id'      => $item->major_id,
+	            'teacher_id'    => $item->teacher_id,
+	            'grade'         => $item->grade,
+                'grade_name'    => $item->Grades->name,
+                'school_name'   => $item->Schools->name,
+                'subject_name'  => $item->Subjects->name,
+                'major_name'    => $item->Majors->name,
+                'teacher_name'  => $item->Teachers->name,
+                'grade_name'    => $item->Grades->name,
+	            'description'   => $item->description,
+                'created'       => $item->created
             );
             $no++;
         }
@@ -95,13 +113,13 @@ class ClassroomController extends ControllerBase
     {
         $this->view->disable();
         $data = new Classroom();
-         $data->school_id = $this->request->getPost('school_id');
-	 $data->subject_id = $this->request->getPost('subject_id');
-	 $data->major_id = $this->request->getPost('major_id');
-	 $data->teacher_id = $this->request->getPost('teacher_id');
-	 $data->grade = $this->request->getPost('grade');
-	 $data->description = $this->request->getPost('description');
-	
+        $data->school_id = $this->request->getPost('school_id');
+    	$data->subject_id = $this->request->getPost('subject_id');
+    	$data->major_id = $this->request->getPost('major_id');
+    	$data->teacher_id = $this->request->getPost('teacher_id');
+    	$data->grade = $this->request->getPost('grade');
+    	$data->description = $this->request->getPost('description');
+	    $msg = "";
         if($data->save()){
             $alert = "sukses";
             $msg .= "Edited Success ";
@@ -119,12 +137,12 @@ class ClassroomController extends ControllerBase
     {
         $this->view->disable();
         $data = Classroom::findFirst($this->request->getPost('hidden_id'));
-         $data->school_id = $this->request->getPost('school_id');
-	 $data->subject_id = $this->request->getPost('subject_id');
-	 $data->major_id = $this->request->getPost('major_id');
-	 $data->teacher_id = $this->request->getPost('teacher_id');
-	 $data->grade = $this->request->getPost('grade');
-	 $data->description = $this->request->getPost('description');
+        $data->school_id = $this->request->getPost('school_id');
+    	$data->subject_id = $this->request->getPost('subject_id');
+    	$data->major_id = $this->request->getPost('major_id');
+    	$data->teacher_id = $this->request->getPost('teacher_id');
+    	$data->grade = $this->request->getPost('grade');
+    	$data->description = $this->request->getPost('description');
 	
 
         if (!$data->save()) {

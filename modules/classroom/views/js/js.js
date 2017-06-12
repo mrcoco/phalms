@@ -23,6 +23,7 @@ $(document).ready(function(){
             "commands": function(column, row)
             {
                 return "<button type=\"button\" class=\"btn btn-sm btn-primary command-edit\" data-row-title=\""+row.title+"\" data-row-category=\""+row.category+"\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                "<button type=\"button\" class=\"btn btn-sm btn-primary command-show\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-users\"></span></button> " +
                         "<button type=\"button\" class=\"btn btn-sm btn-primary command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
             }
         }
@@ -30,6 +31,7 @@ $(document).ready(function(){
     {
         $(this).find(".command-edit").off();
         $(this).find(".command-delete").off();
+        $(this).find(".command-show").off();
         $(this).find(".command-add").off();
 
         $(this).find(".command-edit").on("click", function(e)
@@ -58,6 +60,12 @@ $(document).ready(function(){
             });
 
         });
+
+        $(this).find(".command-show").on("click", function(e)
+        {
+            alert("show");
+
+        })
 
         $("#create").on("click",function(e)
         {

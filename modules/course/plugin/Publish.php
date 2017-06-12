@@ -34,30 +34,30 @@ class Publish extends \Phalcon\Mvc\User\Component
         );
 
         $arr_column[] = new Column('teacher_id', array(
-	"type" => Column::TYPE_VARCHAR,
-	"size" => 11,
-	"notNull" => false,
-	));
-	$arr_column[] = new Column('name', array(
-	"type" => Column::TYPE_VARCHAR,
-	"size" => 255,
-	"notNull" => false,
-	));
-	$arr_column[] = new Column('description', array(
-	"type" => Column::TYPE_TEXT,
-	"size" => 0,
-	"notNull" => false,
-	));
-	$arr_column[] = new Column('picture', array(
-	"type" => Column::TYPE_VARCHAR,
-	"size" => 255,
-	"notNull" => false,
-	));
-	$arr_column[] = new Column('level', array(
-	"type" => Column::TYPE_INTEGER,
-	"size" => 0,
-	"notNull" => false,
-	));
+    	"type" => Column::TYPE_VARCHAR,
+    	"size" => 11,
+    	"notNull" => false,
+    	));
+    	$arr_column[] = new Column('name', array(
+    	"type" => Column::TYPE_VARCHAR,
+    	"size" => 255,
+    	"notNull" => false,
+    	));
+    	$arr_column[] = new Column('description', array(
+    	"type" => Column::TYPE_TEXT,
+    	"size" => 0,
+    	"notNull" => false,
+    	));
+    	$arr_column[] = new Column('picture', array(
+    	"type" => Column::TYPE_VARCHAR,
+    	"size" => 255,
+    	"notNull" => false,
+    	));
+    	$arr_column[] = new Column('level', array(
+    	"type" => Column::TYPE_INTEGER,
+    	"size" => 0,
+    	"notNull" => false,
+    	));
 	
 
         $arr_column[] = new Column("created", array(

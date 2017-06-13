@@ -84,3 +84,45 @@
         </div>
     </div>
 </div>
+<div id="myStudent" class="modal fade modal-wide" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">List Student </h4>
+            </div>
+            <div class="modal-body">
+                <div class="box-body collapse in">
+                    <table id="grid-student" class="table table-condensed table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th data-column-id="no" data-type="numeric" data-sortable="false">no</th>
+                            <th data-column-id="suser_id" data-sortable="false">Student</th>
+                            <th data-column-id="commands" data-formatter="commands" data-sortable="false">Action</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="addStudent" class="modal fade modal-wide" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">List Student </h4>
+            </div>
+            <div class="modal-body">
+                <div class="box-body collapse in">
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

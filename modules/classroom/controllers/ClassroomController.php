@@ -14,6 +14,7 @@
 
 namespace Modules\Classroom\Controllers;
 use Modules\Classroom\Models\Classroom;
+use Modules\Classroom\Models\ClassroomUser;
 use Modules\Classroom\Plugin\Publish;
 use Modules\User\Models\Profiles;
 use Modules\User\Models\Users;
@@ -49,6 +50,59 @@ class ClassroomController extends ControllerBase
         $response->setContentType('application/json', 'UTF-8');
         $response->setJsonContent($data);
         return $response->send();
+    }
+
+    public function studentAction($id)
+    {
+        $this->dispatcher->getParam("id");
+        $this->view->disable();
+        $arProp = array();
+        $current = intval($this->request->getPost('current'));
+        $rowCount = intval($this->request->getPost('rowCount'));
+        //$searchPhrase = $this->request->getPost('searchPhrase');
+        $sort = $this->request->getPost('sort');
+        if ($searchPhrase != '') {
+            $arProp['conditions'] = "title LIKE ?1 OR slug LIKE ?1 OR content LIKE ?1";
+            $arProp['bind'] = array(
+                1 => "%".$searchPhrase."%"
+            );
+        }
+        $qryTotal = ClassroomUser::find($arProp);
+        $rowCount = $rowCount < 0 ? $qryTotal->count() : $rowCount;
+        $arProp['conditions'] = "classroom_id='{$id}'";
+        $arProp['order'] = "created DESC";
+        $arProp['limit'] = $rowCount;
+        $arProp['offset'] = (($current*$rowCount)-$rowCount);
+        if($sort){
+            foreach ($sort as $k => $v) {
+                $arProp['order'] = $k.' '.$v;
+            }
+        }
+        $qry = ClassroomUser::find($arProp);
+        $arQry = array();
+        $no =1;
+        foreach ($qry as $item){
+            $arQry[] = array(
+                'no'    => $no,
+                'id'    => $item->id,
+                'classroom_id'     => $item->school_id,
+                'user_id'       => $item->subject_id,
+            );
+            $no++;
+        }
+        //$arQry = $qry->toArray();
+        $data = array(
+            'current'   => $current,
+            'rowCount'  => $qry->count(),
+            'rows'      => $arQry,
+            'total'     => $qryTotal->count(),
+            'filter'    => $arProp
+        );
+        $response = new \Phalcon\Http\Response();
+        $response->setContentType('application/json', 'UTF-8');
+        $response->setJsonContent($data);
+        return $response->send();
+
     }
 
     public function listAction()
@@ -169,7 +223,7 @@ class ClassroomController extends ControllerBase
         $data = Classroom::findFirst($this->request->getQuery('id'));
         $response = new \Phalcon\Http\Response();
         $response->setContentType('application/json', 'UTF-8');
-        $response->setJsonContent($data->toArray());
+        $response->setJsonContent($data);
         return $response->send();
     }
 

@@ -1,15 +1,22 @@
-<?php 
-
+<?php
 /**
-* 
-*/
-namespace Modules\Classroom\Models;
+ * Created by Phalms Module Generator.
+ *
+ * ClassRoom User Module
+ *
+ * @package phalms-module
+ * @author  Dwi Agus
+ * @link    
+ * @date:   2017-06-13
+ * @time:   11:06:05
+ * @license MIT
+ */
+namespace Modules\Classroomuser\Models;
 use \Phalcon\Mvc\Model\Behavior\Timestampable;
-
-class ClassroomUser extends \Phalcon\Mvc\Model
+class Classroomuser extends \Phalcon\Mvc\Model
 {
-	
-	/**
+
+    /**
      *
      * @var integer
      * @Primary
@@ -20,22 +27,21 @@ class ClassroomUser extends \Phalcon\Mvc\Model
 
     /**
 	*
-	* @var string
-	* @Column(type='string',* length=='11',nullable=false)
+	* @var integer
+	* @Column(type='integer',* length=='11',nullable=false)
 	*
 	*/
 	public $classroom_id;
-
-
-    /**
+	/**
 	*
-	* @var string
-	* @Column(type='string',* length=='11',nullable=false)
+	* @var integer
+	* @Column(type='integer',* length=='11',nullable=false)
 	*
 	*/
 	public $user_id;
 	
-	/**
+
+    /**
      *
      * @var string
      * @Column(type="string", nullable=false)

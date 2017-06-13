@@ -61,3 +61,40 @@ $router->add('/classroom/teacher', array(
     'controller' => 'classroom',
     'action'     => 'teacher'
 ));
+
+$router->add('/classroom/student/list/{id:[0-9]+}', array(
+    'namespace'  => 'Modules\Classroom\Controllers',
+    'module'     => 'classroom',
+    'controller' => 'classroomuser',
+    'action'     => 'list',
+    'id'         => 1
+));
+
+$router->add('/classroom/student/create', array(
+    'namespace'  => 'Modules\Classroom\Controllers',
+    'module'     => 'classroom',
+    'controller' => 'classroomuser',
+    'action'     => 'create'
+));
+
+$router->add('/classroom/student/edit', array(
+    'namespace'  => 'Modules\Classroom\Controllers',
+    'module'     => 'classroom',
+    'controller' => 'classroomuser',
+    'action'     => 'edit'
+));
+
+$router->add('/classroom/student/get', array(
+    'namespace'  => 'Modules\Classroom\Controllers',
+    'module'     => 'classroom',
+    'controller' => 'classroomuser',
+    'action'     => 'get'
+));
+
+$router->add('/classroom/student/delete/{id:[0-9]+}', array(
+    'namespace'  => 'Modules\Classroom\Controllers',
+    'module'     => 'classroom',
+    'controller' => 'classroomuser',
+    'action'     => 'delete',
+    'id'         => 1
+));

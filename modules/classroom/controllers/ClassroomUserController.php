@@ -14,6 +14,7 @@
 
 namespace Modules\Classroom\Controllers;
 use Modules\Classroom\Models\ClassroomUser;
+use Modules\User\Models\Users;
 use \Phalcon\Mvc\Model\Manager;
 use \Phalcon\Tag;
 use Modules\Frontend\Controllers\ControllerBase;
@@ -44,6 +45,19 @@ class ClassroomUserController extends ControllerBase
         		# code...
         		break;
         }
+    }
+
+    public function allAction()
+    {
+        $user = Users::find(["profilesId='3'"]);
+        $data = array();
+        foreach ($user as $item) {
+            $data[] = array('label' => $item->name , 'value' => $item->id );
+        }
+        $response = new \Phalcon\Http\Response();
+        $response->setContentType('application/json', 'UTF-8');
+        $response->setJsonContent($data);
+        return $response->send();
     }
 
     public function listAction($id)
@@ -79,9 +93,11 @@ class ClassroomUserController extends ControllerBase
             $arQry[] = array(
                 'no'    => $no,
                 'id'    => $item->id,
-                'classroom_id' => $item->classroom_id,
-				'user_id' => $item->user_id,
-	
+                'classroom_id'  => $item->classroom_id,
+				'user_id'       => $item->user_id,
+                'user_name'     => $item->Users->name,
+	            'grade_name'    => $item->Classroom->Grades->name,
+                'subject_name'  => $item->Classroom->Subjects->name,   
                 'created' => $item->created
             );
             $no++;
@@ -103,17 +119,28 @@ class ClassroomUserController extends ControllerBase
     public function createAction()
     {
         $this->view->disable();
-        $data = new Classroomuser();
-         $data->classroom_id = $this->request->getPost('classroom_id');
-	 $data->user_id = $this->request->getPost('user_id');
-	
-        if($data->save()){
-            $alert = "sukses";
-            $msg .= "Edited Success ";
-        }else{
+        $classroom_id   = $this->request->getPost('classroom_id');
+        $user_id        = $this->request->getPost('user_id');
+        $msg            = "";
+        $find = Classroomuser::findFirst(["classroom_id='{$classroom_id}' AND user_id='{$user_id}'"]);
+        if($find)
+        {
             $alert = "error";
-            $msg .= "Edited failed";
+            $msg .= "Created failed. Student exsists";
+        }else{
+            $data = new Classroomuser();
+            $data->classroom_id    = $classroom_id;
+            $data->user_id         = $user_id;
+        
+            if($data->save()){
+                $alert = "sukses";
+                $msg .= "Edited Success ";
+            }else{
+                $alert = "error";
+                $msg .= "Edited failed";
+            }
         }
+        
         $response = new \Phalcon\Http\Response();
         $response->setContentType('application/json', 'UTF-8');
         $response->setJsonContent(array('_id' => $this->request->getPost("title"),'alert' => $alert, 'msg' => $msg ));

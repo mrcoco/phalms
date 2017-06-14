@@ -65,7 +65,7 @@ $(document).ready(function(){
         {
             $.getJSON(url_path+"get/?id=" + $(this).data("row-id"), function (data) {
                 students_grid("http://phalms.dev/classroom/student", data.subject_id);
-                $('#myStudent .modal-title').html('List Student'+ data.subject_id);
+                $('#myStudent .modal-title').html('List Student Grade: '+ data.grade_name+ ' - '+data.subject_name);
             });
             $('#myStudent').modal('show');
         })
@@ -94,14 +94,12 @@ $(document).ready(function(){
         selection: true,
         multiSelect: true,
         templates: {
-            header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"><div class=\"col-sm-3 actionBar\"> </div><div class=\"col-sm-9\"><div class=\"input-group\"> <input id=\"square\"  class=\"search-field form-group\"> <div class='btn btn-primary' id='add-student' class='command-add'> <span class=\"fa fa-plus-square-o\"></span> Add Student</div></div> </div></div></div>",
+            header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"> <form id=\"form-student\"><div class=\"col-sm-6\"><input id=\"search-student\" >  </div> <div class=\"col-sm-6\"><div class=\"awesomplete\"><input id=\"classroom_id\" type=\"hidden\" value=\""+id+"\"><div class='btn btn-sm btn-primary' id='add-student' class='command-add'> <span class=\"fa fa-plus-square-o\"></span> Add Student</div></div></div> </form></div></div>",
         },
         formatters: {
             "commands": function(column, row)
             {
-                return "<button type=\"button\" class=\"btn btn-sm btn-primary command-edit\" data-row-title=\""+row.title+"\" data-row-category=\""+row.category+"\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +
-                "<button type=\"button\" class=\"btn btn-sm btn-primary command-show\" data-toggle=\"tooltip\" title=\"List Student\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-users\"></span></button> " +
-                        "<button type=\"button\" class=\"btn btn-sm btn-primary command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
+                return "<button type=\"button\" class=\"btn btn-sm btn-primary command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
             }
         }
     }).on("loaded.rs.jquery.bootgrid", function()
@@ -111,53 +109,39 @@ $(document).ready(function(){
         $(this).find(".command-show").off();
         $(this).find(".command-add").off();
 
-        $(this).find(".command-edit").on("click", function(e)
+        $(this).find(".command-delete").on("click", function(e)
         {
-            myForm('edit',$(this));
-            $("#myForm").ajaxForm({
-                url: url+'edit',
-                type: 'post',
-                success: function(data) {
-                    myAlert(data);
-                    $("#grid-classroom").bootgrid("reload");
-                    setTimeout(function(){
-                        $('#myModal').modal('hide')
-                    }, 10000);
-                }
-            });
-
-        }).end().find(".command-delete").on("click", function(e)
-        {
-            $.get( url+"delete/"+ $(this).data("row-id"), function( data ) {
+            $.get( url+"/delete/"+ $(this).data("row-id"), function( data ) {
                 //myAlert(data);
                 toastr.success(data.msg, data.title);
                 toastr.options.timeOut = 15;
                 toastr.options.extendedTimeOut = 30;
-                $("#grid-classroom").bootgrid("reload");
+                $("#grid-student").bootgrid("reload");
             });
 
         });
-
-        var options = {
-            data: ["blue", "green", "pink", "red", "yellow"]
-        };
-
-        $("#square").easyAutocomplete(options);
+        $.get( url+"/all", function( data ) {
+            var input = document.getElementById("search-student");
+            new Awesomplete(input, {
+                list: data
+            });
+        });
 
         $("#add-student").on("click",function(e)
         {
-            formStudent('create',e);
-            $("#myForm").ajaxForm({
-                url: url_path+'create',
-                type: 'post',
-                success: function(data) {
-                    myAlert(data);
-                    classroom_grid.bootgrid("reload");
-                    setTimeout(function(){
-                        $('#myclassroom').modal('hide');
-                    }, 10000);
+            var room       = $("#classroom_id").val();
+            var student_id = $("#search-student").val();
+            var dataString = "user_id="+student_id+"&classroom_id="+room;
+            $.ajax({
+                type: "POST",
+                url: url+"/create",
+                data: dataString,
+                success: function() {
+                  $("#grid-student").bootgrid("reload");
+                  return false;
                 }
             });
+            return false;
         });
     });
     }

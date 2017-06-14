@@ -97,7 +97,9 @@
                         <thead>
                         <tr>
                             <th data-column-id="no" data-type="numeric" data-sortable="false">no</th>
-                            <th data-column-id="suser_id" data-sortable="false">Student</th>
+                            <th data-column-id="user_name" data-sortable="false">Student</th>
+                            <th data-column-id="grade_name" data-sortable="false">Grade</th>
+                            <th data-column-id="subject_name" data-sortable="false">Subject</th>
                             <th data-column-id="commands" data-formatter="commands" data-sortable="false">Action</th>
                         </tr>
                         </thead>

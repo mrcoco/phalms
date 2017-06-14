@@ -70,6 +70,13 @@ $router->add('/classroom/student/list/{id:[0-9]+}', array(
     'id'         => 1
 ));
 
+$router->add('/classroom/student/all', array(
+    'namespace'  => 'Modules\Classroom\Controllers',
+    'module'     => 'classroom',
+    'controller' => 'classroomuser',
+    'action'     => 'all'
+));
+
 $router->add('/classroom/student/create', array(
     'namespace'  => 'Modules\Classroom\Controllers',
     'module'     => 'classroom',

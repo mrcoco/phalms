@@ -220,7 +220,23 @@ class ClassroomController extends ControllerBase
 
     public function getAction()
     {
-        $data = Classroom::findFirst($this->request->getQuery('id'));
+        $item = Classroom::findFirst($this->request->getQuery('id'));
+        $data = array(
+                'id'    => $item->id,
+                'school_id'     => $item->school_id,
+                'subject_id'    => $item->subject_id,
+                'major_id'      => $item->major_id,
+                'teacher_id'    => $item->teacher_id,
+                'grade'         => $item->grade,
+                'grade_name'    => $item->Grades->name,
+                'school_name'   => $item->Schools->name,
+                'subject_name'  => $item->Subjects->name,
+                'major_name'    => $item->Majors->name,
+                'teacher_name'  => $item->Teachers->name,
+                'grade_name'    => $item->Grades->name,
+                'description'   => $item->description,
+                'created'       => $item->created
+            );
         $response = new \Phalcon\Http\Response();
         $response->setContentType('application/json', 'UTF-8');
         $response->setJsonContent($data);

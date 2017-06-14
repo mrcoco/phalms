@@ -146,6 +146,9 @@ class Users extends Model
             'alias' => 'profile',
             'reusable' => true
         ]);
+        $this->belongsTo('id','Modules\Student\Models\Student', 'user_id', [
+            'alias' => 'Student',
+        ]);
 
         $this->hasMany('id', __NAMESPACE__ . '\SuccessLogins', 'usersId', [
             'alias' => 'successLogins',

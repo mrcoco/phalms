@@ -14,7 +14,10 @@
 <link id="theme-list" rel="stylesheet" href="{{ url("themes/admin/") }}assets/css/theme-peter-river.css">
 <!-- END: theme main stylesheet files -->
 <link rel="stylesheet" href="{{ url("themes/admin/") }}assets/css/toastr.css">
-
+<link rel="stylesheet" href="{{ url("themes/admin/") }}assets/css/easy-autocomplete.min.css">
+<!-- <link rel="stylesheet" href="{{ url("themes/admin/") }}assets/css/easy-autocomplete.themes.min.css"> -->
+<link rel="stylesheet" href="{{ url("themes/admin/") }}assets/css/awesomplete.css">
+<link rel="stylesheet" href="http://lorecioni.github.io/autocomplete.js/css/autocomplete.min.css" type="text/css"/>
 <link rel="stylesheet" href="{{ url("themes/admin/") }}trumbowyg/dist/ui/trumbowyg.min.css" type="text/css"/>
 
 {% if assets.exists("header") %}

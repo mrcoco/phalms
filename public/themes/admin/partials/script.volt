@@ -14,7 +14,8 @@
 
 <script src="{{ url("themes/admin/") }}assets/js/chl.js"></script>
 <script src="{{ url("themes/admin/") }}assets/js/chl-demo.js"></script>
-
+<!-- <script src="{{ url("themes/admin/") }}assets/js/jquery.easy-autocomplete.min.js"></script> -->
+<script src="{{ url("themes/admin/") }}assets/js/awesomplete.js" async></script>
 
 {% if assets.exists("footer") %}
     {{ assets.outputJs('footer') }}

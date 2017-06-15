@@ -40,9 +40,9 @@
                     <input type="hidden" class="form-control" name="hidden_id" id="hidden_id" >
                     </div>
                     <div class="form-group" >
-	<label>Name</label>
-	<input type="text" class="form-control" name="name" id="name" >
-	</div>
+                	<label>Name</label>
+                	<input type="text" class="form-control" name="name" id="name" >
+                	</div>
 	
                     <div class="form-group" >
                         <div class="row">

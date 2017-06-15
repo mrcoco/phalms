@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $('textarea').trumbowyg();
     var url_path = "http://phalms.dev/majors/";
     var majors_grid = $("#grid-majors").bootgrid({
         ajax: true,
@@ -84,13 +85,13 @@ $(document).ready(function(){
             $('#mymajors .modal-title').html('Edit majors '+e.data("row-id"));
             $.getJSON(url_path+"get/?id=" + e.data("row-id"), function (data) {
                 $('#hidden_id').val(data.id);
-                 $('#name').val(data.name);
-	 $('#description').val(data.description);
+                $('#name').val(data.name);
+                $('#description').trumbowyg('html',data.description);
 	
             });
         }else{
             $('#mymajors .modal-title').html('Create New majors ');
-            
+            $('#description').trumbowyg('html',"");
         }
 
         $('#mymajors').modal('show');

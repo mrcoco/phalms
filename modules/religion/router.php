@@ -47,6 +47,13 @@ $router->add('/religion/get', array(
     'action'     => 'get'
 ));
 
+$router->add('/religion/data', array(
+    'namespace'  => 'Modules\Religion\Controllers',
+    'module'     => 'religion',
+    'controller' => 'religion',
+    'action'     => 'data'
+));
+
 $router->add('/religion/delete/{id:[0-9]+}', array(
     'namespace'  => 'Modules\Religion\Controllers',
     'module'     => 'religion',

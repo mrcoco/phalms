@@ -18,10 +18,10 @@
             <tr>
                 <th data-column-id="no" data-type="numeric" data-width="5%" data-sortable="false">no</th>
                 <th data-column-id="teacher_id" data-sortable="false">Teacher_id</th>
-	<th data-column-id="name" data-sortable="false">Name</th>
-	<th data-column-id="description" data-sortable="false">Description</th>
-	<th data-column-id="picture" data-sortable="false">Picture</th>
-	<th data-column-id="level" data-sortable="false">Level</th>
+            	<th data-column-id="name" data-sortable="false">Name</th>
+            	<th data-column-id="description" data-sortable="false">Description</th>
+            	<th data-column-id="picture" data-sortable="false">Picture</th>
+            	<th data-column-id="level" data-sortable="false">Level</th>
 	
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Action</th>
             </tr>
@@ -41,29 +41,32 @@
             <div class="modal-body">
                 <form id="myForm" method="post" enctype="multipart/form-data">
                     <div class="form-group" >
-                    <input type="hidden" class="form-control" name="hidden_id" id="hidden_id" >
+                        <input type="hidden" class="form-control" name="hidden_id" id="hidden_id" >
                     </div>
                     <div class="form-group" >
-	<label>Teacher_id</label>
-	<input type="text" class="form-control" name="teacher_id" id="teacher_id" >
-	</div>
-	<div class="form-group" >
-	<label>Name</label>
-	<input type="text" class="form-control" name="name" id="name" >
-	</div>
-	<div class="form-group" >
-	<label>Description</label>
-	<textarea class="form-control" name="description" id="description" >
-	</textarea>
-	</div>
-	<div class="form-group" >
-	<label>Picture</label>
-	<input type="text" class="form-control" name="picture" id="picture" >
-	</div>
-	<div class="form-group" >
-	<label>Level</label>
-	<input type="text" class="form-control" name="level" id="level" >
-	</div>
+                	<label>Teacher</label>
+                	   <select class="form-control" name="teacher_id" id="teacher_id" ></select>
+                	</div>
+                	<div class="form-group" >
+                	<label>Name</label>
+                	   <input type="text" class="form-control" name="name" id="name" >
+                	</div>
+                	<div class="form-group" >
+                	<label>Description</label>
+                	   <textarea class="form-control" name="description" id="description" ></textarea>
+                	</div>
+                	<div class="form-group" >
+                    	<label>Picture</label>
+                    	<input type="text" class="form-control" name="picture" id="picture" >
+                	</div>
+                	<div class="form-group" >
+                	<label>Level</label>
+                	<select class="form-control" name="level" id="level">
+                        <option value="1">Easy</option>
+                        <option value="2">Medium</option>
+                        <option value="3">Hard</option>
+                    </select>
+                	</div>
 	
                     <div class="form-group" >
                         <div class="row">

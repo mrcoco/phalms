@@ -1,3 +1,12 @@
+<style type="text/css">
+.trumbowyg-box.trumbowyg-editor-visible {
+  min-height: 150px;
+}
+
+.trumbowyg-editor {
+  min-height: 150px;
+}
+</style>
 <div class="col-md-12 col-sm-12">
     <div class="box">
         <header class="bg-alizarin text-white">
@@ -58,7 +67,7 @@
 						</div>
 						<div class="form-group" >
 						<label>Religion</label>
-						<input type="text" class="form-control" name="religion" id="religion" >
+						<select class="form-control" name="religion" id="religion" ></select>
 						</div>
 						<div class="form-group" >
 						<label>Phone</label>

@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $('textarea').trumbowyg();
     var url_path = "http://phalms.dev/student/";
     var student_grid = $("#grid-student").bootgrid({
         ajax: true,
@@ -69,34 +70,62 @@ $(document).ready(function(){
     function myForm(status,e) {
         $('#myForm')[0].reset();
         if(status == 'edit') {
-
-            
             $.getJSON(url_path+"get/?id=" + e.data("row-id"), function (data) {
                 $('#mystudent .modal-title').html('Edit student '+data.user_name);
                 $('#user_name').val(data.user_name);
                 $('#user_id').val(data.user_id);
             	$('#nis').val(data.nis);
             	$('#nisn').val(data.nisn);
-            	$('#religion').val(data.religion);
+            	//$('#religion').val(data.religion);
             	$('#birthplace').val(data.birthplace);
             	$('#birthday').val(data.birthday);
             	$('#phone').val(data.phone);
-            	$('#address').val(data.address);
+            	//$('#address').val(data.address);
             	$('#parrent').val(data.parrent);
             	$('#guardian').val(data.guardian);
             	$('#parrent_phone').val(data.parrent_phone);
             	$('#picture').val(data.picture);
             	$('#cover').val(data.cover);
-            	$('#bio').val(data.bio);
-	
+            	//$('#bio').val(data.bio);
+                religion(data.religion);
+                $('#address').trumbowyg('html',data.address);
+                $('#bio').trumbowyg('html',data.bio);
             });
         }else{
             $('#mystudent .modal-title').html('Create New student ');
-            
+            religion("");
+            $('#address').trumbowyg('html',"");
+            $('#bio').trumbowyg('html',"");
         }
-
         $('#mystudent').modal('show');
 
+    }
+
+    function religion(e) {
+        $.get( "religion/data", function( data ) {
+            selectBox("#religion",data,e);
+        }, "json" );
+    }
+
+    function selectBox(selector,datasource,selectedOption)
+    {
+        var select = $(selector);
+        if(select.prop) {
+          var options = select.prop('options');
+        }
+        else {
+          var options = select.attr('options');
+        }
+        $('option', select).remove();
+        datasource.unshift(
+            {id: "0", name: " -Pilih-"}
+        );
+        $.each(datasource, function(val, text) {
+            options[options.length] = new Option(text.name, text.id);
+        });
+        if(selectedOption){
+            select.val(selectedOption);
+        }
     }
 
     function myAlert(e)

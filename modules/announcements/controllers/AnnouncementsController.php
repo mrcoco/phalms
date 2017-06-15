@@ -2,31 +2,31 @@
 /**
  * Created by Phalms Module Generator.
  *
- * Religion module
+ * announcements module
  *
- * @package phalms
+ * @package phalms-module
  * @author  Dwi Agus
  * @link    http://cempakaweb.com
- * @date:   2017-06-12
- * @time:   12:06:11
+ * @date:   2017-06-15
+ * @time:   09:06:59
  * @license MIT
  */
 
-namespace Modules\Religion\Controllers;
-use Modules\Religion\Models\Religion;
+namespace Modules\Announcements\Controllers;
+use Modules\Announcements\Models\Announcements;
 use \Phalcon\Mvc\Model\Manager;
 use \Phalcon\Tag;
 use Modules\Frontend\Controllers\ControllerBase;
-class ReligionController extends ControllerBase
+class AnnouncementsController extends ControllerBase
 {
     public function initialize()
     {
         $this->assets
             ->collection('footer')
-            ->setTargetPath("themes/admin/assets/js/combined-religion.js")
-            ->setTargetUri("themes/admin/assets/js/combined-religion.js")
+            ->setTargetPath("themes/admin/assets/js/combined-announcements.js")
+            ->setTargetUri("themes/admin/assets/js/combined-announcements.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."religion/views/js/js.js")
+            ->addJs($this->config->application->modulesDir."announcements/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 
@@ -35,15 +35,6 @@ class ReligionController extends ControllerBase
         $this->view->pick("index");
     }
 
-    public function dataAction()
-    {
-        $this->view->disable();
-        $data = Religion::find();
-        $response = new \Phalcon\Http\Response();
-        $response->setContentType('application/json', 'UTF-8');
-        $response->setJsonContent($data);
-        return $response->send();
-    }
     public function listAction()
     {
         $this->view->disable();
@@ -58,7 +49,7 @@ class ReligionController extends ControllerBase
                 1 => "%".$searchPhrase."%"
             );
         }
-        $qryTotal = Religion::find($arProp);
+        $qryTotal = Announcements::find($arProp);
         $rowCount = $rowCount < 0 ? $qryTotal->count() : $rowCount;
         $arProp['order'] = "created DESC";
         $arProp['limit'] = $rowCount;
@@ -68,14 +59,17 @@ class ReligionController extends ControllerBase
                 $arProp['order'] = $k.' '.$v;
             }
         }
-        $qry = Religion::find($arProp);
+        $qry = Announcements::find($arProp);
         $arQry = array();
         $no =1;
         foreach ($qry as $item){
             $arQry[] = array(
                 'no'    => $no,
                 'id'    => $item->id,
-                'name' => $item->name,
+                'user_id' => $item->user_id,
+	'title' => $item->title,
+	'content' => $item->content,
+	'status' => $item->status,
 	
                 'created' => $item->created
             );
@@ -98,8 +92,11 @@ class ReligionController extends ControllerBase
     public function createAction()
     {
         $this->view->disable();
-        $data = new Religion();
-         $data->name = $this->request->getPost('name');
+        $data = new Announcements();
+         $data->user_id = $this->request->getPost('user_id');
+	 $data->title = $this->request->getPost('title');
+	 $data->content = $this->request->getPost('content');
+	 $data->status = $this->request->getPost('status');
 	
         if($data->save()){
             $alert = "sukses";
@@ -117,8 +114,11 @@ class ReligionController extends ControllerBase
     public function editAction()
     {
         $this->view->disable();
-        $data = Religion::findFirst($this->request->getPost('hidden_id'));
-         $data->name = $this->request->getPost('name');
+        $data = Announcements::findFirst($this->request->getPost('hidden_id'));
+         $data->user_id = $this->request->getPost('user_id');
+	 $data->title = $this->request->getPost('title');
+	 $data->content = $this->request->getPost('content');
+	 $data->status = $this->request->getPost('status');
 	
 
         if (!$data->save()) {
@@ -139,7 +139,7 @@ class ReligionController extends ControllerBase
 
     public function getAction()
     {
-        $data = Religion::findFirst($this->request->getQuery('id'));
+        $data = Announcements::findFirst($this->request->getQuery('id'));
         $response = new \Phalcon\Http\Response();
         $response->setContentType('application/json', 'UTF-8');
         $response->setJsonContent($data->toArray());
@@ -149,14 +149,14 @@ class ReligionController extends ControllerBase
     public function deleteAction($id)
     {
         $this->view->disable();
-        $data   = Religion::findFirstById($id);
+        $data   = Announcements::findFirstById($id);
 
         if (!$data->delete()) {
             $alert  = "error";
             $msg    = $data->getMessages();
         } else {
             $alert  = "sukses";
-            $msg    = "Religion was deleted ";
+            $msg    = "Announcements was deleted ";
         }
         $response = new \Phalcon\Http\Response();
         $response->setContentType('application/json', 'UTF-8');

@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $('textarea').trumbowyg();
     var url_path = "http://phalms.dev/grade/";
     var grade_grid = $("#grid-grade").bootgrid({
         ajax: true,
@@ -84,13 +85,14 @@ $(document).ready(function(){
             $('#mygrade .modal-title').html('Edit grade '+e.data("row-id"));
             $.getJSON(url_path+"get/?id=" + e.data("row-id"), function (data) {
                 $('#hidden_id').val(data.id);
-                 $('#name').val(data.name);
-	 $('#description').val(data.description);
+                $('#name').val(data.name);
+                //$('#description').val(data.description);
+                $('#description').trumbowyg('html',data.description);
 	
             });
         }else{
             $('#mygrade .modal-title').html('Create New grade ');
-            
+            $('#description').trumbowyg('html',"");
         }
 
         $('#mygrade').modal('show');

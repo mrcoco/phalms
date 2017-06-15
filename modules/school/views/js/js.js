@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $('textarea').trumbowyg();
     var url_path = "http://phalms.dev/school/";
     var school_grid = $("#grid-school").bootgrid({
         ajax: true,
@@ -84,13 +85,14 @@ $(document).ready(function(){
             $('#myschool .modal-title').html('Edit school '+e.data("row-id"));
             $.getJSON(url_path+"get/?id=" + e.data("row-id"), function (data) {
                 $('#hidden_id').val(data.id);
-                 $('#name').val(data.name);
-	 $('#descriptions').val(data.descriptions);
+                $('#name').val(data.name);
+                $('#descriptions').trumbowyg('html',data.descriptions);
+	            //$('#descriptions').val(data.descriptions);
 	
             });
         }else{
             $('#myschool .modal-title').html('Create New school ');
-            
+            $('#descriptions').trumbowyg('html',"");
         }
 
         $('#myschool').modal('show');

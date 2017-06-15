@@ -1,3 +1,12 @@
+<style type="text/css">
+.trumbowyg-box.trumbowyg-editor-visible {
+  min-height: 150px;
+}
+
+.trumbowyg-editor {
+  min-height: 150px;
+}
+</style>
 <div class="col-md-12 col-sm-12">
     <div class="box">
         <header class="bg-alizarin text-white">

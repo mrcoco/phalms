@@ -156,5 +156,6 @@ class Student extends \Phalcon\Mvc\Model
             )
         );
         $this->belongsTo('user_id', 'Modules\User\Models\Users', 'id', ['alias' => 'Users']);
+        $this->belongsTo('religion', 'Modules\Religion\Models\Religion', 'id', ['alias' => 'Religions']);
     }
 }

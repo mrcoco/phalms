@@ -1,3 +1,12 @@
+<style type="text/css">
+.trumbowyg-box.trumbowyg-editor-visible {
+  min-height: 150px;
+}
+
+.trumbowyg-editor {
+  min-height: 150px;
+}
+</style>
 <div class="col-md-12 col-sm-12">
     <div class="box">
         <header class="bg-alizarin text-white">
@@ -18,8 +27,7 @@
             <tr>
                 <th data-column-id="no" data-type="numeric" data-width="5%" data-sortable="false">no</th>
                 <th data-column-id="name" data-sortable="false">Name</th>
-	<th data-column-id="descriptions" data-sortable="false">Descriptions</th>
-	
+	            <th data-column-id="descriptions" data-sortable="false">Descriptions</th>
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Action</th>
             </tr>
             </thead>
@@ -41,14 +49,14 @@
                     <input type="hidden" class="form-control" name="hidden_id" id="hidden_id" >
                     </div>
                     <div class="form-group" >
-	<label>Name</label>
-	<input type="text" class="form-control" name="name" id="name" >
-	</div>
-	<div class="form-group" >
-	<label>Descriptions</label>
-	<textarea class="form-control" name="descriptions" id="descriptions" >
-	</textarea>
-	</div>
+                	<label>Name</label>
+                	<input type="text" class="form-control" name="name" id="name" >
+                	</div>
+                	<div class="form-group" >
+                	<label>Descriptions</label>
+                	<textarea class="form-control" name="descriptions" id="descriptions" >
+                	</textarea>
+                	</div>
 	
                     <div class="form-group" >
                         <div class="row">

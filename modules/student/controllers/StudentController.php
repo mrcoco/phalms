@@ -74,7 +74,7 @@ class StudentController extends ControllerBase
                 'user_id'      => $item->Student->user_id,
             	'nis'          => $item->Student->nis,
             	'nisn'         => $item->Student->nisn,
-            	'religion'     => $item->Student->religion,
+            	'religion'     => $item->Student->Religions->name,
             	'birthplace'   => $item->Student->birthplace,
             	'birthday' => $item->Student->birthday,
             	'phone'    => $item->Student->phone,

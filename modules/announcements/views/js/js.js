@@ -1,12 +1,12 @@
 $(document).ready(function(){
-    var url_path = "http://phalms.dev/course/";
-    var course_grid = $("#grid-course").bootgrid({
+    var url_path = "http://phalms.dev/announcements/";
+    var announcements_grid = $("#grid-announcements").bootgrid({
         ajax: true,
         url: url_path+"list",
         selection: true,
         multiSelect: true,
         templates: {
-            header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"><div class=\"col-sm-6 actionBar\"><div class=\"{{css.search}}\"></div></div><div class=\"col-sm-6\"><div class=\"{{css.actions}}\"></div> <div class='btn btn-primary' id='create' class='command-add'> <span class=\"fa fa-plus-square-o\"></span> New Course</div></div></div></div>",
+            header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"><div class=\"col-sm-6 actionBar\"><div class=\"{{css.search}}\"></div></div><div class=\"col-sm-6\"><div class=\"{{css.actions}}\"></div> <div class='btn btn-primary' id='create' class='command-add'> <span class=\"fa fa-plus-square-o\"></span> New Announcements</div></div></div></div>",
         },
         formatters: {
             "file" : function (column, row) {
@@ -40,7 +40,7 @@ $(document).ready(function(){
                 type: 'post',
                 success: function(data) {
                     myAlert(data);
-                    $("#grid-course").bootgrid("reload");
+                    $("#grid-announcements").bootgrid("reload");
                     setTimeout(function(){
                         $('#myModal').modal('hide')
                     }, 10000);
@@ -54,7 +54,7 @@ $(document).ready(function(){
                 toastr.success(data.msg, data.title);
                 toastr.options.timeOut = 15;
                 toastr.options.extendedTimeOut = 30;
-                $("#grid-course").bootgrid("reload");
+                $("#grid-announcements").bootgrid("reload");
             });
 
         });
@@ -67,9 +67,9 @@ $(document).ready(function(){
                 type: 'post',
                 success: function(data) {
                     myAlert(data);
-                    course_grid.bootgrid("reload");
+                    announcements_grid.bootgrid("reload");
                     setTimeout(function(){
-                        $('#mycourse').modal('hide');
+                        $('#myannouncements').modal('hide');
                     }, 10000);
                 }
             });
@@ -81,50 +81,22 @@ $(document).ready(function(){
         $('#myForm')[0].reset();
         if(status == 'edit') {
 
-            $('#mycourse .modal-title').html('Edit course '+e.data("row-id"));
+            $('#myannouncements .modal-title').html('Edit announcements '+e.data("row-id"));
             $.getJSON(url_path+"get/?id=" + e.data("row-id"), function (data) {
                 $('#hidden_id').val(data.id);
-                //$('#teacher_id').val(data.teacher_id);
-            	$('#name').val(data.name);
-            	$('#description').val(data.description);
-            	$('#picture').val(data.picture);
-            	$('#level').val(data.level);
-	            teacherBox(data.teacher_id);
+                 $('#user_id').val(data.user_id);
+	 $('#title').val(data.title);
+	 $('#content').val(data.content);
+	 $('#status').val(data.status);
+	
             });
         }else{
-            $('#mycourse .modal-title').html('Create New course ');
-            teacherBox("");
+            $('#myannouncements .modal-title').html('Create New announcements ');
+            
         }
 
-        $('#mycourse').modal('show');
+        $('#myannouncements').modal('show');
 
-    }
-
-    function teacherBox(e){
-        $.get( "classroom/teacher", function( data ) {
-            selectBox("#teacher_id",data,e);
-        }, "json" );
-    }
-
-    function selectBox(selector,datasource,selectedOption)
-    {
-        var select = $(selector);
-        if(select.prop) {
-          var options = select.prop('options');
-        }
-        else {
-          var options = select.attr('options');
-        }
-        $('option', select).remove();
-        datasource.unshift(
-            {id: "0", name: " -Pilih-"}
-        );
-        $.each(datasource, function(val, text) {
-            options[options.length] = new Option(text.name, text.id);
-        });
-        if(selectedOption){
-            select.val(selectedOption);
-        }
     }
 
     function myAlert(e)
@@ -132,7 +104,7 @@ $(document).ready(function(){
         var mesg= [];
         mesg["alert"] = e.alert;
         mesg["title"] = e.msg;
-        mesg["msg"] = "#course "+e._id+" "+e.msg;
+        mesg["msg"] = "#announcements "+e._id+" "+e.msg;
         notif_show(mesg);
     }
 

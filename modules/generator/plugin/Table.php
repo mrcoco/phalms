@@ -70,11 +70,13 @@ class Table extends Component
             [
                 $this->table,
                 $desc,
+                0,
                 1,
             ],
             [
                 "name",
                 "desc",
+                "is_core",
                 "publish",
             ]
         );

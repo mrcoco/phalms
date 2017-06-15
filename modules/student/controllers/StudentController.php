@@ -104,36 +104,33 @@ class StudentController extends ControllerBase
         return $response->send();
     }
 
-    public function createAction()
+    public function create()
     {
-        $this->view->disable();
         $data = new Student();
-        $data->user_id = $this->request->getPost('user_id');
-        $data->nis = $this->request->getPost('nis');
-        $data->nisn = $this->request->getPost('nisn');
+        $data->user_id  = $this->request->getPost('user_id');
+        $data->nis      = $this->request->getPost('nis');
+        $data->nisn     = $this->request->getPost('nisn');
         $data->religion = $this->request->getPost('religion');
-        $data->birthplace = $this->request->getPost('birthplace');
-        $data->birthday = $this->request->getPost('birthday');
-        $data->phone = $this->request->getPost('phone');
-        $data->address = $this->request->getPost('address');
-        $data->parrent = $this->request->getPost('parrent');
+        $data->birthplace   = $this->request->getPost('birthplace');
+        $data->birthday     = $this->request->getPost('birthday');
+        $data->phone    = $this->request->getPost('phone');
+        $data->address  = $this->request->getPost('address');
+        $data->parrent  = $this->request->getPost('parrent');
         $data->guardian = $this->request->getPost('guardian');
         $data->parrent_phone = $this->request->getPost('parrent_phone');
-        $data->picture = $this->request->getPost('picture');
-        $data->cover = $this->request->getPost('cover');
-        $data->bio = $this->request->getPost('bio');
+        $data->picture  = $this->request->getPost('picture');
+        $data->cover    = $this->request->getPost('cover');
+        $data->bio      = $this->request->getPost('bio');
 	
         if($data->save()){
             $alert = "sukses";
-            $msg .= "Edited Success ";
+            $msg .= "Created Success ";
         }else{
             $alert = "error";
-            $msg .= "Edited failed";
+            $msg .= "Created failed";
         }
-        $response = new \Phalcon\Http\Response();
-        $response->setContentType('application/json', 'UTF-8');
-        $response->setJsonContent(array('_id' => $this->request->getPost("title"),'alert' => $alert, 'msg' => $msg ));
-        return $response->send();
+        $result = array("alert" => $alert, "msg" => $alert);
+        return $result;
     }
 
     public function editAction()
@@ -143,19 +140,19 @@ class StudentController extends ControllerBase
         $data   = Student::findFirst(["user_id='{$user_id}'"]);
         $msg    = "";
         if($data){
-            $data->nis = $this->request->getPost('nis');
-            $data->nisn = $this->request->getPost('nisn');
+            $data->nis      = $this->request->getPost('nis');
+            $data->nisn     = $this->request->getPost('nisn');
             $data->religion = $this->request->getPost('religion');
             $data->birthplace = $this->request->getPost('birthplace');
             $data->birthday = $this->request->getPost('birthday');
-            $data->phone = $this->request->getPost('phone');
-            $data->address = $this->request->getPost('address');
-            $data->parrent = $this->request->getPost('parrent');
+            $data->phone    = $this->request->getPost('phone');
+            $data->address  = $this->request->getPost('address');
+            $data->parrent  = $this->request->getPost('parrent');
             $data->guardian = $this->request->getPost('guardian');
             $data->parrent_phone = $this->request->getPost('parrent_phone');
-            $data->picture = $this->request->getPost('picture');
-            $data->cover = $this->request->getPost('cover');
-            $data->bio = $this->request->getPost('bio');
+            $data->picture  = $this->request->getPost('picture');
+            $data->cover    = $this->request->getPost('cover');
+            $data->bio      = $this->request->getPost('bio');
             if (!$data->save()) {
                 foreach ($data->getMessages() as $message) {
                     $alert = "error";
@@ -166,34 +163,14 @@ class StudentController extends ControllerBase
                 $msg .= "page was created successfully";
             }
         }else{
-            $_data = new Student();
-            $_data->user_id = $this->request->getPost('user_id');
-            $_data->nis = $this->request->getPost('nis');
-            $_data->nisn = $this->request->getPost('nisn');
-            $_data->religion = $this->request->getPost('religion');
-            $_data->birthplace = $this->request->getPost('birthplace');
-            $_data->birthday = $this->request->getPost('birthday');
-            $_data->phone = $this->request->getPost('phone');
-            $_data->address = $this->request->getPost('address');
-            $_data->parrent = $this->request->getPost('parrent');
-            $_data->guardian = $this->request->getPost('guardian');
-            $_data->parrent_phone = $this->request->getPost('parrent_phone');
-            $_data->picture = $this->request->getPost('picture');
-            $_data->cover = $this->request->getPost('cover');
-            $_data->bio = $this->request->getPost('bio');
-        
-            if($_data->save()){
-                $alert = "sukses";
-                $msg .= "Edited Success ";
-            }else{
-                $alert = "error";
-                $msg .= "Edited failed";
-            }
+            $_data = $this->create();
+            $alert = $_data["alert"];
+            $msg .= $_data["msg"];
         }
     	
         $response = new \Phalcon\Http\Response();
         $response->setContentType('application/json', 'UTF-8');
-        $response->setJsonContent(array('_id' => $this->request->getPost("title"),'alert' => $alert, 'msg' => $msg ));
+        $response->setJsonContent(array('_id' => $this->request->getPost("user_id"),'alert' => $alert, 'msg' => $msg ));
         return $response->send();
 
     }
@@ -203,10 +180,27 @@ class StudentController extends ControllerBase
         $id     = $this->request->getQuery('id');
         $data   = Student::findFirst(["user_id='{$id}'"]);
         if($data){
-            $result  = $data->toArray();
+            $result  = array(
+                'user_id'   => $id,
+                'user_name' => $data->Users->name,
+                'nis'       => $data->nis,
+                'nisn'      => $data->nisn,
+                'religion'  => $data->religion,
+                'birthplace' => $data->birthplace,
+                'birthday'  => $data->birthday,
+                'phone'     => $data->phone,
+                'address'   => $data->address,
+                'parrent'   => $data->parrent,
+                'guardian'  => $data->guardian,
+                'parrent_phone' => $data->parrent_phone,
+                'picture'   => $data->picture,
+                'cover'     => $data->cover,
+                'bio'       => $data->bio
+            );
         }else{
             $result  = array(
                 'user_id'   => $id,
+                'user_name' => $data->Users->name,
                 'nis'       => "",
                 'nisn'      => "",
                 'religion'  => "",
@@ -231,14 +225,14 @@ class StudentController extends ControllerBase
     public function deleteAction($id)
     {
         $this->view->disable();
-        $data   = Student::findFirstById($id);
+        $data   = Student::findFirst(["user_id='{$id}'"]);
 
         if (!$data->delete()) {
             $alert  = "error";
             $msg    = $data->getMessages();
         } else {
             $alert  = "sukses";
-            $msg    = "Student was deleted ";
+            $msg    = "Data Student was deleted ";
         }
         $response = new \Phalcon\Http\Response();
         $response->setContentType('application/json', 'UTF-8');

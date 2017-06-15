@@ -155,5 +155,6 @@ class Student extends \Phalcon\Mvc\Model
                 ]
             )
         );
+        $this->belongsTo('user_id', 'Modules\User\Models\Users', 'id', ['alias' => 'Users']);
     }
 }

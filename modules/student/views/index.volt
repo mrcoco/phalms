@@ -24,14 +24,6 @@
 				<th data-column-id="birthplace" data-sortable="false">Birthplace</th>
 				<th data-column-id="birthday" data-sortable="false">Birthday</th>
 				<th data-column-id="phone" data-sortable="false">Phone</th>
-				<th data-column-id="address" data-sortable="false">Address</th>
-				<th data-column-id="parrent" data-sortable="false">Parrent</th>
-				<th data-column-id="guardian" data-sortable="false">Guardian</th>
-				<th data-column-id="parrent_phone" data-sortable="false">Parrent_phone</th>
-				<th data-column-id="picture" data-sortable="false">Picture</th>
-				<th data-column-id="cover" data-sortable="false">Cover</th>
-				<th data-column-id="bio" data-sortable="false">Bio</th>
-	
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Action</th>
             </tr>
             </thead>
@@ -49,65 +41,74 @@
             </div>
             <div class="modal-body">
                 <form id="myForm" method="post" enctype="multipart/form-data">
-                    <div class="form-group" >
-                    <input type="hidden" class="form-control" name="hidden_id" id="hidden_id" >
-                    </div>
-                    <div class="form-group" >
-					<label>User_id</label>
-					<input type="text" class="form-control" name="user_id" id="user_id" >
-					</div>
-					<div class="form-group" >
-					<label>Nis</label>
-					<input type="text" class="form-control" name="nis" id="nis" >
-					</div>
-					<div class="form-group" >
-					<label>Nisn</label>
-					<input type="text" class="form-control" name="nisn" id="nisn" >
-					</div>
-					<div class="form-group" >
-					<label>Religion</label>
-					<input type="text" class="form-control" name="religion" id="religion" >
-					</div>
-					<div class="form-group" >
-					<label>Birthplace</label>
-					<input type="text" class="form-control" name="birthplace" id="birthplace" >
-					</div>
-					<div class="form-group" >
-					<label>Birthday</label>
-					<input type="text" class="form-control" name="birthday" id="birthday" >
-					</div>
-					<div class="form-group" >
-					<label>Phone</label>
-					<input type="text" class="form-control" name="phone" id="phone" >
-					</div>
+                <div class="row">
+	                <div class="col-md-6">
+	                    <div class="form-group" >
+						<label>Name</label>
+						<input type="hidden" class="form-control" name="user_id" id="user_id" >
+						<input type="text" class="form-control" name="user_name" id="user_name" >
+						</div>
+						<div class="form-group" >
+						<label>Nis</label>
+						<input type="text" class="form-control" name="nis" id="nis" >
+						</div>
+						<div class="form-group" >
+						<label>Nisn</label>
+						<input type="text" class="form-control" name="nisn" id="nisn" >
+						</div>
+						<div class="form-group" >
+						<label>Religion</label>
+						<input type="text" class="form-control" name="religion" id="religion" >
+						</div>
+						<div class="form-group" >
+						<label>Phone</label>
+						<input type="text" class="form-control" name="phone" id="phone" >
+						</div>
+						
+	                </div>
+	                <div class="col-md-6">
+						<div class="form-group" >
+						<label>Birthplace</label>
+						<input type="text" class="form-control" name="birthplace" id="birthplace" >
+						</div>
+						<div class="form-group" >
+						<label>Birthday</label>
+						<input type="text" class="form-control" name="birthday" id="birthday" >
+						</div>
+						<div class="form-group" >
+						<label>Parrent</label>
+						<input type="text" class="form-control" name="parrent" id="parrent" >
+						</div>
+						<div class="form-group" >
+						<label>Guardian</label>
+						<input type="text" class="form-control" name="guardian" id="guardian" >
+						</div>
+						<div class="form-group" >
+						<label>Parrent_phone</label>
+						<input type="text" class="form-control" name="parrent_phone" id="parrent_phone" >
+						</div>
+	                </div>
+                </div>
+                    
+					
 					<div class="form-group" >
 					<label>Address</label>
 					<textarea class="form-control" name="address" id="address" >
 					</textarea>
 					</div>
-					<div class="form-group" >
-					<label>Parrent</label>
-					<input type="text" class="form-control" name="parrent" id="parrent" >
-					</div>
-					<div class="form-group" >
-					<label>Guardian</label>
-					<input type="text" class="form-control" name="guardian" id="guardian" >
-					</div>
-					<div class="form-group" >
-					<label>Parrent_phone</label>
-					<input type="text" class="form-control" name="parrent_phone" id="parrent_phone" >
-					</div>
-					<div class="form-group" >
+					
+					<!-- <div class="form-group" >
 					<label>Picture</label>
 					<input type="text" class="form-control" name="picture" id="picture" >
 					</div>
 					<div class="form-group" >
 					<label>Cover</label>
 					<input type="text" class="form-control" name="cover" id="cover" >
-					</div>
+					</div> -->
+
 					<div class="form-group" >
 					<label>Bio</label>
-					<input type="text" class="form-control" name="bio" id="bio" >
+					<textarea type="text" class="form-control" name="bio" id="bio"></textarea>
 					</div>
 	
                     <div class="form-group" >

@@ -67,8 +67,8 @@ class ModulesController extends ControllerBase
                 'no'    => $no,
                 'id'    => $item->id,
                 'name' => $item->name,
-	'desc' => $item->desc,
-	'publish' => $item->publish,
+            	'desc' => $item->desc,
+            	'publish' => $item->publish,
 	
                 'created' => $item->created
             );

@@ -36,6 +36,14 @@ class Modules extends \Phalcon\Mvc\Model
 	*
 	*/
 	public $publish;
+
+	/**
+	*
+	* @var integer
+	* @Column(type='integer',nullable=false)
+	*
+	*/
+	public $is_core;
 	
 	/**
      *

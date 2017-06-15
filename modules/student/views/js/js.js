@@ -70,23 +70,24 @@ $(document).ready(function(){
         $('#myForm')[0].reset();
         if(status == 'edit') {
 
-            $('#mystudent .modal-title').html('Edit student '+e.data("row-id"));
+            
             $.getJSON(url_path+"get/?id=" + e.data("row-id"), function (data) {
-            $('#hidden_id').val(data.id);
-                 $('#user_id').val(data.user_id);
-	 $('#nis').val(data.nis);
-	 $('#nisn').val(data.nisn);
-	 $('#religion').val(data.religion);
-	 $('#birthplace').val(data.birthplace);
-	 $('#birthday').val(data.birthday);
-	 $('#phone').val(data.phone);
-	 $('#address').val(data.address);
-	 $('#parrent').val(data.parrent);
-	 $('#guardian').val(data.guardian);
-	 $('#parrent_phone').val(data.parrent_phone);
-	 $('#picture').val(data.picture);
-	 $('#cover').val(data.cover);
-	 $('#bio').val(data.bio);
+                $('#mystudent .modal-title').html('Edit student '+data.user_name);
+                $('#user_name').val(data.user_name);
+                $('#user_id').val(data.user_id);
+            	$('#nis').val(data.nis);
+            	$('#nisn').val(data.nisn);
+            	$('#religion').val(data.religion);
+            	$('#birthplace').val(data.birthplace);
+            	$('#birthday').val(data.birthday);
+            	$('#phone').val(data.phone);
+            	$('#address').val(data.address);
+            	$('#parrent').val(data.parrent);
+            	$('#guardian').val(data.guardian);
+            	$('#parrent_phone').val(data.parrent_phone);
+            	$('#picture').val(data.picture);
+            	$('#cover').val(data.cover);
+            	$('#bio').val(data.bio);
 	
             });
         }else{

@@ -72,7 +72,7 @@ class Widget extends \Phalcon\Mvc\User\Component
 
     public function AddonMenu()
     {
-        $modules = Modules::find(["publish='1'"]);
+        $modules = Modules::find(["publish='1' AND is_core='0'"]);
         $result = array();
         if($modules->count() > 0){
             foreach ($modules as $item) {

@@ -87,6 +87,11 @@
                                         <span class="nav-title">Grade </span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="{{ url("student") }}">
+                                        <span class="nav-title">Student </span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -158,6 +163,9 @@
                     </span>
                     </a>
                     <ul class="nav nav-sub nav-stacked">
+                        <li>
+                            <a href="{{ url("announcements") }}">Announcements</a>
+                        </li>
                         <li>
                             <a href="javascript:;">
                                 <span class="nav-title">Blog</span>

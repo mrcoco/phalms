@@ -197,7 +197,7 @@ class ClassroomController extends ControllerBase
         return $response->send();
     }
 
-    public function teacherAction($id)
+    public function byteacherAction($id)
     {
         $classroom = Classroom::find(["teacher_id='{$id}'"]);
         $data = array();

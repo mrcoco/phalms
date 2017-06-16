@@ -58,7 +58,7 @@ $router->add('/classroom/teacher/{id:[0-9]+}', array(
     'namespace'  => 'Modules\Classroom\Controllers',
     'module'     => 'classroom',
     'controller' => 'classroom',
-    'action'     => 'teacher',
+    'action'     => 'byteacher',
     'id'         => 1
 ));
 

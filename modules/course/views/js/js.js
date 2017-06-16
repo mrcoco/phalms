@@ -28,9 +28,9 @@ $(document).ready(function(){
             },
             "commands": function(column, row)
             {
-                return "<button type=\"button\" class=\"btn btn-sm btn-primary command-edit\" data-row-title=\""+row.title+"\" data-row-category=\""+row.category+"\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                return "<button type=\"button\" class=\"btn btn-sm btn-primary command-edit\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +
                         "<button type=\"button\" class=\"btn btn-sm btn-primary command-module\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-file-pdf-o\"></span></button> "+
-                        "<button type=\"button\" class=\"btn btn-sm btn-primary command-share\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-paper-plane\"></span></button> "+
+                        "<button type=\"button\" class=\"btn btn-sm btn-primary command-share\" data-row-id=\"" + row.id + "\" data-row-teacher=\"" + row.teacher_id + "\"><span class=\"fa fa-paper-plane\"></span></button> "+
                         "<button type=\"button\" class=\"btn btn-sm btn-primary command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
             }
         }
@@ -74,7 +74,7 @@ $(document).ready(function(){
         }).end().find(".command-share").on("click", function(e)
         {
             $('#mySend').modal('show');
-            grid_classroom("http://phalms.dev/course/classroom",$(this).data("row-id"));
+            grid_classroom("http://phalms.dev/course/classroom",$(this));
         });
 
         $("#create").on("click",function(e)
@@ -102,42 +102,47 @@ $(document).ready(function(){
             selection: true,
             multiSelect: true,
             templates: {
-                header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"> <form id=\"form-student\"><div class=\"col-sm-6\"><input id=\"search-student\" >  </div> <div class=\"col-sm-6\"><div class=\"awesomplete\"><input id=\"classroom_id\" type=\"hidden\" value=\""+id+"\"><div class='btn btn-sm btn-primary' id='add-student' class='command-add'> <span class=\"fa fa-plus-square-o\"></span> Add Class</div></div></div> </form></div></div>",
+                header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"><div class=\"col-sm-6 actionBar\"><div class=\"{{css.search}}\"></div></div><div class=\"col-sm-6\"><div class=\"{{css.actions}}\"></div> <div class='btn btn-primary' id='add-modules' class='command-add'> <span class=\"fa fa-plus-square-o\"></span> Add</div></div></div></div>",
             },
             formatters: {
                 "commands": function(column, row)
                 {
-                    return "<button type=\"button\" class=\"btn btn-sm btn-primary command-edit\" data-row-title=\""+row.title+"\" data-row-category=\""+row.category+"\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                    return "<button type=\"button\" class=\"btn btn-sm btn-primary command-edit\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +
                             "<button type=\"button\" class=\"btn btn-sm btn-primary command-module\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-file-pdf-o\"></span></button> "+
                             "<button type=\"button\" class=\"btn btn-sm btn-primary command-share\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-paper-plane\"></span></button> "+
                             "<button type=\"button\" class=\"btn btn-sm btn-primary command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
                 }
             }
         }).on("loaded.rs.jquery.bootgrid", function()
-            {
-                $(this).find(".command-edit").off();
-                $(this).find(".command-delete").off();
-                $(this).find(".command-add").off();
-
+        {
+            $(this).find(".command-edit").off();
+            $(this).find(".command-delete").off();
+            $(this).find(".command-add").off();
+            $("#add-modules").on("click",function(e){
+                $("#myFormModules").modal('show');
+                return false;
             });
+        });
     }
 
-    function grid_classroom(url,id)
+    function grid_classroom(url,_data)
     {
+        var id = _data.data("row-id");
+        var teacher_id = _data.data("row-teacher");
         var classroom = $("#grid-classroom").bootgrid({
             ajax: true,
             url: url+"/list/"+id,
             selection: true,
             multiSelect: true,
             templates: {
-                header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"> <form id=\"form-classroom\"><div class=\"col-sm-6\"><input id=\"search-classroom\" >  </div> <div class=\"col-sm-6\"><div class=\"awesomplete\"><input id=\"classroom_id\" type=\"hidden\" value=\""+id+"\"><div class='btn btn-sm btn-primary' id='add-student' class='command-add'> <span class=\"fa fa-plus-square-o\"></span> Add Class Room</div></div></div> </form></div></div>",
+                header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"> <form id=\"form-classroom\"><div class=\"col-sm-6\"><input id=\"search-classroom\" >  </div> <div class=\"col-sm-6\"><div class=\"awesomplete\"><input id=\"classroom_id\" type=\"hidden\" value=\""+id+"\"><div class='btn btn-sm btn-primary' id='add-classroom' class='command-add'> <span class=\"fa fa-plus-square-o\"></span> Add Class Room</div></div></div> </form></div></div>",
             },
             formatters: {
                 "commands": function(column, row)
                 {
-                    return "<button type=\"button\" class=\"btn btn-sm btn-primary command-edit\" data-row-title=\""+row.title+"\" data-row-category=\""+row.category+"\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                    return "<button type=\"button\" class=\"btn btn-sm btn-primary command-edit\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +
                             "<button type=\"button\" class=\"btn btn-sm btn-primary command-module\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-file-pdf-o\"></span></button> "+
-                            "<button type=\"button\" class=\"btn btn-sm btn-primary command-share\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-paper-plane\"></span></button> "+
+                            "<button type=\"button\" class=\"btn btn-sm btn-primary command-share\" data-row-id=\"" + row.id + "\" data-row-teacher=\""+row.teacher_id+"\"><span class=\"fa fa-paper-plane\"></span></button> "+
                             "<button type=\"button\" class=\"btn btn-sm btn-primary command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
                 }
             }
@@ -147,12 +152,29 @@ $(document).ready(function(){
                 $(this).find(".command-delete").off();
                 $(this).find(".command-add").off();
 
-                $.get( url+"/all", function( data ) {
+                $.get( "classroom/teacher/"+teacher_id, function( data ) {
                     var input = document.getElementById("search-classroom");
                     new Awesomplete(input, {
                         list: data
                     });
+                    return false;
                 });
+
+                $("#add-classroom").on("click", function(e)
+                {
+                    var course_id = id;
+                    var dataString = "course_id="+course_id+"&classroom_id="+$("#search-classroom").val();
+                    $.ajax({
+                        type: "POST",
+                        url: url+"/create",
+                        data: dataString,
+                        success: function() {
+                          $("#grid-student").bootgrid("reload");
+                          return false;
+                        }
+                    });
+                    return false;
+                })
 
             });
     }

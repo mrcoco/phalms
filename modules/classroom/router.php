@@ -47,6 +47,21 @@ $router->add('/classroom/get', array(
     'action'     => 'get'
 ));
 
+$router->add('/classroom/data', array(
+    'namespace'  => 'Modules\Classroom\Controllers',
+    'module'     => 'classroom',
+    'controller' => 'classroom',
+    'action'     => 'data'
+));
+
+$router->add('/classroom/teacher/{id:[0-9]+}', array(
+    'namespace'  => 'Modules\Classroom\Controllers',
+    'module'     => 'classroom',
+    'controller' => 'classroom',
+    'action'     => 'teacher',
+    'id'         => 1
+));
+
 $router->add('/classroom/delete/{id:[0-9]+}', array(
     'namespace'  => 'Modules\Classroom\Controllers',
     'module'     => 'classroom',

@@ -6,7 +6,7 @@
 namespace Modules\Course\Models;
 use \Phalcon\Mvc\Model\Behavior\Timestampable;
 
-class CourseModules extends \Phalcon\Mvc\Model
+class ModulesCourse extends \Phalcon\Mvc\Model
 {
 	
 	/**

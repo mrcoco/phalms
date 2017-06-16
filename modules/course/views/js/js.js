@@ -9,20 +9,28 @@ $(document).ready(function(){
             header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"><div class=\"col-sm-6 actionBar\"><div class=\"{{css.search}}\"></div></div><div class=\"col-sm-6\"><div class=\"{{css.actions}}\"></div> <div class='btn btn-primary' id='create' class='command-add'> <span class=\"fa fa-plus-square-o\"></span> New Course</div></div></div></div>",
         },
         formatters: {
-            "file" : function (column, row) {
-                return "<img src='"+row.file+"' height='75px'>";
+            "picture" : function (column, row) {
+                return "<img src='"+row.picture+"' height='75px'>";
             },
-            "published": function(column, row)
+            "level": function(column, row)
             {
-                if(row.publish == 1){
-                    return "Yes";
-                }else{
-                    return "No";
+                switch(row.level){
+                    case "1": 
+                    return result = "Easy";
+                    break;
+                    case "2": 
+                    return result = "Medium";
+                    break;
+                    case "3":
+                    return result = "Hard";
+                    break;
                 }
             },
             "commands": function(column, row)
             {
                 return "<button type=\"button\" class=\"btn btn-sm btn-primary command-edit\" data-row-title=\""+row.title+"\" data-row-category=\""+row.category+"\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                        "<button type=\"button\" class=\"btn btn-sm btn-primary command-module\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-file-pdf-o\"></span></button> "+
+                        "<button type=\"button\" class=\"btn btn-sm btn-primary command-share\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-paper-plane\"></span></button> "+
                         "<button type=\"button\" class=\"btn btn-sm btn-primary command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
             }
         }
@@ -59,6 +67,16 @@ $(document).ready(function(){
 
         });
 
+        $(this).find(".command-module").on("click", function(e)
+        {
+            $('#myModules').modal('show');
+            grid_modules("http://phalms.dev/course/modules",$(this).data("row-id"));
+        }).end().find(".command-share").on("click", function(e)
+        {
+            $('#mySend').modal('show');
+            grid_classroom("http://phalms.dev/course/classroom",$(this).data("row-id"));
+        });
+
         $("#create").on("click",function(e)
         {
             myForm('create',e);
@@ -76,6 +94,68 @@ $(document).ready(function(){
         });
     });
 
+    function grid_modules(url,id) 
+    {
+        var course_modules = $("#grid-modules").bootgrid({
+            ajax: true,
+            url: url+"/list/"+id,
+            selection: true,
+            multiSelect: true,
+            templates: {
+                header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"> <form id=\"form-student\"><div class=\"col-sm-6\"><input id=\"search-student\" >  </div> <div class=\"col-sm-6\"><div class=\"awesomplete\"><input id=\"classroom_id\" type=\"hidden\" value=\""+id+"\"><div class='btn btn-sm btn-primary' id='add-student' class='command-add'> <span class=\"fa fa-plus-square-o\"></span> Add Class</div></div></div> </form></div></div>",
+            },
+            formatters: {
+                "commands": function(column, row)
+                {
+                    return "<button type=\"button\" class=\"btn btn-sm btn-primary command-edit\" data-row-title=\""+row.title+"\" data-row-category=\""+row.category+"\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                            "<button type=\"button\" class=\"btn btn-sm btn-primary command-module\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-file-pdf-o\"></span></button> "+
+                            "<button type=\"button\" class=\"btn btn-sm btn-primary command-share\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-paper-plane\"></span></button> "+
+                            "<button type=\"button\" class=\"btn btn-sm btn-primary command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
+                }
+            }
+        }).on("loaded.rs.jquery.bootgrid", function()
+            {
+                $(this).find(".command-edit").off();
+                $(this).find(".command-delete").off();
+                $(this).find(".command-add").off();
+
+            });
+    }
+
+    function grid_classroom(url,id)
+    {
+        var classroom = $("#grid-classroom").bootgrid({
+            ajax: true,
+            url: url+"/list/"+id,
+            selection: true,
+            multiSelect: true,
+            templates: {
+                header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"> <form id=\"form-classroom\"><div class=\"col-sm-6\"><input id=\"search-classroom\" >  </div> <div class=\"col-sm-6\"><div class=\"awesomplete\"><input id=\"classroom_id\" type=\"hidden\" value=\""+id+"\"><div class='btn btn-sm btn-primary' id='add-student' class='command-add'> <span class=\"fa fa-plus-square-o\"></span> Add Class Room</div></div></div> </form></div></div>",
+            },
+            formatters: {
+                "commands": function(column, row)
+                {
+                    return "<button type=\"button\" class=\"btn btn-sm btn-primary command-edit\" data-row-title=\""+row.title+"\" data-row-category=\""+row.category+"\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                            "<button type=\"button\" class=\"btn btn-sm btn-primary command-module\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-file-pdf-o\"></span></button> "+
+                            "<button type=\"button\" class=\"btn btn-sm btn-primary command-share\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-paper-plane\"></span></button> "+
+                            "<button type=\"button\" class=\"btn btn-sm btn-primary command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
+                }
+            }
+        }).on("loaded.rs.jquery.bootgrid", function()
+            {
+                $(this).find(".command-edit").off();
+                $(this).find(".command-delete").off();
+                $(this).find(".command-add").off();
+
+                $.get( url+"/all", function( data ) {
+                    var input = document.getElementById("search-classroom");
+                    new Awesomplete(input, {
+                        list: data
+                    });
+                });
+
+            });
+    }
 
     function myForm(status,e) {
         $('#myForm')[0].reset();

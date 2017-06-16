@@ -92,5 +92,6 @@ class Course extends \Phalcon\Mvc\Model
                 ]
             )
         );
+        $this->belongsTo('teacher_id','Modules\User\Models\Users', 'id', ['alias' => 'Teachers']);
     }
 }

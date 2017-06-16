@@ -17,11 +17,11 @@
             <thead>
             <tr>
                 <th data-column-id="no" data-type="numeric" data-width="5%" data-sortable="false">no</th>
-                <th data-column-id="teacher_id" data-sortable="false">Teacher_id</th>
+                <th data-column-id="teacher_name" data-sortable="false">Teacher</th>
             	<th data-column-id="name" data-sortable="false">Name</th>
             	<th data-column-id="description" data-sortable="false">Description</th>
-            	<th data-column-id="picture" data-sortable="false">Picture</th>
-            	<th data-column-id="level" data-sortable="false">Level</th>
+            	<th data-column-id="picture" data-formatter="picture" data-sortable="false">Picture</th>
+            	<th data-column-id="level" data-formatter="level" data-sortable="false">Level</th>
 	
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Action</th>
             </tr>
@@ -77,6 +77,58 @@
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModules" class="modal fade modal-wide" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modules</h4>
+            </div>
+            <div class="modal-body">
+                <table id="grid-modules" class="table table-condensed table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th data-column-id="no" data-type="numeric" data-width="5%" data-sortable="false">no</th>
+                        <th data-column-id="course_id" data-sortable="false">Course</th>
+                        <th data-column-id="name" data-sortable="false">Name</th>
+                        <th data-column-id="description" data-sortable="false">Description</th>
+                        <th data-column-id="file" data-formatter="picture" data-sortable="false">file</th>
+                        <th data-column-id="commands" data-formatter="commands" data-sortable="false">Action</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mySend" class="modal fade modal-wide" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Send Module</h4>
+            </div>
+            <div class="modal-body">
+                <table id="grid-classroom" class="table table-condensed table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th data-column-id="no" data-type="numeric" data-width="5%" data-sortable="false">no</th>
+                        <th data-column-id="course_id" data-sortable="false">Course</th>
+                        <th data-column-id="classroom_id" data-sortable="false">Classroom</th>
+                        <th data-column-id="commands" data-formatter="commands" data-sortable="false">Action</th>
+                    </tr>
+                    </thead>
+                </table>
             </div>
             <div class="modal-footer">
             </div>

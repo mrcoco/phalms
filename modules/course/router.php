@@ -55,3 +55,18 @@ $router->add('/course/delete/{id:[0-9]+}', array(
     'id'         => 1
 ));
 
+$router->add('/course/modules/list/{id:[0-9]+}', array(
+    'namespace'  => 'Modules\Course\Controllers',
+    'module'     => 'course',
+    'controller' => 'modules',
+    'action'     => 'list',
+    'id'         => 1
+));
+
+$router->add('/course/classroom/list/{id:[0-9]+}', array(
+    'namespace'  => 'Modules\Course\Controllers',
+    'module'     => 'course',
+    'controller' => 'classroomcourse',
+    'action'     => 'list',
+    'id'         => 1
+));

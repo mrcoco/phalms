@@ -67,10 +67,11 @@ class CourseController extends ControllerBase
                 'no'    => $no,
                 'id'    => $item->id,
                 'teacher_id' => $item->teacher_id,
-	            'name' => $item->name,
-	            'description' => $item->description,
-	            'picture' => $item->picture,
-	            'level' => $item->level,
+                'teacher_name' => $item->Teachers->name,
+	            'name'         => $item->name,
+	            'description'  => $item->description,
+	            'picture'      => $item->picture,
+	            'level'        => $item->level,
 	
                 'created' => $item->created
             );
@@ -117,11 +118,11 @@ class CourseController extends ControllerBase
     {
         $this->view->disable();
         $data = Course::findFirst($this->request->getPost('hidden_id'));
-         $data->teacher_id = $this->request->getPost('teacher_id');
-	 $data->name = $this->request->getPost('name');
-	 $data->description = $this->request->getPost('description');
-	 $data->picture = $this->request->getPost('picture');
-	 $data->level = $this->request->getPost('level');
+        $data->teacher_id = $this->request->getPost('teacher_id');
+    	$data->name = $this->request->getPost('name');
+    	$data->description = $this->request->getPost('description');
+    	$data->picture = $this->request->getPost('picture');
+    	$data->level = $this->request->getPost('level');
 	
 
         if (!$data->save()) {

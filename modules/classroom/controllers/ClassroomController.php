@@ -166,6 +166,50 @@ class ClassroomController extends ControllerBase
         return $response->send();
     }
 
+    public function dataAction()
+    {
+        $classroom = Classroom::find($arProp);
+        $data = array();
+        $no =1;
+        foreach ($classroom as $item){
+            $data[] = array(
+                'no'    => $no,
+                'id'    => $item->id,
+                'school_id'     => $item->school_id,
+                'subject_id'    => $item->subject_id,
+                'major_id'      => $item->major_id,
+                'teacher_id'    => $item->teacher_id,
+                'grade'         => $item->grade,
+                'grade_name'    => $item->Grades->name,
+                'school_name'   => $item->Schools->name,
+                'subject_name'  => $item->Subjects->name,
+                'major_name'    => $item->Majors->name,
+                'teacher_name'  => $item->Teachers->name,
+                'grade_name'    => $item->Grades->name,
+                'description'   => $item->description,
+                'created'       => $item->created
+            );
+            $no++;
+        }
+        $response = new \Phalcon\Http\Response();
+        $response->setContentType('application/json', 'UTF-8');
+        $response->setJsonContent($data);
+        return $response->send();
+    }
+
+    public function teacherAction($id)
+    {
+        $classroom = Classroom::find(["teacher_id='{$id}'"]);
+        $data = array();
+        foreach ($classroom as $item) {
+            $data[] = array('label' => $item->Grades->name." ".$item->Subjects->name , 'value' => $item->id );
+        }
+        $response = new \Phalcon\Http\Response();
+        $response->setContentType('application/json', 'UTF-8');
+        $response->setJsonContent($data);
+        return $response->send();
+    }
+
     public function createAction()
     {
         $this->view->disable();

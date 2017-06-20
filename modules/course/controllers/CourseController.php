@@ -61,13 +61,21 @@ class CourseController extends ControllerBase
         }
         $qry = Course::find($arProp);
         $arQry = array();
+        $classroom = array();
         $no =1;
         foreach ($qry as $item){
+            foreach ($item->Teachers->Classroom as $classrooms) {
+                $classroom[] = array(
+                    "id" => $classrooms->id,
+                    "text" => $classrooms->Grades->name." ".$classrooms->Subjects->name,
+                );
+            }
             $arQry[] = array(
                 'no'    => $no,
                 'id'    => $item->id,
                 'teacher_id' => $item->teacher_id,
                 'teacher_name' => $item->Teachers->name,
+                'classroom'    => $classroom,
 	            'name'         => $item->name,
 	            'description'  => $item->description,
 	            'picture'      => $item->picture,

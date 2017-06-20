@@ -30,7 +30,7 @@ $(document).ready(function(){
             {
                 return "<button type=\"button\" class=\"btn btn-sm btn-primary command-edit\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +
                         "<button type=\"button\" class=\"btn btn-sm btn-primary command-module\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-file-pdf-o\"></span></button> "+
-                        "<button type=\"button\" class=\"btn btn-sm btn-primary command-share\" data-row-id=\"" + row.id + "\" data-row-teacher=\"" + row.teacher_id + "\"><span class=\"fa fa-paper-plane\"></span></button> "+
+                        "<button type=\"button\" class=\"btn btn-sm btn-primary command-share\" data-row-classroom=\""+row.classroom+"\" data-row-id=\"" + row.id + "\" data-row-teacher=\"" + row.teacher_id + "\"><span class=\"fa fa-paper-plane\"></span></button> "+
                         "<button type=\"button\" class=\"btn btn-sm btn-primary command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
             }
         }
@@ -73,8 +73,20 @@ $(document).ready(function(){
             grid_modules("http://phalms.dev/course/modules",$(this).data("row-id"));
         }).end().find(".command-share").on("click", function(e)
         {
+        
             $('#mySend').modal('show');
-            grid_classroom("http://phalms.dev/course/classroom",$(this));
+            var class_data = $(this).data("row-classroom");
+            console.log($(this).data("row-classroom"));
+            // $.each($(this).data("row-classroom"), function(val, text) {
+            //     options[options.length] = new Option(text.name, text.id);
+            // });
+            grid_classroom("http://phalms.dev/course/classroom",$(this).data("row-id"),class_data);
+            // $.get( "classroom/teacher/"+$(this).data("row-teacher"), function( data ) {
+            //     alert($(this).data("row-id"));
+            //     //grid_classroom("http://phalms.dev/course/classroom",$(this).data("row-id"),data);
+            // });
+            //alert(class_data);
+            
         });
 
         $("#create").on("click",function(e)
@@ -125,17 +137,19 @@ $(document).ready(function(){
         });
     }
 
-    function grid_classroom(url,_data)
+    function grid_classroom(url,id,class_room_data)
     {
-        var id = _data.data("row-id");
-        var teacher_id = _data.data("row-teacher");
+        // var id = _data.data("row-id");
+        // var teacher_id = _data.data("row-teacher");
+        //var class_room_data = search_class(teacher_id);
+        
         var classroom = $("#grid-classroom").bootgrid({
             ajax: true,
             url: url+"/list/"+id,
             selection: true,
             multiSelect: true,
             templates: {
-                header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"> <form id=\"form-classroom\"><div class=\"col-sm-6\"><input id=\"search-classroom\" >  </div> <div class=\"col-sm-6\"><div class=\"awesomplete\"><input id=\"classroom_id\" type=\"hidden\" value=\""+id+"\"><div class='btn btn-sm btn-primary' id='add-classroom' class='command-add'> <span class=\"fa fa-plus-square-o\"></span> Add Class Room</div></div></div> </form></div></div>",
+                header:"<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"> <form id=\"form-classroom\"><div class=\"col-sm-6\"><select class=\"form-control js-example-responsive\" id=\"search-classroom\" multiple=\"multiple\" style=\"width: 100%\"></select>  </div> <div class=\"col-sm-6\"><div class=\"awesomplete\"><input id=\"classroom_id\" type=\"hidden\" value=\""+id+"\"><div class='btn btn-sm btn-primary' id='add-classroom' class='command-add'> <span class=\"fa fa-plus-square-o\"></span> Add Class Room</div></div></div> </form></div></div>",
             },
             formatters: {
                 "commands": function(column, row)
@@ -152,15 +166,13 @@ $(document).ready(function(){
                 $(this).find(".command-delete").off();
                 $(this).find(".command-add").off();
 
-                $.get( "classroom/teacher/"+teacher_id, function( data ) {
-                    var input = document.getElementById("search-classroom");
-                    new Awesomplete(input, {
-                        list: data
-                    });
-                    return false;
+
+                //class_room("#search-classroom",teacher_id);
+                $("#search-classroom").select2({
+                  data: class_room_data
                 });
 
-                $("#add-classroom").on("click", function(e)
+                $("#add-classroom").off("click").on("click", function(e)
                 {
                     var course_id = id;
                     var dataString = "course_id="+course_id+"&classroom_id="+$("#search-classroom").val();
@@ -177,6 +189,16 @@ $(document).ready(function(){
                 })
 
             });
+    }
+
+    function search_class(teacher_id)
+    {
+        var class_data;
+        $.get( "classroom/teacher/"+teacher_id, function( data ) {
+            class_data = data;
+            return false;
+        });
+        return class_data;
     }
 
     function myForm(status,e) {
@@ -206,6 +228,7 @@ $(document).ready(function(){
         $.get( "classroom/teacher", function( data ) {
             selectBox("#teacher_id",data,e);
         }, "json" );
+        return false;
     }
 
     function selectBox(selector,datasource,selectedOption)

@@ -225,7 +225,7 @@ class Bootstrap
 
     public function dataBase($config)
     {
-        if($config->database->adapter == 'PgSql'){
+        if($config->database->adapter == 'Postgresql'){
             return new DbPgsqlAdapter([
                 'host' => $config->database->host,
                 'username' => $config->database->username,

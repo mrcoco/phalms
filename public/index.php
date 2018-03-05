@@ -15,6 +15,8 @@ if( ! file_exists(APP_PATH."/config/config.db.php"))
 	{
 		include BASE_PATH . '/installer/installer.php';
 		include BASE_PATH . '/installer/lib/Database.php';
+		include BASE_PATH . '/installer/lib/Mysql.php';
+		include BASE_PATH . '/installer/lib/Pgsql.php';
 		include BASE_PATH . '/installer/lib/Config.php';
 		$app = new Installer();
 		$app->run();

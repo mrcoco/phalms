@@ -49,33 +49,16 @@ class Installer
 		    echo $app['view']->render('installer');
 		});
 		$this->app->post('/setup', function() use ($app) {
-			try { 
-				$db = Database::configDb($app->request->getPost());
+			// try { 
+			// 	$db = Database::configDb($app->request->getPost());
 
-			} catch (\Exception $e){ 
-				echo json_encode($e->getMessage());
-				return; 
-			}
+			// } catch (\Exception $e){ 
+			// 	echo json_encode($e->getMessage());
+			// 	return; 
+			// }
 			try {
 				Config::write($app->request->getPost());
-				$migrate = Database::createTable($db);
-				echo json_encode($migrate);
-			} catch (\Exception $e) {
-				echo json_encode($e->getMessage());
-				return; 
-			}
-		});
-		$this->app->get('/setup', function() use ($app) {
-			try { 
-				$db = Database::configDb($app->request->getPost());
-
-			} catch (\Exception $e){ 
-				echo json_encode($e->getMessage());
-				return; 
-			}
-			try {
-				Config::write($app->request->getPost());
-				$migrate = Database::createTable($db);
+				$migrate = Database::createTable($app->request->getPost());
 				echo json_encode($migrate);
 			} catch (\Exception $e) {
 				echo json_encode($e->getMessage());

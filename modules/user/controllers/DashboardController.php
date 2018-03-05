@@ -12,6 +12,6 @@ class DashboardController extends ControllerBase
 
 	public function indexAction()
 	{
-		echo "oke";
+		
 	}
 }

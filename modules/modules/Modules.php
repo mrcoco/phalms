@@ -32,6 +32,7 @@ class Module implements ModuleDefinitionInterface
             [
                 "Modules\\Modules\\Controllers" => __DIR__."/controllers/",
                 "Modules\\Modules\\Models"      => __DIR__."/models/",
+                "Modules\\Frontend\\Controllers"   => realpath(dirname(__FILE__))."/../frontend/controllers/",
             ]
         );
 

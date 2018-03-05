@@ -269,6 +269,7 @@
                       <i class="fa fa-fw arrow"></i>
                     </span>
                     </a>
+                    {## 
                     {% if widget.addonmenu() is not empty %}
                     <ul class="nav nav-sub">
                         {% for item in widget.addonmenu() %}
@@ -281,6 +282,7 @@
                         <li></li>
                     </ul>
                     {% endif %}
+                    ##}
                 </li>
                 {% endif %}
             </ul>

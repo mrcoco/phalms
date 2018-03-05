@@ -23,3 +23,6 @@
 {% if assets.exists("header") %}
     {{ assets.outputCss('header') }}
 {% endif %}
+<script type="text/javascript">
+var public_url = "{{ config.application.publicUrl }}"
+</script>

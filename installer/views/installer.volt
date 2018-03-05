@@ -53,7 +53,7 @@
     </style>
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="installer/assets/js/jquery.form.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -204,7 +204,7 @@
 
     $('div.setup-panel div a.btn-primary').trigger('click');
     $("#setup-form").ajaxForm({
-        url: 'setup',
+        url: '{{ url("setup")}}',
         type: 'post',
         success: function(data) {
             $.each($.parseJSON(data), function(k, v) {

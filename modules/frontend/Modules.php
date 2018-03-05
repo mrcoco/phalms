@@ -10,7 +10,6 @@ namespace Modules\Frontend;
 use Phalcon\Loader;
 use Phalcon\DiInterface;
 use Phalcon\Mvc\ModuleDefinitionInterface;
-
 class Module implements ModuleDefinitionInterface
 {
     /**
@@ -28,9 +27,8 @@ class Module implements ModuleDefinitionInterface
                 "Modules\\Service\\Models"      => realpath(dirname(__FILE__))."/../service/models/",
                 "Modules\\Gallery\\Models"      => realpath(dirname(__FILE__))."/../gallery/models/",
                 "Modules\\Cms\\Models"          => realpath(dirname(__FILE__))."/../cms/models/",
-                "Modules\\Program\\Models"      => realpath(dirname(__FILE__))."/../program/models/",
-                "Modules\\Donation\\Models"      => realpath(dirname(__FILE__))."/../donation/models/",
                 "Modules\\User\\Models"      => realpath(dirname(__FILE__))."/../user/models/",
+                "Modules\\Menu\\Models"      => realpath(dirname(__FILE__))."/../menu/models/",
             ]
         );
 

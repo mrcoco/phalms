@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    var url_path    = "http://phalms.dev/modules/";
-    var url_gen     = "http://phalms.dev/generator";
+    var url_path    = "/modules/";
+    var url_gen     = "/generator";
     var modules_grid = $("#grid-modules").bootgrid({
         ajax: true,
         url: url_path+"list",

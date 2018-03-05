@@ -66,6 +66,16 @@ class Bootstrap
             
         ]);
 
+        //force failed load class
+        $loader->registerClasses([
+                "Modules\Banner\Models\Banner"      => $config->application->modulesDir."banner/models/Banner.php",
+                "Modules\Cms\Models\Blog"           => $config->application->modulesDir."cms/models/Blog.php",
+                "Modules\Cms\Models\PageCategory"   => $config->application->modulesDir."cms/models/PageCategory.php",
+                "Modules\Gallery\Models\Image"      => $config->application->modulesDir."gallery/models/Image.php",
+                "Modules\Menu\Models\Menu"          => $config->application->modulesDir."menu/models/Menu.php",
+                "Modules\Modules\Models\Modules"    => $config->application->modulesDir."modules/models/Modules.php",
+            ]);
+
         $loader->register();
         return $loader;
     }
@@ -172,8 +182,8 @@ class Bootstrap
     {
         $config = include APP_PATH . '/config/config.php';
 
-        if (is_readable(APP_PATH . '/config/config.dev.php')) {
-            $override = include APP_PATH . '/config/config.dev.php';
+        if (is_readable(APP_PATH . '/config/config.db.php')) {
+            $override = include APP_PATH . '/config/config.db.php';
             $config->merge($override);
         }
 

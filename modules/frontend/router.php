@@ -12,22 +12,6 @@ $router->add('/index', array(
     'action'     => 'index'
 ));
 
-$router->add('/programs', array(
-    'namespace'  => 'Modules\Frontend\Controllers',
-    'module'     => 'frontend',
-    'controller' => 'index',
-    'action'     => 'program'
-));
-
-
-$router->add('/programs/([a-z0-9\-]+)', array(
-    'namespace'  => 'Modules\Frontend\Controllers',
-    'module'     => 'frontend',
-    'controller' => 'index',
-    'action'     => 'getprogram',
-    'title'      => 1
-));
-
 $router->add('/subscribe', array(
     'namespace'  => 'Modules\Frontend\Controllers',
     'module'     => 'frontend',

@@ -4,13 +4,13 @@ use Phalcon\Config;
 use Phalcon\Logger;
 
 return new Config([
-    'database' => [
-        'adapter' => 'MySql',
-        'host' => 'localhost',
-        'username' => 'root',
-        'password' => 'root',
-        'dbname' => 'phalms'
-    ],
+    // 'database' => [
+    //     'adapter' => 'MySql',
+    //     'host' => 'localhost',
+    //     'username' => 'root',
+    //     'password' => '',
+    //     'dbname' => 'phalms'
+    // ],
     'application' => [
         'controllersDir' => APP_PATH . '/controllers/',
         'modelsDir'      => APP_PATH . '/models/',
@@ -28,7 +28,7 @@ return new Config([
         'cacheDir'       => BASE_PATH . '/cache/',
         'uploadDir'      => BASE_PATH . '/public/upload/',
         'baseUri'        => '/',
-        'publicUrl'      => 'phalms.dev',
+        'publicUrl'      => 'http://phalms.test',
         'siteName'       => 'Phalms - Phalcon LMS',
         'cryptSalt'      => 'eEAfR|_&G&f,+vU]:jFr!!A&+71w1Ms9~8_4L!<@[N@DyaIP_2My|:+.u>/6m,$D'
     ],

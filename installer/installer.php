@@ -65,6 +65,23 @@ class Installer
 				return; 
 			}
 		});
+		$this->app->get('/setup', function() use ($app) {
+			try { 
+				$db = Database::configDb($app->request->getPost());
+
+			} catch (\Exception $e){ 
+				echo json_encode($e->getMessage());
+				return; 
+			}
+			try {
+				Config::write($app->request->getPost());
+				$migrate = Database::createTable($db);
+				echo json_encode($migrate);
+			} catch (\Exception $e) {
+				echo json_encode($e->getMessage());
+				return; 
+			}
+		});
 	}
 
 	public function view()

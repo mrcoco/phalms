@@ -44,9 +44,10 @@ class Pgsql
             )),
         );
         try {
-            $db->createTable('email_confirmations', null, array(
-                "columns" => $arr_column,
-            ));
+            $db->createTable('email_confirmations', null, 
+            	["columns" => $arr_column ,
+            	"indexes"  => [new Index('email_confirmations_pkey', ['id'], 'PRIMARY KEY')]
+            ]);
             $result = "Create Table Email Confirmation Success";
         } catch (\Exception $e) {
             $result = $e->getMessage();
@@ -81,8 +82,13 @@ class Pgsql
 		);
         try {
             $db->createTable('failed_logins', null, array(
-                "columns" => $arr_column
+                "columns" => $arr_column,
+                "indexes" => array(
+                	new Index('failed_logins_pkey', ['id'], 'PRIMARY KEY'),
+                	new Index('failed_logins_usersId', ['usersId']),
+                )
             ));
+         
             $result = "Create Table Failed Login Success";
         } catch (\Exception $e) {
             $result = $e->getMessage();
@@ -122,7 +128,11 @@ class Pgsql
         );
         try {
             $db->createTable('password_changes', null, array(
-                "columns" => $arr_column
+                "columns" => $arr_column,
+                "indexes" => array(
+                	new Index('password_changes_pkey', ['id'], 'PRIMARY KEY'),
+                	new Index('password_changes_usersId', ['usersId']),
+                )
             ));
             $result = "Create Table Password Change Success";
         } catch (\Exception $e) {
@@ -158,7 +168,11 @@ class Pgsql
         );
         try {
             $db->createTable('permissions', null, array(
-                "columns" => $arr_column
+                "columns" => $arr_column,
+                "indexes" => array(
+                	new Index('permissions_pkey', ['id'], 'PRIMARY KEY'),
+                	new Index('permissions_profilesId', ['profilesId']),
+                )
             ));
             $query = "INSERT INTO permissions VALUES ('1', '3', 'users', 'index'), ('2', '3', 'users', 'search'), ('3', '3', 'profiles', 'index'), ('4', '3', 'profiles', 'search'), ('36', '2', 'users', 'index'), ('37', '2', 'users', 'search'), ('38', '2', 'users', 'edit'), ('39', '2', 'users', 'create'), ('40', '2', 'users', 'delete'), ('41', '2', 'users', 'list'), ('42', '2', 'users', 'changePassword'), ('43', '2', 'profiles', 'index'), ('44', '2', 'profiles', 'search'), ('45', '2', 'profiles', 'edit'), ('46', '2', 'profiles', 'create'), ('47', '2', 'profiles', 'delete'), ('48', '2', 'permissions', 'index'), ('271', '1', 'users', 'index'), ('272', '1', 'users', 'search'), ('273', '1', 'users', 'edit'), ('274', '1', 'users', 'create'), ('275', '1', 'users', 'delete'), ('276', '1', 'users', 'list'), ('277', '1', 'users', 'get'), ('278', '1', 'users', 'changePassword'), ('279', '1', 'profiles', 'index'), ('280', '1', 'profiles', 'list'), ('281', '1', 'profiles', 'search'), ('282', '1', 'profiles', 'edit'), ('283', '1', 'profiles', 'create'), ('284', '1', 'profiles', 'get'), ('285', '1', 'profiles', 'delete'), ('286', '1', 'banner', 'index'), ('287', '1', 'banner', 'list'), ('288', '1', 'banner', 'search'), ('289', '1', 'banner', 'edit'), ('290', '1', 'banner', 'create'), ('291', '1', 'banner', 'get'), ('292', '1', 'banner', 'delete'), ('293', '1', 'gallery', 'index'), ('294', '1', 'gallery', 'list'), ('295', '1', 'gallery', 'search'), ('296', '1', 'gallery', 'edit'), ('297', '1', 'gallery', 'create'), ('298', '1', 'gallery', 'get'), ('299', '1', 'gallery', 'delete'), ('300', '1', 'gallery', 'imagelist'), ('301', '1', 'gallery', 'imagecreate'), ('302', '1', 'gallery', 'imageedit'), ('303', '1', 'gallery', 'imagedelete'), ('317', '1', 'service', 'create'), ('318', '1', 'service', 'get'), ('319', '1', 'service', 'delete'), ('320', '1', 'blog', 'index'), ('321', '1', 'blog', 'list'), ('322', '1', 'blog', 'search'), ('323', '1', 'blog', 'edit'), ('324', '1', 'blog', 'create'), ('325', '1', 'blog', 'get'), ('326', '1', 'blog', 'delete'), ('327', '1', 'page', 'index'), ('328', '1', 'page', 'list'), ('329', '1', 'page', 'search'), ('330', '1', 'page', 'edit'), ('331', '1', 'page', 'create'), ('332', '1', 'page', 'get'), ('333', '1', 'page', 'delete'), ('334', '1', 'permissions', 'index');";
             $db->query($query);
@@ -192,7 +206,10 @@ class Pgsql
         );
         try {
             $db->createTable('profiles', null, array(
-                "columns" => $arr_column
+                "columns" => $arr_column,
+                "indexes" => array(
+                	new Index('profiles_pkey', ['id'], 'PRIMARY KEY'),
+                )
             ));
             $query  = "INSERT INTO profiles (id, name, active) VALUES (1, 'Administrators', 'Y'),(2, 'Users', 'Y'),(3, 'Read-Only', 'Y');";
             $db->query($query);
@@ -235,7 +252,11 @@ class Pgsql
         );
         try {
             $db->createTable('remember_tokens', null, array(
-                "columns" => $arr_column
+                "columns" => $arr_column,
+                "indexes" => array(
+                	new Index('remember_tokens_pkey', ['id'], 'PRIMARY KEY'),
+                	new Index('remember_tokens_usersId', ['usersId']),
+                )
             ));
             $result = "Create Table remember_tokens Success";
         } catch (\Exception $e) {
@@ -281,7 +302,11 @@ class Pgsql
         );
         try {
             $db->createTable('reset_passwords', null, array(
-                "columns" => $arr_column
+                "columns" => $arr_column,
+                "indexes" => array(
+                	new Index('reset_passwords_pkey', ['id'], 'PRIMARY KEY'),
+                	new Index('reset_passwords_usersId', ['usersId']),
+                )
             ));
             $result = "Create Table reset_passwords Success";
         } catch (\Exception $e) {
@@ -317,7 +342,11 @@ class Pgsql
         );
         try {
             $db->createTable('success_logins', null, array(
-                "columns" => $arr_column
+                "columns" => $arr_column,
+                "indexes" => array(
+                	new Index('success_logins_pkey', ['id'], 'PRIMARY KEY'),
+                	new Index('success_logins_usersId', ['usersId']),
+                )
             ));
             $result = "Create Table success_logins Success";
         } catch (\Exception $e) {
@@ -378,7 +407,11 @@ class Pgsql
         );
         try {
             $db->createTable('users', null, array(
-                "columns" => $arr_column
+                "columns" => $arr_column,
+                "indexes" => array(
+                	new Index('users_pkey', ['id'], 'PRIMARY KEY'),
+                	new Index('users_profilesId', ['profilesId']),
+                )
             ));
             $db->insert("users",
                 ["Dwi Agus","admin@phalms.dev",'$2y$08$RDU3VXk3N2lsTldNU2hIe.kWm6qel0KrlXvD3BEF3EIAq6dt.p.Ai',"N","1","N",
@@ -414,7 +447,10 @@ class Pgsql
         );
         try {
             $db->createTable('resource', null, array(
-                "columns" => $arr_column
+                "columns" => $arr_column,
+                "indexes" => array(
+                	new Index('resource_pkey', ['id'], 'PRIMARY KEY'),
+                )
             ));
             $query = "INSERT INTO resource VALUES ('1', 'banner', 'index'), ('2', 'banner', 'list'), ('3', 'banner', 'edit'), ('4', 'banner', 'get'), ('5', 'banner', 'create'), ('6', 'banner', 'delete'), ('7', 'blog_category', 'index'), ('8', 'blog_category', 'all'), ('9', 'blog_category', 'list'), ('10', 'blog_category', 'create'), ('11', 'blog_category', 'edit'), ('12', 'blog_category', 'delete'), ('13', 'blog', 'index'), ('14', 'blog', 'list'), ('15', 'blog', 'create'), ('16', 'blog', 'edit'), ('17', 'blog', 'get'), ('18', 'blog', 'delete'), ('19', 'page_category', 'index'), ('20', 'page_category', 'all'), ('21', 'page_category', 'list'), ('22', 'page_category', 'create'), ('23', 'page_category', 'edit'), ('24', 'page_category', 'delete'), ('25', 'page', 'index'), ('26', 'page', 'list'), ('27', 'page', 'create'), ('28', 'page', 'edit'), ('29', 'page', 'get'), ('30', 'page', 'delete'), ('31', 'base', 'index'), ('46', 'gallery', 'list'), ('47', 'gallery', 'imagelist'), ('48', 'gallery', 'index'), ('49', 'gallery', 'gallery'), ('50', 'gallery', 'image'), ('51', 'gallery', 'imagecreate'), ('52', 'gallery', 'imageedit'), ('53', 'gallery', 'imagedelete'), ('54', 'gallery', 'get'), ('55', 'gallery', 'create'), ('56', 'gallery', 'edit'), ('57', 'gallery', 'delete'), ('58', 'gallery', 'index'), ('59', 'generator', 'index'), ('66', 'menu', 'index'), ('67', 'menu', 'list'), ('68', 'menu', 'create'), ('69', 'menu', 'edit'), ('70', 'menu', 'get'), ('71', 'menu', 'delete'), ('72', 'modules', 'index'), ('73', 'modules', 'list'), ('74', 'modules', 'edit'), ('75', 'modules', 'get'), ('76', 'modules', 'delete'), ('82', 'permissions', 'index'), ('83', 'profiles', 'index'), ('84', 'profiles', 'list'), ('85', 'profiles', 'search'), ('86', 'profiles', 'create'), ('87', 'profiles', 'edit'), ('88', 'profiles', 'delete'), ('92', 'users', 'index'), ('93', 'users', 'list'), ('94', 'users', 'create'), ('95', 'users', 'get'), ('96', 'users', 'edit'), ('97', 'users', 'delete'), ('98', 'users', 'changePassword');";
             $db->execute($query);
@@ -465,12 +501,16 @@ class Pgsql
         );
         try {
             $db->createTable('modules', null, array(
-                "columns" => $arr_column
+                "columns" => $arr_column,
+                "indexes" => array(
+                	new Index('modules_pkey', ['id'], 'PRIMARY KEY'),
+                )
             ));
             $result = "Create Table Modules Success";
         } catch (\Exception $e) {
             $result = $e->getMessage();
         }
+        return $result;
     }
 
     public static function menu($db)
@@ -517,7 +557,10 @@ class Pgsql
 
         try{
             $db->createTable("menu", null, array(
-                "columns" => $arr_column
+                "columns" => $arr_column,
+                "indexes" => array(
+                	new Index('menu_pkey', ['id'], 'PRIMARY KEY'),
+                )
             ));
             $result = "Created Table Menu in Database";
         }catch (\Exception $e){
@@ -586,11 +629,16 @@ class Pgsql
         );
         try {
             $db->createTable('banner', null, array(
-                "columns" => $arr_column
+                "columns" => $arr_column,
+                "indexes" => array(
+                	new Index('banner_pkey', ['id'], 'PRIMARY KEY'),
+                )
             ));
             $result = "Create Table Banner Success";
         } catch (\Exception $e) {
             $result = $e->getMessage();
         }
+
+        return $result;
     }
 }

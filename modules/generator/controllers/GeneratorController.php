@@ -59,6 +59,7 @@ class GeneratorController extends ControllerBase
                 'models/model.php',
                 'plugin/Publish.php',
                 'Modules.php',
+                'privateResources.php',
                 'views/js/js.js',
                 'views/index.volt'
             );

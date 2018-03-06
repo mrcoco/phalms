@@ -51,10 +51,15 @@ class Table extends Component
         ));
 
         try{
+            if($this->config->application->database->adapter == 'Mysql'){
+                $index = new Index("PRIMARY", array("id"));
+            }else{
+                $index = new Index($this->table.'_pkey', ['id'], 'PRIMARY KEY');
+            }
             $this->db->createTable(strtolower($this->table), null, array(
                 "columns" => $arr_column,
                 "indexes" => array(
-                    new Index("PRIMARY", array("id"))
+                    $index
                 )
             ));
             $result = "Created Table $this->table in Database";

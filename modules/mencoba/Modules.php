@@ -2,17 +2,17 @@
 /**
  * Created by Phalms Module Generator.
  *
- * {description}
+ * mencoba
  *
- * @package {package}
- * @author  {author}
- * @link    {website}
- * @date:   {date}
- * @time:   {time}
- * @license {copyright}
+ * @package 
+ * @author  
+ * @link    
+ * @date:   2018-03-06
+ * @time:   17:03:44
+ * @license MIT
  */
 
-namespace Modules\{module_name};
+namespace Modules\Mencoba;
 
 use Phalcon\Loader;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
@@ -30,9 +30,9 @@ class Module implements ModuleDefinitionInterface
 
         $loader->registerNamespaces(
             [
-                "Modules\\{module_name}\\Controllers" => __DIR__."/controllers/",
-                "Modules\\{module_name}\\Models"      => __DIR__."/models/",
-                "Modules\\{module_name}\\Plugin"      => __DIR__."/plugin/",
+                "Modules\\Mencoba\\Controllers" => __DIR__."/controllers/",
+                "Modules\\Mencoba\\Models"      => __DIR__."/models/",
+                "Modules\\Mencoba\\Plugin"      => __DIR__."/plugin/",
                 "Modules\\Frontend\\Controllers"      => realpath(dirname(__FILE__))."/../frontend/controllers/",
             ]
         );

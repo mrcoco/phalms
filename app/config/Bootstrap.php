@@ -40,10 +40,16 @@ class Bootstrap
          * Include Autoloader
          */
         $application = new Application($di);
-        $arr_modules = include APP_PATH . '/config/modules.php';
-        $modules = $this->modulesConfig($arr_modules);
+        //$arr_modules = include APP_PATH . '/config/modules.php';
+        $modules = $this->modulesConfig();
         $application->registerModules($modules);
         echo $application->handle()->getContent();
+    }
+
+    public function arrModules()
+    {
+        $arr_modules = include APP_PATH . '/config/modules.php';
+        return $arr_modules;
     }
 
 
@@ -275,11 +281,15 @@ class Bootstrap
 
     public function aclResorces()
     {
-        $pr = [];
-        if (is_readable(APP_PATH . '/config/privateResources.php')) {
-            $pr = include APP_PATH . '/config/privateResources.php';
-        }
-        return $pr;
+        $resource = include APP_PATH . '/config/privateResources.php';
+        $modules_list = $this->arrModules();
+            foreach ($modules_list as $module) {
+                if(file_exists(BASE_PATH . '/modules/' . $module . '/privateResources.php')){
+                    $module_resource = include BASE_PATH . '/modules/' . $module . '/privateResources.php';
+                    $resource->merge($module_resource);
+                }
+            }
+        return $resource;
     }
 
     public function acl($di)
@@ -305,8 +315,9 @@ class Bootstrap
         return $logger;
     }
 
-    public function modulesConfig($modules_list)
+    public function modulesConfig()
     {
+        $modules_list = $this->arrModules();
         $modules = array();
 
         if (!empty($modules_list)) {

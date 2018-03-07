@@ -474,12 +474,12 @@ class Pgsql
                 "notNull"       => true,
                 "autoIncrement" => true,
             )),
-            new Column("name", array(
+            new Column("module_name", array(
                 "type"  => Column::TYPE_VARCHAR,
                 "size"  => 255,
                 "notNull"       => true,
             )),
-            new Column("desc", array(
+            new Column("description", array(
                 "type"  => Column::TYPE_VARCHAR,
                 "size"  => 500,
                 "notNull"       => true,
@@ -510,6 +510,31 @@ class Pgsql
                 	new Index('modules_pkey', ['id'], 'PRIMARY KEY'),
                 )
             ));
+            $query  = "INSERT INTO modules (module_name,description,publish,is_core) VALUES 
+            ('frontend', 'frontend Module', '1','1'),
+            ('session', 'session Module', '1','1'),
+            ('user', 'user Module', '1','1'),
+            ('cms', 'cms Module', '1','1'),
+            ('banner', 'banner Module', '1','1'),
+            ('gallery', 'gallery Module', '1','1'),
+            ('generator', 'generator Module', '1','1'),
+            ('modules', 'Modules Module', '1','1'),
+            ('menu', 'menu Module', '1','1'),
+            ('announcements', 'announcements Module', '1','1'),
+            ('assignclass', 'assignclass Module', '1','1'),
+            ('classroom', 'classroom Module', '1','1'),
+            ('course', 'course Module', '1','1'),
+            ('discussions', 'discussions Module', '1','1'),
+            ('grade', 'grade Module', '1','1'),
+            ('majors', 'majors Module', '1','1'),
+            ('religion', 'religion Module', '1','1'),
+            ('school', 'school Module', '1','1'),
+            ('student', 'student Module', '1','1'),
+            ('subject', 'subject Module', '1','1'),
+            ('submissions', 'submissions Module', '1','1'),
+            ('video', 'video Module', '1','1'),
+            ('webconfig', 'webconfig Module', '1','1');";
+            $db->query($query);
             $result = "Create Table Modules Success";
         } catch (\Exception $e) {
             $result = $e->getMessage();

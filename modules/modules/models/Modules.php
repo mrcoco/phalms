@@ -19,7 +19,7 @@ class Modules extends \Phalcon\Mvc\Model
 	* @Column(type='string',nullable=false)
 	*
 	*/
-	public $name;
+	public $module_name;
 	
 	/**
 	*
@@ -27,7 +27,7 @@ class Modules extends \Phalcon\Mvc\Model
 	* @Column(type='string',nullable=false)
 	*
 	*/
-	public $desc;
+	public $description;
 	
 	/**
 	*

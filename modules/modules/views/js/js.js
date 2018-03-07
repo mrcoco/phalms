@@ -75,10 +75,9 @@ $(document).ready(function(){
             $('#mymodules .modal-title').html('Edit modules '+e.data("row-id"));
             $.getJSON(url_path+"get/?id=" + e.data("row-id"), function (data) {
                 $('#hidden_id').val(data.id);
-                 $('#name').val(data.name);
-	 $('#desc').val(data.desc);
-	 $('#publish').val(data.publish);
-	
+                $('#module_name').val(data.module_name);
+	            $('#description').val(data.description);
+	            $('#publish').val(data.publish);
             });
         }else{
             $('#mymodules .modal-title').html('Create New modules ');

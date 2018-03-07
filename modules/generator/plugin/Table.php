@@ -40,13 +40,12 @@ class Table extends Component
 
         $arr_column[] = new Column("created", array(
             "type"    => Column::TYPE_TIMESTAMP,
-            "size"    => 17,
             "notNull" => true,
+            'default' => 'CURRENT_TIMESTAMP',
         ));
 
         $arr_column[] = new Column("updated", array(
             "type"    => Column::TYPE_TIMESTAMP,
-            "size"    => 17,
             "notNull" => false,
         ));
 
@@ -77,12 +76,13 @@ class Table extends Component
                 $desc,
                 0,
                 1,
+                
             ],
             [
                 "name",
                 "desc",
                 "is_core",
-                "publish",
+                "publish"
             ]
         );
     }

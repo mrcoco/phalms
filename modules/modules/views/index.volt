@@ -17,8 +17,8 @@
             <thead>
             <tr>
                 <th data-column-id="no" data-type="numeric" data-width="5%" data-sortable="false">no</th>
-                <th data-column-id="name" data-sortable="false">Name</th>
-	            <th data-column-id="desc" data-sortable="false">Desc</th>
+                <th data-column-id="module_name" data-sortable="false">Name</th>
+	            <th data-column-id="description" data-sortable="false">Desc</th>
 	            <th data-column-id="publish" data-sortable="false">Publish</th>
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Action</th>
             </tr>
@@ -40,11 +40,11 @@
                     <div class="form-group" >
                     <label>Name</label>
                         <input type="text" class="form-control" name="hidden_id" id="hidden_id" >
-                    <input type="text" class="form-control" name="name" id="name" >
+                    <input type="text" class="form-control" name="module_name" id="module_name" >
                     </div>
                     <div class="form-group" >
                     <label>Desc</label>
-                    <textarea class="form-control" name="desc" id="desc" >
+                    <textarea class="form-control" name="description" id="description" >
                     </textarea>
                     </div>
                     <div class="form-group" >

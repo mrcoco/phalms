@@ -12,6 +12,9 @@ class DashboardController extends ControllerBase
 
 	public function indexAction()
 	{
-		
+		echo "<pre>";
+		print_r($this->config);
+		echo "</pre>";
+		echo $this->config->database->adapter;
 	}
 }

@@ -66,10 +66,9 @@ class ModulesController extends ControllerBase
             $arQry[] = array(
                 'no'    => $no,
                 'id'    => $item->id,
-                'name' => $item->name,
-            	'desc' => $item->desc,
+                'module_name' => $item->module_name,
+            	'description' => $item->description,
             	'publish' => $item->publish,
-	
                 'created' => $item->created
             );
             $no++;
@@ -92,8 +91,8 @@ class ModulesController extends ControllerBase
     {
         $this->view->disable();
         $data = Modules::findFirst($this->request->getPost('hidden_id'));
-        $data->name = $this->request->getPost('name');
-	    $data->desc = $this->request->getPost('desc');
+        $data->module_name = $this->request->getPost('module_name');
+	    $data->description = $this->request->getPost('description');
 	    $data->publish = $this->request->getPost('publish');
 
         if (!$data->save()) {

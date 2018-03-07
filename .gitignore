@@ -8,4 +8,5 @@ data.txt
 cache/volt/*.php
 cache/metaData/*.php
 app/config/config.php
+app/config/config.db.php
 /nbproject/

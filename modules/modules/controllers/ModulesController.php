@@ -137,15 +137,20 @@ class ModulesController extends ControllerBase
     {
         $this->view->disable();
         $data   = Modules::findFirstById($id);
-
-        if (!$data->delete()) {
+        if($data->is_core == 1){
             $alert  = "error";
-            $msg    = $data->getMessages();
-        } else {
-            $alert  = "sukses";
-            $msg    = "Modules was deleted ";
+            $msg    = "You dont have permission delete core modules";
+        }else{
+            if (!$data->delete()) {
+                $alert  = "error";
+                $msg    = $data->getMessages();
+            } else {
+                $alert  = "sukses";
+                $msg    = "Modules was deleted ";
+            }
+            $this->delModules($data->name);
         }
-        $this->delModules($data->name);
+        
         $response = new \Phalcon\Http\Response();
         $response->setContentType('application/json', 'UTF-8');
         $response->setJsonContent(array('_id' => $id,'alert' => $alert, 'msg' => $msg ));
@@ -156,6 +161,7 @@ class ModulesController extends ControllerBase
     {
         $this->dellConfig($modules);
         $this->db->dropTable($modules);
+        $this->dellDir($modules);
     }
 
     private function dellConfig($names)
@@ -170,5 +176,15 @@ class ModulesController extends ControllerBase
         $config = include $this->config->application->configDir."modules.php";
         array_push($config,$names);
         file_put_contents($this->config->application->configDir."modules.php", '<?php return [' ."'".implode("','",$config)."'".'];');
+    }
+
+    private function dellDir($name)
+    {
+        $path = $this->config->application->modulesDir.$name;
+        if(!empty($path) && is_dir($path) ){
+            $dir  = new \RecursiveDirectoryIterator($path, \RecursiveDirectoryIterator::SKIP_DOTS); 
+            $files = new \RecursiveIteratorIterator($dir, \RecursiveIteratorIterator::CHILD_FIRST);
+            foreach ($files as $f) {if (is_file($f)) {unlink($f);} else {$empty_dirs[] = $f;} } if (!empty($empty_dirs)) {foreach ($empty_dirs as $eachDir) {rmdir($eachDir);}} rmdir($path);
+        }
     }
 }

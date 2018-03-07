@@ -32,6 +32,7 @@ class GeneratorController extends ControllerBase
         if ($this->request->isPost()) {
             $template = new Template($this->request->getPost());
             $theme  = $template->run();
+            $index  = ($this->config->database->adapter == 'Mysql') ? $theme->myprimary : $theme->pgprimary;
             $info = array(
                 '{generator_name}'  => $this->request->getPost('generator_name'),
                 '{module_name}'     => \Phalcon\Text::camelize($this->request->getPost('generator_name'), "_-"),
@@ -48,6 +49,7 @@ class GeneratorController extends ControllerBase
                 '{model_fields}'    => $theme->model,
                 '{contrl_fields}'   => $theme->column,
                 '{column_fields}'   => $theme->cfield,
+                '{index_field}'    => $index,
                 '{table_fields}'    => $theme->table,
                 '{form_fields}'     => $theme->form,
                 '{js_fields}'       => $theme->js,

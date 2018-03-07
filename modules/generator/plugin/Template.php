@@ -5,19 +5,21 @@ class Template
 {
 	function __construct($input)
     {
-        $this->input = $input;
+        $this->input    = $input;
     }
 
     public function run()
 	{
-		$model  = "";
-		$column = "";
-		$cfield = "";
-		$table  = "";
-		$form   = "";
-		$js     = "";
-		$migrate= "";
-		$fields= $this->input['fields'];
+		$model    = "";
+		$column   = "";
+		$cfield   = "";
+		$table    = "";
+		$form     = "";
+		$js       = "";
+		$migrate  = "";
+        $pgprimary  = "";
+        $myprimary  = "";
+		$fields   = $this->input['fields'];
 		foreach ($fields as $field) {
 			$model  .= $this->makeModel($field);
 			$column .= $this->makeColumn($field);
@@ -26,6 +28,8 @@ class Template
 			$form   .= $this->makeForm($field);
 			$js     .= $this->makeJs($field);
 			$migrate .= $this->makeMigrate($field);
+            $pgprimary .= $this->makePgPrimary($field);
+            $myprimary .= $this->makeMyPrimary();
 		}
 		$result = new \stdClass();
 		$result->model  = $model;
@@ -34,7 +38,9 @@ class Template
         $result->table  = $table;
         $result->form   = $form;
         $result->js     = $js;
-        $result->migrate = $migrate;
+        $result->migrate    = $migrate;
+        $result->pgprimary  = $pgprimary;
+        $result->myprimary  = $myprimary;
 		return $result;
 	}
 
@@ -89,6 +95,19 @@ class Template
         return $migrate_field;
     }
 
+    private function makePgPrimary($field)
+    {
+        $primary  = '';
+        $text     = $this->clean($field['name']);
+        $primary .= sprintf('"indexes" => array( new Index("%s_pkey", ["id"], "PRIMARY KEY"))'."\n\t",$text);
+        return $primary;
+    }
+
+    private function makeMyPrimary()
+    {
+        $primary = '"indexes" => array( new Index("PRIMARY", array("id")))'."\n\t";
+        return $primary;
+    }
 
     private function makeTable($field)
     {

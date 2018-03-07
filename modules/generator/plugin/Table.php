@@ -51,7 +51,7 @@ class Table extends Component
         ));
 
         try{
-            if($this->config->application->database->adapter == 'Mysql'){
+            if($this->config->database->adapter == 'Mysql'){
                 $index = new Index("PRIMARY", array("id"));
             }else{
                 $index = new Index($this->table.'_pkey', ['id'], 'PRIMARY KEY');

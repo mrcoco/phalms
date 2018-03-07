@@ -50,9 +50,7 @@ class Publish extends \Phalcon\Mvc\User\Component
         try{
             $this->db->createTable(strtolower($this->table), null, array(
                 "columns" => $arr_column,
-                "indexes" => array(
-                    new Index("PRIMARY", array("id"))
-                )
+                {index_field}
             ));
             $result = "Created Table $this->table in Database";
         }catch (\Exception $e){

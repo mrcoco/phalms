@@ -26,7 +26,7 @@ class MenuController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-menu.js")
             ->setTargetUri("themes/admin/assets/js/combined-menu.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."menu/views/js/js.js")
+            ->addJs($this->config->modules->core."menu/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 

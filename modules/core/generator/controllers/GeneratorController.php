@@ -23,7 +23,7 @@ class GeneratorController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-gen.js")
             ->setTargetUri("themes/admin/assets/js/combined-gen.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."generator/views/js/main.js")
+            ->addJs($this->config->modules->core."generator/views/js/main.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 

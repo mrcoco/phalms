@@ -29,7 +29,7 @@ class UsersController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-user.js")
             ->setTargetUri("themes/admin/assets/js/combined-user.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."user/views/js/js.js")
+            ->addJs($this->config->modules->core."user/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 

@@ -26,7 +26,7 @@ class ModulesController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-modules.js")
             ->setTargetUri("themes/admin/assets/js/combined-modules.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."modules/views/js/js.js")
+            ->addJs($this->config->modules->core."modules/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 

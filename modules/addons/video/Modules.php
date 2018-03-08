@@ -27,12 +27,13 @@ class Module implements ModuleDefinitionInterface
     public function registerAutoloaders(DiInterface $di = null)
     {
         $loader = new Loader();
-
+        $config = $di->get('config');
         $loader->registerNamespaces(
             [
                 "Modules\\Video\\Controllers" => __DIR__."/controllers/",
                 "Modules\\Video\\Models"      => __DIR__."/models/",
                 "Modules\\Video\\Plugin"      => __DIR__."/plugin/",
+                "Modules\\Frontend\\Controllers"      => $config->modules->core."/frontend/controllers",
             ]
         );
 

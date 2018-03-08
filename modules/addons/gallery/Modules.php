@@ -25,8 +25,8 @@ class Module implements ModuleDefinitionInterface
             [
                 "Modules\\Gallery\\Controllers" => __DIR__."/controllers/",
                 "Modules\\Gallery\\Models"      => __DIR__."/models/",
-                "Modules\\Frontend\\Controllers"      => $config->modules->core."/frontend/controllers/",
-                "Modules\\User\\Models"      => realpath(dirname(__FILE__))."/../user/models/",
+                "Modules\\Frontend\\Controllers"      => $config->modules->core."frontend/controllers/",
+                "Modules\\User\\Models"         => $config->modules->core."user/models/",
             ]
         );
 

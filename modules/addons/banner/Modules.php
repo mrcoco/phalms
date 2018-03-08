@@ -19,12 +19,12 @@ class Module implements ModuleDefinitionInterface
     public function registerAutoloaders(DiInterface $di = null)
     {
         $loader = new Loader();
-
+        $config = $di->get('config');
         $loader->registerNamespaces(
             [
                 "Modules\\Banner\\Controllers" => __DIR__."/controllers/",
                 "Modules\\Banner\\Models"      => __DIR__."/models/",
-                "Modules\\Frontend\\Controllers" => realpath(dirname(__FILE__))."/../frontend/controllers/",
+                "Modules\\Frontend\\Controllers" => $config->modules->core."frontend/controllers/",
                 "Modules\\User\\Models" => realpath(dirname(__FILE__))."/../user/models/",
             ]
         );

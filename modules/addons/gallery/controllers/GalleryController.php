@@ -138,14 +138,14 @@ class GalleryController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-gallery.js")
             ->setTargetUri("themes/admin/assets/js/combined-gallery.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."gallery/views/js/js.js")
+            ->addJs($this->config->modules->addons."gallery/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
         $this->assets
             ->collection('header')
             ->setTargetPath("themes/admin/assets/css/combined-gallery.css")
             ->setTargetUri("themes/admin/assets/css/combined-gallery.css")
             ->join(true)
-            ->addCss($this->config->application->modulesDir."gallery/views/css/css.css")
+            ->addCss($this->config->modules->addons."gallery/views/css/css.css")
             ->addFilter(new \Phalcon\Assets\Filters\Cssmin());
         $this->view->pick("gallery/index");
     }

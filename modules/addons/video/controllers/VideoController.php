@@ -26,7 +26,7 @@ class VideoController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-video.js")
             ->setTargetUri("themes/admin/assets/js/combined-video.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."video/views/js/js.js")
+            ->addJs($this->config->modules->addons."video/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 

@@ -26,7 +26,7 @@ class AssignmentsController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-assignments.js")
             ->setTargetUri("themes/admin/assets/js/combined-assignments.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."assignments/views/js/js.js")
+            ->addJs($this->config->modules->lms."assignments/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 

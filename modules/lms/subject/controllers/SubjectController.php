@@ -26,7 +26,7 @@ class SubjectController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-subject.js")
             ->setTargetUri("themes/admin/assets/js/combined-subject.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."subject/views/js/js.js")
+            ->addJs($this->config->modules->lms."subject/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 

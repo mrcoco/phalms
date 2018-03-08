@@ -26,7 +26,7 @@ class SchoolController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-school.js")
             ->setTargetUri("themes/admin/assets/js/combined-school.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."school/views/js/js.js")
+            ->addJs($this->config->modules->lms."school/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 

@@ -26,7 +26,7 @@ class DiscussionsController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-discussions.js")
             ->setTargetUri("themes/admin/assets/js/combined-discussions.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."discussions/views/js/js.js")
+            ->addJs($this->config->modules->lms."discussions/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 

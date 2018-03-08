@@ -26,7 +26,7 @@ class CourseController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-course.js")
             ->setTargetUri("themes/admin/assets/js/combined-course.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."course/views/js/js.js")
+            ->addJs($this->config->modules->lms."course/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 

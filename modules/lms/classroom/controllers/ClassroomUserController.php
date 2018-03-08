@@ -27,7 +27,7 @@ class ClassroomUserController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-classroomuser.js")
             ->setTargetUri("themes/admin/assets/js/combined-classroomuser.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."classroomuser/views/js/js.js")
+            ->addJs($this->config->modules->lms."classroomuser/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 

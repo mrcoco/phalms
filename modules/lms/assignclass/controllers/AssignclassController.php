@@ -26,7 +26,7 @@ class AssignclassController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-assignclass.js")
             ->setTargetUri("themes/admin/assets/js/combined-assignclass.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."assignclass/views/js/js.js")
+            ->addJs($this->config->modules->lms."assignclass/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 

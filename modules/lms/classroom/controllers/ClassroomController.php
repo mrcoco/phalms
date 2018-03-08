@@ -32,7 +32,7 @@ class ClassroomController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-classroom.js")
             ->setTargetUri("themes/admin/assets/js/combined-classroom.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."classroom/views/js/js.js")
+            ->addJs($this->config->modules->lms."classroom/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 

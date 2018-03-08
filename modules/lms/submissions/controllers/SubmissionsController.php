@@ -26,7 +26,7 @@ class SubmissionsController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-submissions.js")
             ->setTargetUri("themes/admin/assets/js/combined-submissions.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."submissions/views/js/js.js")
+            ->addJs($this->config->modules->lms."submissions/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 

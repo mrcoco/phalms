@@ -26,7 +26,7 @@ class MajorsController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-majors.js")
             ->setTargetUri("themes/admin/assets/js/combined-majors.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."majors/views/js/js.js")
+            ->addJs($this->config->modules->lms."majors/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 

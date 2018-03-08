@@ -26,7 +26,7 @@ class ReligionController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-religion.js")
             ->setTargetUri("themes/admin/assets/js/combined-religion.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."religion/views/js/js.js")
+            ->addJs($this->config->modules->lms."religion/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 

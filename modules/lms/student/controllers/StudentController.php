@@ -27,7 +27,7 @@ class StudentController extends ControllerBase
             ->setTargetPath("themes/admin/assets/js/combined-student.js")
             ->setTargetUri("themes/admin/assets/js/combined-student.js")
             ->join(true)
-            ->addJs($this->config->application->modulesDir."student/views/js/js.js")
+            ->addJs($this->config->modules->lms."student/views/js/js.js")
             ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 

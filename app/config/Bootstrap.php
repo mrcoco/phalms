@@ -51,20 +51,32 @@ class Bootstrap
 
     public function arrModules()
     {
-        $arr_modules = include APP_PATH . '/config/modules.php';
-        return $arr_modules;
+        $modules = APP_PATH . '/config/modules.php';
+        if(file_exists($modules)){
+            $arr_modules = include APP_PATH . '/config/modules.php';
+            return $arr_modules;
+        }
+        return false;
     }
 
     public function coreModules()
     {
-        $arr_modules = include APP_PATH . '/config/core.module.php';
-        return $arr_modules;
+        $modules = APP_PATH . '/config/core.module.php';
+        if(file_exists($modules)){
+            $arr_modules = include APP_PATH . '/config/core.module.php';  
+            return $arr_modules;
+        }  
+        return false;
     }
 
     public function lmsModules()
     {
-        $arr_modules = include APP_PATH . '/config/lms.module.php';
-        return $arr_modules;
+        $modules = APP_PATH . '/config/lms.module.php';
+        if(file_exists($modules)){
+            $arr_modules = include APP_PATH . '/config/lms.module.php';
+            return $arr_modules;
+        }
+        return false;
     }
 
 

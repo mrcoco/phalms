@@ -33,8 +33,8 @@ foreach ($lms_modules as $lms){
 }
 
 foreach ($modules as $module){
-    if(file_exists(BASE_PATH . '/modules/'.$module.'/router.php')){
-        require_once BASE_PATH . '/modules/'.$module.'/router.php';
+    if(file_exists(BASE_PATH . '/modules/addons/'.$module.'/router.php')){
+        require_once BASE_PATH . '/modules/addons/'.$module.'/router.php';
     }
 }
 

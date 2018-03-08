@@ -384,7 +384,7 @@ class Bootstrap
                 $modules[$simple] = array(
                     'namespace' => 'Modules\\'.ucfirst($module),
                     'className' => 'Modules\\'.ucfirst($module) . '\Module',
-                    'path' => BASE_PATH . '/modules/' . $module . '/Modules.php'
+                    'path' => BASE_PATH . '/modules/addons/' . $module . '/Modules.php'
                 );
             }
         }

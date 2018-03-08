@@ -32,6 +32,11 @@ return new Config([
         'siteName'       => 'Phalms - Phalcon LMS',
         'cryptSalt'      => 'eEAfR|_&G&f,+vU]:jFr!!A&+71w1Ms9~8_4L!<@[N@DyaIP_2My|:+.u>/6m,$D'
     ],
+    'modules'   => [
+        'core'  => BASE_PATH . '/modules/core/',
+        'lms'   => BASE_PATH . '/modules/lms/',
+        'addons' => BASE_PATH . '/modules/addons/',
+    ],
     'mail' => [
         'fromName' => 'Phalms',
         'fromEmail' => '',

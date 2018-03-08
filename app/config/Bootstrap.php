@@ -90,8 +90,8 @@ class Bootstrap
         //force failed load class
         $loader->registerClasses([
                 "Modules\Banner\Models\Banner"      => $config->application->modulesDir."addons/banner/models/Banner.php",
-                "Modules\Cms\Models\Blog"           => $config->application->modulesDir."cms/models/Blog.php",
-                "Modules\Cms\Models\PageCategory"   => $config->application->modulesDir."cms/models/PageCategory.php",
+                "Modules\Cms\Models\Blog"           => $config->application->modulesDir."addons/cms/models/Blog.php",
+                "Modules\Cms\Models\PageCategory"   => $config->application->modulesDir."addons/cms/models/PageCategory.php",
                 "Modules\Gallery\Models\Image"      => $config->application->modulesDir."addons/gallery/models/Image.php",
                 "Modules\Menu\Models\Menu"          => $config->application->modulesDir."core/menu/models/Menu.php",
                 "Modules\Modules\Models\Modules"    => $config->application->modulesDir."core/modules/models/Modules.php",

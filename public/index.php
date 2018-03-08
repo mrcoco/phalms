@@ -11,13 +11,13 @@ require_once BASE_PATH . '/vendor/autoload.php';
 include BASE_PATH. '/app/config/Bootstrap.php';
 if( ! file_exists(APP_PATH."/config/config.db.php"))
 {
-	if(is_dir(BASE_PATH . "/installer/"))
+	if(is_dir(BASE_PATH . "/modules/installer/"))
 	{
-		include BASE_PATH . '/installer/installer.php';
-		include BASE_PATH . '/installer/lib/Database.php';
-		include BASE_PATH . '/installer/lib/Mysql.php';
-		include BASE_PATH . '/installer/lib/Pgsql.php';
-		include BASE_PATH . '/installer/lib/Config.php';
+		include BASE_PATH . '/modules/installer/installer.php';
+		include BASE_PATH . '/modules/installer/lib/Database.php';
+		include BASE_PATH . '/modules/installer/lib/Mysql.php';
+		include BASE_PATH . '/modules/installer/lib/Pgsql.php';
+		include BASE_PATH . '/modules/installer/lib/Config.php';
 		$app = new Installer();
 		$app->run();
 	}else{

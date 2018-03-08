@@ -1,0 +1,10 @@
+.modal-wide .modal-dialog {
+    width: 80%; /* or whatever you wish */
+}
+.trumbowyg-box.trumbowyg-editor-visible {
+    min-height: 150px;
+}
+
+.trumbowyg-editor {
+    min-height: 150px;
+}

@@ -25,6 +25,7 @@
     "require": {
         "php": ">=5.5",
         "mnsami/composer-custom-directory-installer": "1.1.*",
+        "mrcoco/phalms-installer": "dev-master",
         "mrcoco/phalms-core": "dev-master",
         "mrcoco/phalms-lms": "dev-master",
         "mrcoco/phalms-cli": "dev-master",
@@ -39,6 +40,7 @@
     },
     "extra": {
         "installer-paths": {
+            "./modules/installer/": ["mrcoco/phalms-installer"],
             "./modules/core/": ["mrcoco/phalms-core"],
             "./modules/lms/": ["mrcoco/phalms-lms"],
             "./modules/addons/cms/": ["mrcoco/phalms-cms"],

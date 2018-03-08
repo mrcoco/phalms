@@ -25,17 +25,16 @@
     "require": {
         "php": ">=5.5",
         "mnsami/composer-custom-directory-installer": "1.1.*",
-        "mrcoco/vokuro-cli": "dev-master",
-        "mrcoco/vokuro-cms": "dev-master",
+        "mrcoco/phalms-cli": "dev-master",
+        "mrcoco/phalms-cms": "dev-master",
         "stanislav-web/phalcon-uploader": "1.4-beta",
         "swiftmailer/swiftmailer": "^5.4",
         "raiym/instagram-php-scraper": "^0.5.7",
-        "pusher/pusher-php-server": "^2.6",
-        "phpoffice/phpexcel": "1.8.x-dev"
+        "pusher/pusher-php-server": "^2.6"
     },
     "extra": {
         "installer-paths": {
-            "./modules/cms/": ["mrcoco/vokuro-cms"]
+            "./modules/cms/": ["mrcoco/phalms-cms"]
         }
     }
 }

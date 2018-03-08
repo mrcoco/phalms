@@ -43,12 +43,27 @@ class Bootstrap
         //$arr_modules = include APP_PATH . '/config/modules.php';
         $modules = $this->modulesConfig();
         $application->registerModules($modules);
+        // echo "<pre>";
+        // print_r($modules);
+        // echo "</pre>";
         echo $application->handle()->getContent();
     }
 
     public function arrModules()
     {
         $arr_modules = include APP_PATH . '/config/modules.php';
+        return $arr_modules;
+    }
+
+    public function coreModules()
+    {
+        $arr_modules = include APP_PATH . '/config/core.module.php';
+        return $arr_modules;
+    }
+
+    public function lmsModules()
+    {
+        $arr_modules = include APP_PATH . '/config/lms.module.php';
         return $arr_modules;
     }
 
@@ -74,12 +89,12 @@ class Bootstrap
 
         //force failed load class
         $loader->registerClasses([
-                "Modules\Banner\Models\Banner"      => $config->application->modulesDir."banner/models/Banner.php",
+                "Modules\Banner\Models\Banner"      => $config->application->modulesDir."addons/banner/models/Banner.php",
                 "Modules\Cms\Models\Blog"           => $config->application->modulesDir."cms/models/Blog.php",
                 "Modules\Cms\Models\PageCategory"   => $config->application->modulesDir."cms/models/PageCategory.php",
-                "Modules\Gallery\Models\Image"      => $config->application->modulesDir."gallery/models/Image.php",
-                "Modules\Menu\Models\Menu"          => $config->application->modulesDir."menu/models/Menu.php",
-                "Modules\Modules\Models\Modules"    => $config->application->modulesDir."modules/models/Modules.php",
+                "Modules\Gallery\Models\Image"      => $config->application->modulesDir."addons/gallery/models/Image.php",
+                "Modules\Menu\Models\Menu"          => $config->application->modulesDir."core/menu/models/Menu.php",
+                "Modules\Modules\Models\Modules"    => $config->application->modulesDir."core/modules/models/Modules.php",
             ]);
 
         $loader->register();
@@ -317,10 +332,52 @@ class Bootstrap
 
     public function modulesConfig()
     {
+        $modules = array_merge($this->coreModulesConfig(),$this->lmsModulesConfig(),$this->addonModuleConfig());
+        return $modules;
+    }
+
+    public function coreModulesConfig()
+    {
+        $core_modules = $this->coreModules();
+        $modules = array();
+        if(!empty($core_modules)){
+            foreach ($core_modules as $core) {
+                $simple = Phalcon\Text::uncamelize($core);
+                $simple = str_replace('_', '-', $simple);
+                $modules[$simple] = array(
+                    'namespace' => 'Modules\\'.ucfirst($core),
+                    'className' => 'Modules\\'.ucfirst($core) . '\Module',
+                    'path' => BASE_PATH . '/modules/core/' . $core . '/Modules.php'
+                );
+            }
+        }
+        return $modules;
+    }
+
+    public function lmsModulesConfig()
+    {
+        $lms_modules = $this->lmsModules();
+        $modules = array();
+        if(!empty($lms_modules)) {
+            foreach ($lms_modules as $lms) {
+                $simple = Phalcon\Text::uncamelize($lms);
+                $simple = str_replace('_', '-', $simple);
+                $modules[$simple] = array(
+                    'namespace' => 'Modules\\'.ucfirst($lms),
+                    'className' => 'Modules\\'.ucfirst($lms) . '\Module',
+                    'path' => BASE_PATH . '/modules/lms/' . $lms . '/Modules.php'
+                );
+            }
+        }
+
+        return $modules;
+    }
+
+    public function addonModuleConfig()
+    {
         $modules_list = $this->arrModules();
         $modules = array();
-
-        if (!empty($modules_list)) {
+        if(!empty($modules_list)) {
             foreach ($modules_list as $module) {
                 $simple = Phalcon\Text::uncamelize($module);
                 $simple = str_replace('_', '-', $simple);

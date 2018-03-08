@@ -1,1 +1,1 @@
-<?php return ['frontend','session','user','cms','banner','gallery','generator','modules','menu','announcements','assignclass','assignments','classroom','course','discussions','grade','majors','religion','school','student','subject','submissions','video','webconfig'];
+<?php return ['cms','banner','gallery','video'];

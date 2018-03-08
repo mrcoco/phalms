@@ -16,7 +16,22 @@ $router->add('/reset-password/{code}/{email}', [
     'action' => 'resetPassword'
 ]);
 
-$modules = include APP_PATH . '/config/modules.php';
+$core_modules   = include APP_PATH . '/config/core.module.php';
+$lms_modules    = include APP_PATH . '/config/lms.module.php';
+$modules        = include APP_PATH . '/config/modules.php';
+
+foreach ($core_modules as $core){
+    if(file_exists(BASE_PATH . '/modules/core/'.$core.'/router.php')){
+        require_once BASE_PATH . '/modules/core/'.$core.'/router.php';
+    }
+}
+
+foreach ($lms_modules as $lms){
+    if(file_exists(BASE_PATH . '/modules/lms/'.$lms.'/router.php')){
+        require_once BASE_PATH . '/modules/lms/'.$lms.'/router.php';
+    }
+}
+
 foreach ($modules as $module){
     if(file_exists(BASE_PATH . '/modules/'.$module.'/router.php')){
         require_once BASE_PATH . '/modules/'.$module.'/router.php';

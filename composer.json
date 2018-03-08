@@ -34,7 +34,7 @@
     },
     "extra": {
         "installer-paths": {
-            "./modules/cms/": ["mrcoco/phalms-cms"]
+            "./modules/addons/cms/": ["mrcoco/phalms-cms"]
         }
     }
 }

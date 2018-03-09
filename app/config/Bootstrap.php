@@ -107,6 +107,7 @@ class Bootstrap
                 "Modules\Gallery\Models\Image"      => $config->application->modulesDir."addons/gallery/models/Image.php",
                 "Modules\Menu\Models\Menu"          => $config->application->modulesDir."core/menu/models/Menu.php",
                 "Modules\Modules\Models\Modules"    => $config->application->modulesDir."core/modules/models/Modules.php",
+                "Modules\User\Models\RememberTokens"    => $config->application->modulesDir."core/user/models/RememberTokens.php",
             ]);
 
         $loader->register();
